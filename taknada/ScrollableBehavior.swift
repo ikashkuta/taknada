@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-// TODO: should be done via events
 class ScrollableBehavior: Behavior {
 	var render: Render!
 	var scrollLayout: Layout!
@@ -22,13 +21,15 @@ class ScrollableBehavior: Behavior {
 	private var scrollView: UIScrollView?
 	private var scrollViewDelegate = ScrollViewDelegate()
 
-	private func didScroll(offset: CGPoint) {
+	final private func didScroll(offset: CGPoint) {
+		// TODO: should be done via events. This behavior is only for attaching custom input behavior,
+		// not updating transform.. or not?
 		self.scrollLayout.localTransform = CGAffineTransformTranslate(self.scrollLayout.localTransform,
 		                                                              -offset.x,
 		                                                              -offset.y)
 	}
 
-	private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {
+	final private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {
 		weak var behavior: ScrollableBehavior!
 
 		@objc

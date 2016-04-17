@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 
-// TODO: should be done via events
 class DraggableBehavior: Behavior {
 	var render: Render!
 	var layout: Layout!
@@ -17,7 +16,10 @@ class DraggableBehavior: Behavior {
 	}
 
 	@objc
-	func handleGesture(recognizer: UIPanGestureRecognizer) {
+	final private func handleGesture(recognizer: UIPanGestureRecognizer) {
+		// TODO: should be done via events. This behavior is only for attaching custom input behavior,
+		// not updating transform.. or not? Input must be handled on same thread and fire appropriate events,
+		// then logic behavior should handle this and update transform.
 		let translation = recognizer.translationInView(recognizer.view)
 		recognizer.setTranslation(CGPoint.zero, inView: recognizer.view)
 		self.layout.localTransform = CGAffineTransformTranslate(self.layout.localTransform,
