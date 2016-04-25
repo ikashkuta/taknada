@@ -24,7 +24,7 @@ final class LayoutSystem: System {
 		// TODO: Bad traversal. Should be linear tree traversal. Related to parent-child implementation in components.
 		for layout in self.components {
 			if layout.needsUpdate {
-				layout.updateState()
+				layout.updateGlobalFrame()
 			}
 		}
 	}

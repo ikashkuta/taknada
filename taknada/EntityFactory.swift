@@ -6,7 +6,7 @@ final class EntityFactory {
 		let render = Render()
 		let layout = Layout()
 
-		layout.boundingBox = mainView.frame.size
+		layout.data.boundingBox = mainView.frame.size
 
 		render.view = mainView
 		render.layout = layout
@@ -25,7 +25,7 @@ final class EntityFactory {
 		style.borderColor = UIColor.blueColor()
 		style.cornerRadius = 10
 
-		layout.boundingBox = CGSize(width: 100, height: 200)
+		layout.data.boundingBox = CGSize(width: 100, height: 200)
 
 		render.layout = layout
 		render.styles = [style]
@@ -48,7 +48,7 @@ final class EntityFactory {
 		style.borderColor = UIColor.blueColor()
 		style.cornerRadius = 10
 
-		layout.boundingBox = CGSize(width: 100, height: 100)
+		layout.data.boundingBox = CGSize(width: 100, height: 100)
 
 		render.layout = layout
 		render.styles = [style]
@@ -73,7 +73,7 @@ final class EntityFactory {
 
 		scrollLayout.parent = baseLayout
 
-		baseLayout.boundingBox = CGSize(width: 400, height: 400)
+		baseLayout.data.boundingBox = CGSize(width: 400, height: 400)
 
 		render.layout = baseLayout
 		render.styles = [style]

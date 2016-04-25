@@ -24,9 +24,9 @@ class ScrollableBehavior: Behavior {
 	final private func didScroll(offset: CGPoint) {
 		// TODO: should be done via events. This behavior is only for attaching custom input behavior,
 		// not updating transform.. or not?
-		self.scrollLayout.localTransform = CGAffineTransformTranslate(self.scrollLayout.localTransform,
-		                                                              -offset.x,
-		                                                              -offset.y)
+		self.scrollLayout.data.localTransform = CGAffineTransformTranslate(self.scrollLayout.data.localTransform,
+		                                                                   -offset.x,
+		                                                                   -offset.y)
 	}
 
 	final private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {

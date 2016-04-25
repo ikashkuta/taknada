@@ -22,8 +22,8 @@ class DraggableBehavior: Behavior {
 		// then logic behavior should handle this and update transform.
 		let translation = recognizer.translationInView(recognizer.view)
 		recognizer.setTranslation(CGPoint.zero, inView: recognizer.view)
-		self.layout.localTransform = CGAffineTransformTranslate(self.layout.localTransform,
-		                                                        translation.x,
-		                                                        translation.y)
+		self.layout.data.localTransform = CGAffineTransformTranslate(self.layout.data.localTransform,
+		                                                             translation.x,
+		                                                             translation.y)
 	}
 }

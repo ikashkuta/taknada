@@ -32,9 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let b1 = EntityFactory.makeScrollable()
 		self.entities.appendContentsOf([e1.entity, e2.entity, e3.entity, b1.entity])
 
-		e1.layout.localTransform = CGAffineTransformMakeTranslation(10, 0)
-		e2.layout.localTransform = CGAffineTransformMakeTranslation(130, 0)
-		e3.layout.localTransform = CGAffineTransformMakeTranslation(250, 0)
+		e1.layout.data.localTransform = CGAffineTransformMakeTranslation(10, 0)
+		e2.layout.data.localTransform = CGAffineTransformMakeTranslation(130, 0)
+		e3.layout.data.localTransform = CGAffineTransformMakeTranslation(250, 0)
 
 		e1.layout.parent = b1.scrollLayout
 		e2.layout.parent = b1.scrollLayout

@@ -10,10 +10,10 @@ class Layout: Component {
 		SystemLocator.layoutSystem?.unregister(self)
 	}
 
+	// TODO: it must be appropriate datastructure for this tree, not Array
 	final private(set) var children = [Layout]()
 	final var parent: Layout? {
 		willSet {
-			// TODO: it must be appropriate datastructure, not Array
 			guard let parent = self.parent else { return }
 			parent.children = parent.children.filter { $0 !== self }
 		}
@@ -23,31 +23,39 @@ class Layout: Component {
 		}
 	}
 
-	final private(set) var needsUpdate = false
+	final let data = LayoutData()
 	final private(set) var globalFrame = CGRect.zero
 	final private(set) var globalTransform = CGAffineTransformIdentity
-	final func updateState() {
-		let parentGlobalTransform = self.parent?.globalTransform ?? self.localTransform
-		self.globalTransform = CGAffineTransformConcat(parentGlobalTransform, self.localTransform)
-		let frame = CGRect(origin: CGPoint.zero, size: self.boundingBox)
+	final private(set) var lastUsedDataVersion = UInt.max
+	final var needsUpdate: Bool {
+		return self.data.version != self.lastUsedDataVersion
+	}
+	final func updateGlobalFrame() {
+		let parentGlobalTransform = self.parent?.globalTransform ?? self.data.localTransform
+		self.globalTransform = CGAffineTransformConcat(parentGlobalTransform, self.data.localTransform)
+		let frame = CGRect(origin: CGPoint.zero, size: self.data.boundingBox)
 		self.globalFrame = CGRectApplyAffineTransform(frame, self.globalTransform)
 		for child in self.children {
-			child.updateState()
+			child.updateGlobalFrame()
 		}
-		self.needsUpdate = false
+		self.lastUsedDataVersion = self.data.version
 	}
+}
 
+final class LayoutData {
+	private(set) var version: UInt = 0
+	let guid = "guid"
 	var localTransform = CGAffineTransformIdentity {
 		didSet {
 			if !CGAffineTransformEqualToTransform(oldValue, self.localTransform) {
-				self.needsUpdate = true
+				self.version += 1
 			}
 		}
 	}
 	var boundingBox = CGSize.zero {
 		didSet {
-			if !CGSizeEqualToSize(oldValue, self.boundingBox) {
-				self.needsUpdate = true
+			if oldValue != self.boundingBox {
+				self.version += 1
 			}
 		}
 	}
