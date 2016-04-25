@@ -480,6 +480,7 @@
 				87F960F11CC1867800A7B3E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		87F960F21CC1867800A7B3E2 /* Build configuration list for PBXNativeTarget "taknadaTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +489,7 @@
 				87F960F41CC1867800A7B3E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
