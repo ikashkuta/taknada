@@ -7,24 +7,16 @@ fully from inner state of other components. There is no need of smth like "virtu
 because changes in UIKit are non-atomic (comparing to ones in browser).
 More concrete: "Stateless" means this component doesn't own it's layout, colour, border properties,
 control state, frame, bounds, position. Nothing. It might contain this information (because of UIKit's
-requirements) but it mustn't own it.
+requirements) but it mustn't own it. Actually, all components must follow this guidelines.
 */
 class Render: Component {
-	override func registerSelf() {
-		SystemLocator.renderSystem?.register(self)
-	}
 
-	override func unregisterSelf() {
-		SystemLocator.renderSystem?.unregister(self)
-		self.layout = nil
-		self.styles = nil
-		self.behaviors = nil
-	}
+	// MARK: - Tree
 
+	// TODO: it must be appropriate datastructure for this tree, not Array
 	final private(set) var children = [Render]()
 	final var parent: Render? {
 		willSet {
-			// TODO: it must be appropriate datastructure, not Array
 			guard let parent = self.parent else { return }
 			parent.children = parent.children.filter { $0 !== self }
 		}
@@ -41,5 +33,18 @@ class Render: Component {
 	final var view: UIView?
 	func createView() -> UIView {
 		return UIView.init()
+	}
+
+	// MARK: - Component
+
+	override func registerSelf() {
+		SystemLocator.renderSystem?.register(self)
+	}
+
+	override func unregisterSelf() {
+		SystemLocator.renderSystem?.unregister(self)
+		self.layout = nil
+		self.styles = nil
+		self.behaviors = nil
 	}
 }

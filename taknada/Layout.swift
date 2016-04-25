@@ -2,13 +2,8 @@ import Foundation
 import CoreGraphics
 
 class Layout: Component {
-	override func registerSelf() {
-		SystemLocator.layoutSystem?.register(self)
-	}
 
-	override func unregisterSelf() {
-		SystemLocator.layoutSystem?.unregister(self)
-	}
+	// MARK: - Tree
 
 	// TODO: it must be appropriate datastructure for this tree, not Array
 	final private(set) var children = [Layout]()
@@ -22,6 +17,8 @@ class Layout: Component {
 			parent.children.append(self)
 		}
 	}
+
+	// MARK: - Data & Updates
 
 	final let data = LayoutData()
 	final private(set) var globalFrame = CGRect.zero
@@ -40,11 +37,20 @@ class Layout: Component {
 		}
 		self.lastUsedDataVersion = self.data.version
 	}
+
+	// MARK: - Component
+
+	override func registerSelf() {
+		SystemLocator.layoutSystem?.register(self)
+	}
+	override func unregisterSelf() {
+		SystemLocator.layoutSystem?.unregister(self)
+	}
 }
 
 final class LayoutData {
 	private(set) var version: UInt = 0
-	let guid = "guid"
+	let guid = "layout_guid_uniq-num-per-instance"
 	var localTransform = CGAffineTransformIdentity {
 		didSet {
 			if !CGAffineTransformEqualToTransform(oldValue, self.localTransform) {
