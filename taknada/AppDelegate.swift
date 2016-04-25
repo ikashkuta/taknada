@@ -11,15 +11,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.renderSystem?.update()
 	}
 
-	// TODO: mustn't be like this
-	static let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue())
-	static func fakeRunloop(job: dispatch_block_t) {
-		dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 16 * NSEC_PER_MSEC, 1 * NSEC_PER_MSEC)
-		dispatch_source_set_event_handler(timer) {
-			AppDelegate.updateSystems()
-			job();
-		}
-		dispatch_resume(timer)
+	var displayLink: CADisplayLink!
+	var job: dispatch_block_t!
+	func fakeRunloop(job: dispatch_block_t) {
+		self.job = job
+		self.displayLink = CADisplayLink.init(target: self, selector: #selector(AppDelegate.handleDisplayLink(_:)))
+		self.displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+	}
+
+	@objc
+	func handleDisplayLink(displayLink: CADisplayLink) {
+		AppDelegate.updateSystems()
+		self.job();
 	}
 
 	func setupScene1() {
@@ -65,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.setupScene1()
 //		self.setupScene2()
 
-		AppDelegate.fakeRunloop { }
+		self.fakeRunloop { }
 
 		return true
 	}
