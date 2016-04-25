@@ -26,7 +26,7 @@ class Layout: Component {
 	final let data = LayoutData()
 	final private(set) var globalFrame = CGRect.zero
 	final private(set) var globalTransform = CGAffineTransformIdentity
-	final private(set) var lastUsedDataVersion = UInt.max
+	final private var lastUsedDataVersion = UInt.max
 	final var needsUpdate: Bool {
 		return self.data.version != self.lastUsedDataVersion
 	}
