@@ -10,8 +10,8 @@ class Layout: Component {
 		SystemLocator.layoutSystem?.unregister(self)
 	}
 
-	private(set) var children = [Layout]()
-	var parent: Layout? {
+	final private(set) var children = [Layout]()
+	final var parent: Layout? {
 		willSet {
 			// TODO: it must be appropriate datastructure, not Array
 			guard let parent = self.parent else { return }

@@ -21,8 +21,8 @@ class Render: Component {
 		self.behaviors = nil
 	}
 
-	private(set) var children = [Render]()
-	var parent: Render? {
+	final private(set) var children = [Render]()
+	final var parent: Render? {
 		willSet {
 			// TODO: it must be appropriate datastructure, not Array
 			guard let parent = self.parent else { return }
@@ -38,7 +38,7 @@ class Render: Component {
 	var styles: [Style]? // TODO: I don't like this, too many double-linked components
 	var behaviors: [Behavior]? // TODO: I don't like this, too many double-linked components
 
-	var view: UIView?
+	final var view: UIView?
 	func createView() -> UIView {
 		return UIView.init()
 	}
