@@ -5,7 +5,7 @@ class DraggableScript: Script {
 	var render: Render!
 	var layout: Layout!
 
-	override func unregisterSelf() {
+	override func detach() {
 		self.render = nil
 		self.layout = nil
 	}

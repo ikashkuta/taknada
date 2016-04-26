@@ -32,8 +32,9 @@ final class RenderSystem: System {
 	}
 
 	private func update(render: Render) {
-		updateView(render)
-		updateFrame(render)
+		self.updateView(render)
+		self.updateStyle(render)
+		self.updateFrame(render)
 		for child in render.children {
 			self.update(child)
 		}
@@ -43,16 +44,6 @@ final class RenderSystem: System {
 		if render.view == nil {
 			render.view = render.createView()
 			render.parent!.view!.addSubview(render.view!)
-
-			self.attachBehaviors(render)
-			self.updateStyle(render)
-		}
-	}
-
-	private func attachBehaviors(render: Render) {
-		guard let behaviors = render.scripts else { return }
-		for behavior in behaviors {
-			behavior.attach()
 		}
 	}
 

@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	static func updateSystems() {
 		SystemLocator.layoutSystem?.update()
 		SystemLocator.renderSystem?.update()
+		SystemLocator.dispatchSystem?.update()
 	}
 
 	var displayLink: CADisplayLink!
@@ -64,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		SystemLocator.renderSystem = RenderSystem(window: w.render)
 		SystemLocator.layoutSystem = LayoutSystem(window: w.layout)
+		SystemLocator.dispatchSystem = DispatchSystem()
 
 		self.setupScene1()
 //		self.setupScene2()

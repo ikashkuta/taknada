@@ -40,10 +40,10 @@ class Layout: Component {
 
 	// MARK: - Component
 
-	override func registerSelf() {
+	final override func registerSelf() {
 		SystemLocator.layoutSystem?.register(self)
 	}
-	override func unregisterSelf() {
+	final override func unregisterSelf() {
 		SystemLocator.layoutSystem?.unregister(self)
 	}
 }

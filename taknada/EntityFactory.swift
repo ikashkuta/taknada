@@ -52,7 +52,6 @@ final class EntityFactory {
 
 		render.layout = layout
 		render.styles = [style]
-		render.scripts = [script]
 
 		let entity = Entity(components: [render, layout, style, script])
 		return entity
@@ -77,7 +76,6 @@ final class EntityFactory {
 
 		render.layout = baseLayout
 		render.styles = [style]
-		render.scripts = [script]
 
 		let entity = Entity(components: [render, baseLayout, scrollLayout, style, script])
 		return (entity, render, scrollLayout)

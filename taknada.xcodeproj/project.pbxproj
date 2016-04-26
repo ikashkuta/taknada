@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AA81CCEC29C00588025 /* DispatchSystem.swift */; };
 		87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F960D51CC1867800A7B3E2 /* AppDelegate.swift */; };
 		87F960DD1CC1867800A7B3E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DC1CC1867800A7B3E2 /* Assets.xcassets */; };
 		87F960E01CC1867800A7B3E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DE1CC1867800A7B3E2 /* LaunchScreen.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		87792AA81CCEC29C00588025 /* DispatchSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchSystem.swift; sourceTree = "<group>"; };
 		87F960D21CC1867800A7B3E2 /* taknada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taknada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F960D51CC1867800A7B3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87F960DC1CC1867800A7B3E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				87F960FF1CC1877A00A7B3E2 /* System.swift */,
 				87F960FB1CC1873F00A7B3E2 /* RenderSystem.swift */,
 				87F960FD1CC1875800A7B3E2 /* LayoutSystem.swift */,
+				87792AA81CCEC29C00588025 /* DispatchSystem.swift */,
 				87F960F91CC186FE00A7B3E2 /* SystemLocator.swift */,
 			);
 			name = Systems;
@@ -286,6 +289,7 @@
 				87F9610C1CC27D6F00A7B3E2 /* MapRender.swift in Sources */,
 				87F961131CC2E08300A7B3E2 /* ScrollableScript.swift in Sources */,
 				87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */,
+				87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */,
 				87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */,
 				87F9611A1CC2FC0700A7B3E2 /* DraggableScript.swift in Sources */,
 				87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */,

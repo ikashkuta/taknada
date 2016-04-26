@@ -5,7 +5,7 @@ class ScrollableScript: Script {
 	var render: Render!
 	var scrollLayout: Layout!
 
-	override func unregisterSelf() {
+	override func detach() {
 		self.render = nil
 		self.scrollLayout = nil
 	}
