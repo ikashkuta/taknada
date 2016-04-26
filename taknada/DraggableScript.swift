@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class DraggableBehavior: Behavior {
+class DraggableScript: Script {
 	var render: Render!
 	var layout: Layout!
 
@@ -11,7 +11,7 @@ class DraggableBehavior: Behavior {
 	}
 
 	override func attach() {
-		let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DraggableBehavior.handleGesture))
+		let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DraggableScript.handleGesture))
 		self.render.view?.addGestureRecognizer(panRecognizer)
 	}
 

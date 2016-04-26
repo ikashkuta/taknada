@@ -28,7 +28,7 @@ class Render: Component {
 
 	var layout: Layout!
 	var styles: [Style]? // TODO: I don't like this, too many double-linked components
-	var behaviors: [Behavior]? // TODO: I don't like this, too many double-linked components
+	var scripts: [Script]? // TODO: I don't like this, too many double-linked components
 
 	final var view: UIView?
 	func createView() -> UIView {
@@ -45,6 +45,20 @@ class Render: Component {
 		SystemLocator.renderSystem?.unregister(self)
 		self.layout = nil
 		self.styles = nil
-		self.behaviors = nil
+		self.scripts = nil
+	}
+}
+
+
+// TODO: But how to know that layout or style changes?..
+// Also, it seems that it reasonable to track layout & style changes separately
+final class RenderData {
+	private(set) var version: UInt = 0
+	let guid = "render_guid_uniq-num-per-instance"
+	var layout: Layout
+	var styles: [Style]
+	init(layout: Layout, styles: [Style]) {
+		self.layout = layout
+		self.styles = styles
 	}
 }

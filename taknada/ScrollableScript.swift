@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ScrollableBehavior: Behavior {
+class ScrollableScript: Script {
 	var render: Render!
 	var scrollLayout: Layout!
 
@@ -30,7 +30,7 @@ class ScrollableBehavior: Behavior {
 	}
 
 	final private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {
-		weak var behavior: ScrollableBehavior!
+		weak var behavior: ScrollableScript!
 
 		@objc
 		func scrollViewDidScroll(scrollView: UIScrollView) {

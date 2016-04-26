@@ -1,6 +1,6 @@
 import Foundation
 
-class Behavior: Component {
+class Script: Component {
 	func attach() { }
 	func detach() { }
 

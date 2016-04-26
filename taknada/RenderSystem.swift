@@ -50,7 +50,7 @@ final class RenderSystem: System {
 	}
 
 	private func attachBehaviors(render: Render) {
-		guard let behaviors = render.behaviors else { return }
+		guard let behaviors = render.scripts else { return }
 		for behavior in behaviors {
 			behavior.attach()
 		}

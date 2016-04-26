@@ -38,10 +38,10 @@ final class EntityFactory {
 		let render = Render()
 		let layout = Layout()
 		let style = Style()
-		let behavior = DraggableBehavior()
+		let script = DraggableScript()
 
-		behavior.render = render
-		behavior.layout = layout
+		script.render = render
+		script.layout = layout
 
 		style.backgroundColor = UIColor.purpleColor()
 		style.borderWidth = 3
@@ -52,9 +52,9 @@ final class EntityFactory {
 
 		render.layout = layout
 		render.styles = [style]
-		render.behaviors = [behavior]
+		render.scripts = [script]
 
-		let entity = Entity(components: [render, layout, style, behavior])
+		let entity = Entity(components: [render, layout, style, script])
 		return entity
 
 	}
@@ -64,10 +64,10 @@ final class EntityFactory {
 		let baseLayout = Layout()
 		let scrollLayout = Layout()
 		let style = Style()
-		let behavior = ScrollableBehavior()
+		let script = ScrollableScript()
 
-		behavior.render = render
-		behavior.scrollLayout = scrollLayout
+		script.render = render
+		script.scrollLayout = scrollLayout
 
 		style.borderWidth = 1
 
@@ -77,9 +77,9 @@ final class EntityFactory {
 
 		render.layout = baseLayout
 		render.styles = [style]
-		render.behaviors = [behavior]
+		render.scripts = [script]
 
-		let entity = Entity(components: [render, baseLayout, scrollLayout, style, behavior])
+		let entity = Entity(components: [render, baseLayout, scrollLayout, style, script])
 		return (entity, render, scrollLayout)
 	}
 }
