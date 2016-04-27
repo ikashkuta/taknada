@@ -26,7 +26,7 @@
 		87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */; };
 		87F961131CC2E08300A7B3E2 /* ScrollableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */; };
 		87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */; };
-		87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9611B1CC3027200A7B3E2 /* Script.swift */; };
+		87F9611C1CC3027200A7B3E2 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9611B1CC3027200A7B3E2 /* Worker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,7 @@
 		87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
 		87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableInput.swift; sourceTree = "<group>"; };
 		87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableInput.swift; sourceTree = "<group>"; };
-		87F9611B1CC3027200A7B3E2 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		87F9611B1CC3027200A7B3E2 /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +189,7 @@
 		87F9611D1CC3027B00A7B3E2 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				87F9611B1CC3027200A7B3E2 /* Script.swift */,
+				87F9611B1CC3027200A7B3E2 /* Worker.swift */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -303,7 +303,7 @@
 				87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */,
 				87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */,
 				87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */,
-				87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */,
+				87F9611C1CC3027200A7B3E2 /* Worker.swift in Sources */,
 				87F961001CC1877A00A7B3E2 /* System.swift in Sources */,
 				87F960FC1CC1873F00A7B3E2 /* RenderSystem.swift in Sources */,
 				87F961061CC18A0B00A7B3E2 /* Layout.swift in Sources */,

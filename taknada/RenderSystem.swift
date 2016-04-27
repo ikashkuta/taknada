@@ -1,32 +1,32 @@
 import Foundation
 import UIKit
 
-final class RenderSystem: System {
+final class RenderSystem: System<Render> {
 	private var window: Render
-	private var components = [Render]()
 
 	init(window: Render) {
 		self.window = window
+		super.init()
 		self.register(self.window)
 	}
 
-	func register(component: Render) {
-		self.components.append(component)
+	override func register(component: Render) {
+		super.register(component)
 		guard component !== self.window else { return }
 		component.parent = self.window
 	}
 
-	func unregister(component: Render) {
+	override func unregister(component: Render) {
 		if let view = component.view {
 			self.detachInputs(component)
 			view.removeFromSuperview()
 			component.view = nil
 		}
 		component.parent = nil
-		self.components = self.components.filter { $0 !== component }
+		super.unregister(component)
 	}
 
-	func update() {
+	override func update() {
 		// TODO: add visible components
 		self.update(self.window)
 		// TODO: remove invisible components, detach inputs from them

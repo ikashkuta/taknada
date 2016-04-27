@@ -1,20 +1,19 @@
 import Foundation
 
-final class DispatchSystem: System {
-	private var components = [Script]()
-
-	func register(component: Script) {
-		self.components.append(component)
+final class DispatchSystem: System<Worker> {
+	override func register(component: Worker) {
+		super.register(component)
+		// TODO: Register component to receive all things it wants
 	}
 
-	func unregister(component: Script) {
-		self.components = self.components.filter { $0 !== component }
+	override func unregister(component: Worker) {
+		// TODO: Unregister component to receive all things it wants
+		super.unregister(component)
 	}
 	
-	func update() {
+	override func update() {
 		// TODO: different modes
 		// TODO: works only inside of entity by default
-		// TODO: events (actions in terms of redux) must be typed
 
 		for script in self.components {
 			if !script.isRunning {
@@ -23,4 +22,3 @@ final class DispatchSystem: System {
 		}
 	}
 }
-

@@ -1,10 +1,17 @@
 import Foundation
 
-protocol System {
-	associatedtype ComponentType: Component
+class System<ComponentType: Component> {
+	private(set) var components = [ComponentType]()
 
-	func register(component: ComponentType)
-	func unregister(component: ComponentType)
+	func register(component: ComponentType) {
+		self.components.append(component)
+	}
 
-	func update()
+	func unregister(component: ComponentType) {
+		self.components = self.components.filter { $0 !== component }
+	}
+
+	func update() {
+		
+	}
 }

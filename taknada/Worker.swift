@@ -1,15 +1,13 @@
 import Foundation
 
-class Script: Component {
-
-	// MARK: - Public
+class Worker: Component {
 
 	private(set) var isRunning = false
-	final func start() {
+	func start() {
 		self.isRunning = true
 	}
 
-	final func stop() {
+	func stop() {
 		self.isRunning = false
 	}
 

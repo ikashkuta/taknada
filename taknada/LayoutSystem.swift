@@ -1,26 +1,26 @@
 import Foundation
 
-final class LayoutSystem: System {
+final class LayoutSystem: System<Layout> {
 	private var window: Layout
-	private var components = [Layout]()
 
 	init(window: Layout) {
 		self.window = window
+		super.init()
 		self.register(self.window)
 	}
 
-	func register(component: Layout) {
-		self.components.append(component)
+	override func register(component: Layout) {
+		super.register(component)
 		guard component !== self.window else { return }
 		component.parent = self.window
 	}
 
-	func unregister(component: Layout) {
+	override func unregister(component: Layout) {
 		component.parent = nil
-		self.components = self.components.filter { $0 !== component }
+		super.unregister(component)
 	}
 
-	func update() {
+	override func update() {
 		// TODO: Bad traversal. Should be linear tree traversal. Related to parent-child implementation in components.
 		for layout in self.components {
 			if layout.needsUpdate {
