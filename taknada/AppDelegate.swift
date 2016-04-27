@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
 	}
 
-	@objc
 	func handleDisplayLink(displayLink: CADisplayLink) {
 		AppDelegate.updateSystems()
 		self.job();

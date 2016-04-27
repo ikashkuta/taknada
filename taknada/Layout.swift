@@ -18,11 +18,14 @@ class Layout: Component {
 		}
 	}
 
-	// MARK: - Data & Updates
+	// MARK: - Public
 
 	final let data = LayoutData()
 	final private(set) var globalFrame = CGRect.zero
 	final private(set) var globalTransform = CGAffineTransformIdentity
+
+	// MARK: - Update
+
 	final private var lastUsedDataVersion = UInt.max
 	final var needsUpdate: Bool {
 		return self.data.version != self.lastUsedDataVersion
