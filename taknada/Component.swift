@@ -1,6 +1,6 @@
 import Foundation
 
-class Component { // TODO: maybe protocol?..
+class Component {
 	func registerSelf() {}
 	func unregisterSelf() {}
 

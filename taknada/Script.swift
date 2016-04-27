@@ -7,18 +7,11 @@ class Script: Component {
 	private(set) var isRunning = false
 	final func start() {
 		self.isRunning = true
-		self.attach()
 	}
 
 	final func stop() {
-		self.detach()
 		self.isRunning = false
 	}
-
-	// MARK: - To Subclass
-
-	func attach() {}
-	func detach() {}
 
 	// MARK: - Component
 

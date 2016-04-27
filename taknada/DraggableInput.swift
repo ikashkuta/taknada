@@ -1,29 +1,35 @@
 import Foundation
 import UIKit
 
-class DraggableScript: Script {
+class DraggableInput: Input {
 	var render: Render!
 	var layout: Layout!
 
 	override func detach() {
-		self.render = nil
-		self.layout = nil
+		self.render.view?.removeGestureRecognizer(self.panRecognizer)
 	}
 
 	override func attach() {
-		let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DraggableScript.handleGesture))
-		self.render.view?.addGestureRecognizer(panRecognizer)
+		self.panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DraggableInput.handleGesture))
+		self.render.view?.addGestureRecognizer(self.panRecognizer)
 	}
+
+	private var panRecognizer: UIPanGestureRecognizer!
 
 	@objc
 	final private func handleGesture(recognizer: UIPanGestureRecognizer) {
-		// TODO: should be done via events. This behavior is only for attaching custom input behavior,
-		// not updating transform.. or not? Input must be handled on same thread and fire appropriate events,
-		// then logic behavior should handle this and update transform.
 		let translation = recognizer.translationInView(recognizer.view)
 		recognizer.setTranslation(CGPoint.zero, inView: recognizer.view)
 		self.layout.data.localTransform = CGAffineTransformTranslate(self.layout.data.localTransform,
 		                                                             translation.x,
 		                                                             translation.y)
+	}
+
+	// MARK: - Component
+
+	override func unregisterSelf() {
+		self.render = nil
+		self.layout = nil
+		super.unregisterSelf()
 	}
 }

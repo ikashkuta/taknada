@@ -18,6 +18,7 @@ final class RenderSystem: System {
 
 	func unregister(component: Render) {
 		if let view = component.view {
+			self.detachInputs(component)
 			view.removeFromSuperview()
 			component.view = nil
 		}
@@ -28,30 +29,34 @@ final class RenderSystem: System {
 	func update() {
 		// TODO: add visible components
 		self.update(self.window)
-		// TODO: remove invisible components
+		// TODO: remove invisible components, detach inputs from them
 	}
 
 	private func update(render: Render) {
 		self.updateView(render)
-		self.updateStyle(render)
+		self.updateStyles(render)
 		self.updateFrame(render)
-		for child in render.children {
-			self.update(child)
-		}
+		render.children.forEach { self.update($0) }
 	}
 
 	private func updateView(render: Render) {
 		if render.view == nil {
 			render.view = render.createView()
 			render.parent!.view!.addSubview(render.view!)
+			self.attachInputs(render)
 		}
 	}
 
-	private func updateStyle(render: Render) {
-		guard let styles = render.styles else { return }
-		for style in styles {
-			style.styleView(render.view!)
-		}
+	private func attachInputs(render: Render) {
+		render.inputs?.forEach{ $0.attach() }
+	}
+
+	private func detachInputs(render: Render) {
+		render.inputs?.forEach{ $0.detach() }
+	}
+
+	private func updateStyles(render: Render) {
+		render.styles?.forEach{ $0.styleView(render.view!) }
 	}
 
 	private func updateFrame(render: Render) {

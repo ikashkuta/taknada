@@ -28,6 +28,7 @@ class Render: Component {
 
 	var layout: Layout!
 	var styles: [Style]? // TODO: I don't like this, too many double-linked components
+	var inputs: [Input]? // TODO: I don't like this, too many double-linked components
 
 	final var view: UIView?
 	func createView() -> UIView {
