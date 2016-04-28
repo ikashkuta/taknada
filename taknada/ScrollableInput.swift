@@ -22,10 +22,19 @@ class ScrollableInput: Input {
 		return ScrollViewDelegate(input: self)
 	}()
 
+	struct DidScrollFact: Fact {
+		var source: String
+		var newTranslation: (CGFloat, CGFloat)
+	}
+
 	final private func didScroll(offset: CGPoint) {
 		self.scrollLayout.data.localTransform = CGAffineTransformTranslate(self.scrollLayout.data.localTransform,
 		                                                                   -offset.x,
 		                                                                   -offset.y)
+
+		let dispatcher: Dispatcher = self.getSibling()
+		let newTranslation = (self.scrollLayout.data.localTransform.tx, self.scrollLayout.data.localTransform.ty)
+		dispatcher.message(DidScrollFact(source: #function, newTranslation: newTranslation))
 	}
 
 	final private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {

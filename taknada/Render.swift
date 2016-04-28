@@ -42,8 +42,8 @@ class Render: Component {
 	}
 
 	final override func unregisterSelf() {
-		SystemLocator.renderSystem?.unregister(self)
 		self.layout = nil
 		self.styles = nil
+		SystemLocator.renderSystem?.unregister(self)
 	}
 }

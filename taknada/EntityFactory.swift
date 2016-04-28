@@ -19,6 +19,7 @@ final class EntityFactory {
 		let render = MapRender()
 		let layout = Layout()
 		let style = Style()
+		let dispatcher = Dispatcher()
 
 		style.backgroundColor = UIColor.purpleColor()
 		style.borderWidth = 3
@@ -30,7 +31,7 @@ final class EntityFactory {
 		render.layout = layout
 		render.styles = [style]
 
-		let entity = Entity(components: [render, layout, style])
+		let entity = Entity(components: [render, layout, style, dispatcher])
 		return (entity, render, layout)
 	}
 
@@ -56,7 +57,6 @@ final class EntityFactory {
 
 		let entity = Entity(components: [render, layout, style, input])
 		return entity
-
 	}
 
 	static func makeScrollable() -> (entity: Entity, render: Render, scrollLayout: Layout) {
@@ -65,6 +65,7 @@ final class EntityFactory {
 		let scrollLayout = Layout()
 		let style = Style()
 		let input = ScrollableInput()
+		let dispatcher = Dispatcher()
 
 		input.render = render
 		input.scrollLayout = scrollLayout
@@ -79,7 +80,7 @@ final class EntityFactory {
 		render.styles = [style]
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, baseLayout, scrollLayout, style, input])
+		let entity = Entity(components: [render, baseLayout, scrollLayout, style, input, dispatcher])
 		return (entity, render, scrollLayout)
 	}
 }
