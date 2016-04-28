@@ -1,10 +1,14 @@
 import Foundation
 
-class Component {
-	func registerSelf() {}
-	func unregisterSelf() {}
 
+class Component {
 	init() {
 		self.registerSelf()
+	}
+
+	func registerSelf() {
+	}
+
+	func unregisterSelf() {
 	}
 }

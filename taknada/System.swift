@@ -12,6 +12,5 @@ class System<ComponentType: Component> {
 	}
 
 	func update() {
-		
 	}
 }

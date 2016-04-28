@@ -16,7 +16,6 @@ class Input: Component {
 	// MARK: - Component
 
 	override func registerSelf() {
-
 	}
 
 	override func unregisterSelf() {
