@@ -16,7 +16,7 @@ final class EntityFactory {
 	}
 
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = MapRender()
+		let render = Render()
 		let layout = Layout()
 		let style = Style()
 		let dispatcher = Dispatcher()
@@ -35,7 +35,7 @@ final class EntityFactory {
 		return (entity, render, layout)
 	}
 
-	static func makeDraggable() -> Entity {
+	static func makeDraggable() -> (entity: Entity, render: Render, layout: Layout) {
 		let render = Render()
 		let layout = Layout()
 		let style = Style()
@@ -56,7 +56,7 @@ final class EntityFactory {
 		render.inputs = [input]
 
 		let entity = Entity(components: [render, layout, style, input])
-		return entity
+		return (entity, render, layout)
 	}
 
 	static func makeScrollable() -> (entity: Entity, render: Render, scrollLayout: Layout) {

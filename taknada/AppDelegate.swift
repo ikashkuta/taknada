@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func setupScene1() {
 		let e1 = EntityFactory.makeSimple()
 		let e2 = EntityFactory.makeSimple()
-		let e3 = EntityFactory.makeSimple()
+		let e3 = EntityFactory.makeDraggable()
 		let b1 = EntityFactory.makeScrollable()
 		self.entities.appendContentsOf([e1.entity, e2.entity, e3.entity, b1.entity])
 
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let e1 = EntityFactory.makeDraggable()
 		let e2 = EntityFactory.makeDraggable()
 		let e3 = EntityFactory.makeDraggable()
-		self.entities += [e1, e2, e3]
+		self.entities += [e1.entity, e2.entity, e3.entity]
 	}
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

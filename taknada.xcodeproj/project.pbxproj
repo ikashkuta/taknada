@@ -163,7 +163,8 @@
 				87F961011CC1885E00A7B3E2 /* Component.swift */,
 				87F961051CC18A0B00A7B3E2 /* Layout.swift */,
 				87F961071CC18A2F00A7B3E2 /* Style.swift */,
-				87F9611D1CC3027B00A7B3E2 /* Messages */,
+				87792AAE1CD1796A00588025 /* Dispatcher.swift */,
+				87F9611B1CC3027200A7B3E2 /* Worker.swift */,
 				87F961111CC2C69300A7B3E2 /* Render */,
 				87792AAA1CD1643300588025 /* Input */,
 			);
@@ -186,15 +187,6 @@
 				87F9610B1CC27D6F00A7B3E2 /* MapRender.swift */,
 			);
 			name = Render;
-			sourceTree = "<group>";
-		};
-		87F9611D1CC3027B00A7B3E2 /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				87792AAE1CD1796A00588025 /* Dispatcher.swift */,
-				87F9611B1CC3027200A7B3E2 /* Worker.swift */,
-			);
-			name = Messages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

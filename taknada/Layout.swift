@@ -3,21 +3,6 @@ import CoreGraphics
 
 class Layout: Component {
 
-	// MARK: - Tree
-
-	// TODO: it must be appropriate datastructure for this tree, not Array
-	final private(set) var children = [Layout]()
-	final var parent: Layout? {
-		willSet {
-			guard let parent = self.parent else { return }
-			parent.children = parent.children.filter { $0 !== self }
-		}
-		didSet {
-			guard let parent = self.parent else { return }
-			parent.children.append(self)
-		}
-	}
-
 	// MARK: - Public
 
 	final let data = LayoutData()
@@ -39,6 +24,21 @@ class Layout: Component {
 			child.updateGlobalFrame()
 		}
 		self.lastUsedDataVersion = self.data.version
+	}
+
+	// MARK: - Tree
+
+	// TODO: it must be appropriate datastructure for this tree, not Array
+	final private(set) var children = [Layout]()
+	final var parent: Layout? {
+		willSet {
+			guard let parent = self.parent else { return }
+			parent.children = parent.children.filter { $0 !== self }
+		}
+		didSet {
+			guard let parent = self.parent else { return }
+			parent.children.append(self)
+		}
 	}
 
 	// MARK: - Component
