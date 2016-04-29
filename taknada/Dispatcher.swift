@@ -17,14 +17,17 @@ final class Dispatcher: Component {
 	}
 
 	final func processSending() {
+		if self.awaitingFacts.count == 0 { return }
+
 		let factsToSend = self.awaitingFacts
 		self.awaitingFacts.removeAll() // TODO: Not safe for multithreading.
 
 		// TODO: More precise and fast dispatching
 		for fact in factsToSend {
 			for worker in self.workers {
-				print(fact, worker) // TODO: an actual call
+				// TODO: an actual call
 			}
+			print(fact)
 		}
 	}
 

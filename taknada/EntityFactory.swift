@@ -5,13 +5,14 @@ final class EntityFactory {
 	static func makeWindow(mainView: UIView) -> (entity: Entity, render: Render, layout: Layout) {
 		let render = Render()
 		let layout = Layout()
+		let dispatcher = Dispatcher()
 
 		layout.data.boundingBox = mainView.frame.size
 
 		render.view = mainView
 		render.layout = layout
 
-		let window = Entity(components: [layout, render])
+		let window = Entity(components: [layout, render, dispatcher])
 		return (window, render, layout)
 	}
 

@@ -9,6 +9,10 @@ class Layout: Component {
 	final private(set) var globalFrame = CGRect.zero
 	final private(set) var globalTransform = CGAffineTransformIdentity
 
+	struct LayoutDidUpdateFact: Fact {
+		var source: String
+	}
+
 	// MARK: - Update
 
 	final private var lastUsedDataVersion = UInt.max
@@ -24,6 +28,8 @@ class Layout: Component {
 			child.updateGlobalFrame()
 		}
 		self.lastUsedDataVersion = self.data.version
+		let dispatcher: Dispatcher = self.getSibling()
+		dispatcher.sendMessage(LayoutDidUpdateFact(source: #function))
 	}
 
 	// MARK: - Tree

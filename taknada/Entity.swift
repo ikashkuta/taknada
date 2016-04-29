@@ -18,7 +18,7 @@ class Entity {
 				return component as! ComponentType
 			}
 		}
-		assertionFailure("Entity doesn't contain component \(ComponentType.self)")
+		assertionFailure("Entity \(self) doesn't contain component \(ComponentType.self)")
 		return Component() as! ComponentType
 	}
 

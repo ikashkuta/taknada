@@ -2,12 +2,20 @@ import Foundation
 import UIKit
 
 class Style: Component {
+	final let data = StyleData()
+
+	struct StyleDidUpdateFact: Fact {
+		var source: String
+	}
 
 	final private var lastUsedDataVersion = UInt.max
 	final var needsUpdate: Bool {
 		return self.data.version != self.lastUsedDataVersion
 	}
 	final func update() {
+		self.lastUsedDataVersion = self.data.version
+		let dispatcher: Dispatcher = self.getSibling()
+		dispatcher.sendMessage(StyleDidUpdateFact(source: #function))
 	}
 
 	// MARK: - Component
