@@ -2,19 +2,55 @@ import Foundation
 import UIKit
 
 class Style: Component {
-	var backgroundColor: UIColor?
-	var borderColor: UIColor?
-	var borderWidth: CGFloat = 0
-	var cornerRadius: CGFloat = 0
+
+	final private var lastUsedDataVersion = UInt.max
+	final var needsUpdate: Bool {
+		return self.data.version != self.lastUsedDataVersion
+	}
+	final func update() {
+	}
+
+	// MARK: - Component
+
+	override func registerSelf() {
+		SystemLocator.styleSystem?.register(self)
+	}
+
+	override func unregisterSelf() {
+		SystemLocator.styleSystem?.unregister(self)
+	}
 }
 
-extension Style {
-	// TODO: Very bad, General Render Script should take udpated computed data by itself after been notified by dispatcher
-	// TODO: Same with layout
-	func styleView(view: UIView) {
-		view.backgroundColor = self.backgroundColor
-		view.layer.borderColor = self.borderColor?.CGColor
-		view.layer.borderWidth = self.borderWidth
-		view.layer.cornerRadius = self.cornerRadius
+final class StyleData {
+	private(set) var version: UInt = 0
+	let guid = "style_guid_uniq-num-per-instance"
+
+	var backgroundColor: UIColor? {
+		didSet {
+			if oldValue != self.backgroundColor {
+				self.version += 1
+			}
+		}
+	}
+	var borderColor: UIColor? {
+		didSet {
+			if oldValue != self.borderColor {
+				self.version += 1
+			}
+		}
+	}
+	var borderWidth: CGFloat = 0 {
+		didSet {
+			if oldValue != self.borderWidth {
+				self.version += 1
+			}
+		}
+	}
+	var cornerRadius: CGFloat = 0 {
+		didSet {
+			if oldValue != self.cornerRadius {
+				self.version += 1
+			}
+		}
 	}
 }

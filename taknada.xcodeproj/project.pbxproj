@@ -11,6 +11,7 @@
 		87792AAC1CD164B800588025 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAB1CD164B800588025 /* Input.swift */; };
 		87792AAF1CD1796A00588025 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAE1CD1796A00588025 /* Dispatcher.swift */; };
 		87792AB31CD2BDB900588025 /* RenderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AB21CD2BDB900588025 /* RenderWorker.swift */; };
+		87A6F53B1CD3582800AB2F89 /* StyleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A6F53A1CD3582800AB2F89 /* StyleSystem.swift */; };
 		87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F960D51CC1867800A7B3E2 /* AppDelegate.swift */; };
 		87F960DD1CC1867800A7B3E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DC1CC1867800A7B3E2 /* Assets.xcassets */; };
 		87F960E01CC1867800A7B3E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DE1CC1867800A7B3E2 /* LaunchScreen.storyboard */; };
@@ -46,6 +47,7 @@
 		87792AAB1CD164B800588025 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		87792AAE1CD1796A00588025 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		87792AB21CD2BDB900588025 /* RenderWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderWorker.swift; sourceTree = "<group>"; };
+		87A6F53A1CD3582800AB2F89 /* StyleSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleSystem.swift; sourceTree = "<group>"; };
 		87F960D21CC1867800A7B3E2 /* taknada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taknada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F960D51CC1867800A7B3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87F960DC1CC1867800A7B3E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				87F960FD1CC1875800A7B3E2 /* LayoutSystem.swift */,
 				87792AA81CCEC29C00588025 /* DispatchSystem.swift */,
 				87F960F91CC186FE00A7B3E2 /* SystemLocator.swift */,
+				87A6F53A1CD3582800AB2F89 /* StyleSystem.swift */,
 			);
 			name = Systems;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				87792AAC1CD164B800588025 /* Input.swift in Sources */,
 				87792AB31CD2BDB900588025 /* RenderWorker.swift in Sources */,
 				87F961041CC189FB00A7B3E2 /* Render.swift in Sources */,
+				87A6F53B1CD3582800AB2F89 /* StyleSystem.swift in Sources */,
 				87F961081CC18A2F00A7B3E2 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

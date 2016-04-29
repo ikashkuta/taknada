@@ -21,10 +21,10 @@ final class EntityFactory {
 		let style = Style()
 		let dispatcher = Dispatcher()
 
-		style.backgroundColor = UIColor.purpleColor()
-		style.borderWidth = 3
-		style.borderColor = UIColor.blueColor()
-		style.cornerRadius = 10
+		style.data.backgroundColor = UIColor.purpleColor()
+		style.data.borderWidth = 3
+		style.data.borderColor = UIColor.blueColor()
+		style.data.cornerRadius = 10
 
 		layout.data.boundingBox = CGSize(width: 100, height: 200)
 
@@ -40,14 +40,15 @@ final class EntityFactory {
 		let layout = Layout()
 		let style = Style()
 		let input = DraggableInput()
+		let dispatcher = Dispatcher()
 
 		input.render = render
 		input.layout = layout
 
-		style.backgroundColor = UIColor.purpleColor()
-		style.borderWidth = 3
-		style.borderColor = UIColor.blueColor()
-		style.cornerRadius = 10
+		style.data.backgroundColor = UIColor.purpleColor()
+		style.data.borderWidth = 3
+		style.data.borderColor = UIColor.blueColor()
+		style.data.cornerRadius = 10
 
 		layout.data.boundingBox = CGSize(width: 100, height: 100)
 
@@ -55,7 +56,7 @@ final class EntityFactory {
 		render.styles = [style]
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, layout, style, input])
+		let entity = Entity(components: [render, layout, style, input, dispatcher])
 		return (entity, render, layout)
 	}
 
@@ -70,7 +71,7 @@ final class EntityFactory {
 		input.render = render
 		input.scrollLayout = scrollLayout
 
-		style.borderWidth = 1
+		style.data.borderWidth = 1
 
 		scrollLayout.parent = baseLayout
 
