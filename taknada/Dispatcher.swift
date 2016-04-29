@@ -1,7 +1,7 @@
 import Foundation
 
-// Message must have a name as an event (what's happend) not action (what should happen) — semantic
-// is important. Only workers know what to do next.
+// Message must have a name as an event (what's happend) not action (what should happen)
+// Semantic is important. Only workers know what to do next.
 protocol Fact {
 	var source: String { get } // source of event (line, class, etc.) - to make debug easier. Let's beat Rx stuff by it.
 }
@@ -9,14 +9,23 @@ protocol Fact {
 final class Dispatcher: Component {
 
 	private(set) var workers: [Worker]!
+	private var awaitingFacts = [Fact]()
 
-	func message<SpecificFact: Fact>(fact: SpecificFact) {
-		// TODO: Message event across all receivers
-		// NOTE: Everybody can message. But only workers can actually listen to events.
-		// NOTE: Then scripts update components state appropriately.
-		// NOTE: Sometimes we want to receive an event as a response from another event we sent
+	func sendMessage<SpecificFact: Fact>(fact: SpecificFact) {
+		// TODO: Sometimes we want to receive an event as a response from another event we sent
+		self.awaitingFacts.append(fact)
+	}
 
-		print(fact)
+	final func processSending() {
+		let factsToSend = self.awaitingFacts
+		self.awaitingFacts.removeAll() // TODO: Not safe for multithreading.
+
+		// TODO: More precise and fast dispatching
+		for fact in factsToSend {
+			for worker in self.workers {
+				print(fact, worker) // TODO: an actual call
+			}
+		}
 	}
 
 	// MARK: - Component

@@ -11,6 +11,8 @@ final class DispatchSystem: System<Dispatcher> {
 	
 	override func update() {
 		// TODO: different modes
-		// NOTE: works only inside of entity by default
+		self.components.forEach {
+			$0.processSending()
+		}
 	}
 }

@@ -34,7 +34,7 @@ class ScrollableInput: Input {
 
 		let dispatcher: Dispatcher = self.getSibling()
 		let newTranslation = (self.scrollLayout.data.localTransform.tx, self.scrollLayout.data.localTransform.ty)
-		dispatcher.message(DidScrollFact(source: #function, newTranslation: newTranslation))
+		dispatcher.sendMessage(DidScrollFact(source: #function, newTranslation: newTranslation))
 	}
 
 	final private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {
