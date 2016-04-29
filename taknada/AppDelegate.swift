@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.job();
 	}
 
+	// TODO: We need more precise getComponent() method in order to make this factory methods more clean
 	func setupScene1() {
 		let e1 = EntityFactory.makeSimple()
 		let e2 = EntityFactory.makeSimple()
