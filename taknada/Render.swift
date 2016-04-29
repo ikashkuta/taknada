@@ -1,14 +1,6 @@
 import Foundation
 import UIKit
 
-/** @abstract
-This component must be stateless in terms of abilty to regenerate this object
-fully from inner state of other components. There is no need of smth like "virtual dom"
-because changes in UIKit are non-atomic (comparing to ones in browser).
-More concrete: "Stateless" means this component doesn't own it's layout, colour, border properties,
-control state, frame, bounds, position. Nothing. It might contain this information (because of UIKit's
-requirements) but it mustn't own it. Actually, all components must follow this guidelines.
-*/
 class Render: Component {
 
 	// MARK: - Tree
