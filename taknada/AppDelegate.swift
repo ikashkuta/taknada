@@ -26,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.job();
 	}
 
-	// TODO: We need more precise getComponent() method in order to make this factory methods more clean
+	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand 
+	// appropriate layout node) in order to make this factory methods more clean.
 	func setupScene1() {
 		let e1 = EntityFactory.makeSimple()
 		let e2 = EntityFactory.makeSimple()
