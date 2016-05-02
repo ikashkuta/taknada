@@ -1,21 +1,41 @@
 import Foundation
 
-// TODO: Worker should be able to use Rx-ish style of programming since it all
-// about event which can be processed by whatever-you-what style of programming
-// NOTE: Signal-like thing?
 class Worker: Component {
-
-	func start() {
+	func registerSignals(dispatcher: Dispatcher) {
 	}
-
-	func stop() {
+	func unregisterSignals(dispatcher: Dispatcher) {
 	}
+}
 
-	// MARK: - Component
-
-	override func registerSelf() {
+class TestSignal<SpecificFact: Fact>: Signal<SpecificFact> {
+	typealias CallbackType = (SpecificFact) -> Void
+	private let callback: CallbackType
+	init(callback: CallbackType) {
+		self.callback = callback
 	}
+	override func receive(fact: SpecificFact) {
+		self.callback(fact)
+	}
+}
 
-	override func unregisterSelf() {
+class TestWorker: Worker {
+	let didScroll: Signal<ScrollableInput.DidScrollFact>
+	let styleDidUpdate: Signal<Style.StyleDidUpdateFact>
+	let layoutDidUpdate: Signal<Layout.LayoutDidUpdateFact>
+	override init() {
+		self.didScroll = TestSignal(callback: { (fact) in
+			print("signal didScroll \(fact)")
+		})
+		self.styleDidUpdate = TestSignal(callback: { (fact) in
+			print("signal styleDidUpdate \(fact)")
+		})
+		self.layoutDidUpdate = TestSignal(callback: { (fact) in
+			print("signal layoutDidUpdate \(fact)")
+		})
+	}
+	override func registerSignals(dispatcher: Dispatcher) {
+		dispatcher.registerSignal(self.didScroll)
+		dispatcher.registerSignal(self.layoutDidUpdate)
+		dispatcher.registerSignal(self.styleDidUpdate)
 	}
 }
