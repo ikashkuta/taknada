@@ -6,9 +6,40 @@ protocol Fact {
 	var source: String { get } // source of event (line, class, etc.) - to make debug easier. Let's beat Rx stuff by it.
 }
 
-class Signal<SpecificFact: Fact> {
+// Let's keep it `final` till I find a better solution (Elm's ideas are not that bad actually)
+final class Signal<SpecificFact: Fact> {
 	typealias FactType = Fact
-	func receive(fact: SpecificFact) { }
+
+	// TODO: when returned signal will be deallocated?..
+	func map<AnotherFact: Fact>(mapFunction: (SpecificFact) -> AnotherFact) -> Signal<AnotherFact> {
+		let anotherSignal = Signal<AnotherFact>()
+		self.subscribe { (fact) in
+			let anotherFact = mapFunction(fact)
+			anotherSignal.push(anotherFact)
+		}
+		return anotherSignal
+	}
+
+	// TODO: when returned signal will be deallocated?..
+	func filter(filterFunction: (SpecificFact) -> Bool) -> Signal<SpecificFact> {
+		let filteredSignal = Signal<SpecificFact>()
+		self.subscribe { (fact) in
+			if filterFunction(fact) {
+				filteredSignal.push(fact)
+			}
+		}
+		return filteredSignal
+	}
+
+	typealias SubscriberFunction = (SpecificFact) -> Void
+	func subscribe(subscriber: SubscriberFunction) {
+		self.subscribers.append(subscriber)
+	}
+
+	private var subscribers = [SubscriberFunction]()
+	private func push(fact: SpecificFact) {
+		self.subscribers.forEach { $0(fact) }
+	}
 }
 
 protocol SignalPublisher {
@@ -27,7 +58,7 @@ final class Dispatcher: Component, SignalPublisher {
 			let maybeSignals = self.dispatchTable[factTypeKey] as? [Signal<SpecificFact>]
 			guard let signals: [Signal<SpecificFact>] = maybeSignals else { return }
 			for signal in signals {
-				signal.receive(fact)
+				signal.push(fact)
 			}
 		})
 	}
@@ -40,7 +71,7 @@ final class Dispatcher: Component, SignalPublisher {
 		queueToProcess.forEach { $0() }
 	}
 
-	// MARK: - SignalResbla
+	// MARK: - Signal Publishing
 
 	func publishSignal<FactType: Fact>(signal: Signal<FactType>) {
 		let factTypeKey = String(FactType.self)
