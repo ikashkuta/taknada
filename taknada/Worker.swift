@@ -1,9 +1,7 @@
 import Foundation
 
 class Worker: Component {
-	func registerSignals(dispatcher: Dispatcher) {
-	}
-	func unregisterSignals(dispatcher: Dispatcher) {
+	func publishSignals(publisher: SignalPublisher) {
 	}
 }
 
@@ -33,9 +31,9 @@ class TestWorker: Worker {
 			print("signal layoutDidUpdate \(fact)")
 		})
 	}
-	override func registerSignals(dispatcher: Dispatcher) {
-		dispatcher.registerSignal(self.didScroll)
-		dispatcher.registerSignal(self.layoutDidUpdate)
-		dispatcher.registerSignal(self.styleDidUpdate)
+	override func publishSignals(publisher: SignalPublisher) {
+		publisher.publishSignal(self.didScroll)
+		publisher.publishSignal(self.layoutDidUpdate)
+		publisher.publishSignal(self.styleDidUpdate)
 	}
 }

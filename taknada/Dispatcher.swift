@@ -11,8 +11,12 @@ class Signal<SpecificFact: Fact> {
 	func receive(fact: SpecificFact) { }
 }
 
+protocol SignalPublisher {
+	func publishSignal<FactType: Fact>(signal: Signal<FactType>)
+}
+
 // TODO: Sometimes we want to receive an event as a response from another event we've sent
-final class Dispatcher: Component {
+final class Dispatcher: Component, SignalPublisher {
 	typealias DispatchFunction = (Void) -> Void
 	private var dispatchQueue = [DispatchFunction]()
 	private var dispatchTable = [String: [AnyObject]]()
@@ -28,7 +32,17 @@ final class Dispatcher: Component {
 		})
 	}
 
-	func registerSignal<FactType: Fact>(signal: Signal<FactType>) {
+	func processSending() {
+		if self.needRegisterWorkers { self.registerWorkers() }
+		if self.dispatchQueue.count == 0 { return }
+		let queueToProcess = self.dispatchQueue
+		self.dispatchQueue.removeAll() // TODO: Not thread-safe :(
+		queueToProcess.forEach { $0() }
+	}
+
+	// MARK: - SignalResbla
+
+	func publishSignal<FactType: Fact>(signal: Signal<FactType>) {
 		let factTypeKey = String(FactType.self)
 		if self.dispatchTable[factTypeKey] == nil {
 			self.dispatchTable[factTypeKey] = [AnyObject]()
@@ -36,11 +50,12 @@ final class Dispatcher: Component {
 		self.dispatchTable[factTypeKey]!.append(signal)
 	}
 
-	func processSending() {
-		if self.dispatchQueue.count == 0 { return }
-		let queueToProcess = self.dispatchQueue
-		self.dispatchQueue.removeAll() // TODO: Not thread-safe :(
-		queueToProcess.forEach { $0() }
+	private var didRegisterWorkers = false
+	private var needRegisterWorkers: Bool { return !self.didRegisterWorkers }
+	private func registerWorkers() {
+		let workers: [Worker] = self.getSiblings()
+		workers.forEach { $0.publishSignals(self) }
+		self.didRegisterWorkers = true
 	}
 
 	// MARK: - Component

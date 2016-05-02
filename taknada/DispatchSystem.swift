@@ -10,7 +10,7 @@ final class DispatchSystem: System<Dispatcher> {
 	}
 	
 	override func update() {
-		// TODO: different modes
+		// TODO: different modes, all this must be lazy using system runloops
 		self.components.forEach {
 			$0.processSending()
 		}
