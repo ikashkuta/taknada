@@ -9,8 +9,8 @@ class Layout: Component {
 	final private(set) var globalFrame = CGRect.zero
 	final private(set) var globalTransform = CGAffineTransformIdentity
 
-	struct LayoutDidUpdateFact: Fact {
-		var source: String
+	struct GlobalFrameDidUpdateFact: Fact {
+		let source: String
 	}
 
 	// MARK: - Update
@@ -29,7 +29,7 @@ class Layout: Component {
 		}
 		self.lastUsedDataVersion = self.data.version
 		let dispatcher: Dispatcher = self.getSibling()
-		dispatcher.sendMessage(LayoutDidUpdateFact(source: #function))
+		dispatcher.sendMessage(GlobalFrameDidUpdateFact(source: #function))
 	}
 
 	// MARK: - Tree
