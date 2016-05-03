@@ -1,9 +1,9 @@
 import Foundation
 import UIKit
 
-class Render: Component, Restorable {
+class Render: Component {
 
-	let data = RenderData()
+	final var data: RenderDataStorage!
 
 	// MARK: - Tree
 
@@ -51,40 +51,5 @@ class Render: Component, Restorable {
 	final override func unregisterSelf() {
 		self.layout = nil
 		SystemLocator.renderSystem?.unregister(self)
-	}
-}
-
-final class RenderData: PersistentData {
-	let name: String = "RenderData"
-	let guid = "render_guid_uniq-num-per-instance"
-	private(set) var version: UInt = 0
-
-	var backgroundColor: UIColor = UIColor.whiteColor() {
-		didSet {
-			if oldValue != self.backgroundColor {
-				self.version += 1
-			}
-		}
-	}
-	var borderColor: UIColor = UIColor.blackColor() {
-		didSet {
-			if oldValue != self.borderColor {
-				self.version += 1
-			}
-		}
-	}
-	var borderWidth: CGFloat = 0 {
-		didSet {
-			if oldValue != self.borderWidth {
-				self.version += 1
-			}
-		}
-	}
-	var cornerRadius: CGFloat = 0 {
-		didSet {
-			if oldValue != self.cornerRadius {
-				self.version += 1
-			}
-		}
 	}
 }

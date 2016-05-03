@@ -5,7 +5,7 @@ class Layout: Component {
 
 	// MARK: - Public
 
-	final let data = LayoutData()
+	final var data: LayoutDataStorage!
 	final private(set) var globalFrame = CGRect.zero
 	final private(set) var globalTransform = CGAffineTransformIdentity
 
@@ -54,24 +54,5 @@ class Layout: Component {
 	}
 	final override func unregisterSelf() {
 		SystemLocator.layoutSystem?.unregister(self)
-	}
-}
-
-final class LayoutData {
-	private(set) var version: UInt = 0
-	let guid = "layout_guid_uniq-num-per-instance"
-	var localTransform = CGAffineTransformIdentity {
-		didSet {
-			if !CGAffineTransformEqualToTransform(oldValue, self.localTransform) {
-				self.version += 1
-			}
-		}
-	}
-	var boundingBox = CGSize.zero {
-		didSet {
-			if oldValue != self.boundingBox {
-				self.version += 1
-			}
-		}
 	}
 }

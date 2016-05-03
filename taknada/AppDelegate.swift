@@ -68,8 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.layoutSystem = LayoutSystem(window: w.layout)
 		SystemLocator.dispatchSystem = DispatchSystem()
 
-//		self.setupScene1()
-		self.setupScene2()
+		self.setupScene1()
+//		self.setupScene2()
 
 		self.fakeRunloop { }
 

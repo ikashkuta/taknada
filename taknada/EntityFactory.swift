@@ -3,78 +3,103 @@ import UIKit
 
 final class EntityFactory {
 	static func makeWindow(mainView: UIView) -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render()
-		let layout = Layout()
-		let dispatcher = Dispatcher()
+		let render = Render(name: "render")
+		let renderData = RenderDataStorage(name: "renderData")
+		let layout = Layout(name: "layout")
+		let layoutData = LayoutDataStorage(name: "layoutData")
+		let dispatcher = Dispatcher(name: "dispatcher")
 
-		layout.data.boundingBox = mainView.frame.size
+		layoutData.boundingBox = mainView.frame.size
+		
+		layout.data = layoutData
 
+		render.data = renderData
 		render.view = mainView
 		render.layout = layout
 
-		let window = Entity(components: [layout, render, dispatcher])
+		let window = Entity(components: [layout, layoutData, render, renderData, dispatcher])
 		return (window, render, layout)
 	}
 
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render()
-		let layout = Layout()
-		let dispatcher = Dispatcher()
+		let render = Render(name: "render")
+		let renderData = RenderDataStorage(name: "renderData")
+		let layout = Layout(name: "layout")
+		let layoutData = LayoutDataStorage(name: "layoutData")
+		let dispatcher = Dispatcher(name: "dispatcher")
 
-		layout.data.boundingBox = CGSize(width: 100, height: 200)
+		layoutData.boundingBox = CGSize(width: 100, height: 200)
 
-		render.data.backgroundColor = UIColor.purpleColor()
-		render.data.borderWidth = 3
-		render.data.borderColor = UIColor.blueColor()
-		render.data.cornerRadius = 10
+		layout.data = layoutData
+
+		renderData.backgroundColor = UIColor.purpleColor()
+		renderData.borderWidth = 3
+		renderData.borderColor = UIColor.blueColor()
+		renderData.cornerRadius = 10
+
+		render.data = renderData
 		render.layout = layout
 
-		let entity = Entity(components: [render, layout, dispatcher])
+		let entity = Entity(components: [render, renderData, layout, layoutData, dispatcher])
 		return (entity, render, layout)
 	}
 
 	static func makeDraggable() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render()
-		let renderWorker = RenderWorker()
-		let layout = Layout()
-		let input = DraggableInput()
-		let dispatcher = Dispatcher()
+		let render = Render(name: "render")
+		let renderData = RenderDataStorage(name: "renderData")
+		let renderWorker = RenderWorker(name: "baseRenderWorker")
+		let layout = Layout(name: "layout")
+		let layoutData = LayoutDataStorage(name: "layoutData")
+		let input = DraggableInput(name: "dragInput")
+		let dispatcher = Dispatcher(name: "dispatcher")
 
 		input.render = render
 		input.layout = layout
 
-		layout.data.boundingBox = CGSize(width: 100, height: 100)
+		layoutData.boundingBox = CGSize(width: 100, height: 100)
 
-		render.data.backgroundColor = UIColor.purpleColor()
-		render.data.borderWidth = 3
-		render.data.borderColor = UIColor.blueColor()
-		render.data.cornerRadius = 10
+		layout.data = layoutData
+
+		renderData.backgroundColor = UIColor.purpleColor()
+		renderData.borderWidth = 3
+		renderData.borderColor = UIColor.blueColor()
+		renderData.cornerRadius = 10
+
+		render.data = renderData
 		render.layout = layout
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, layout, input, dispatcher, renderWorker])
+		let entity = Entity(components: [render, renderData, layout, layoutData, input, dispatcher, renderWorker])
 		return (entity, render, layout)
 	}
 
 	static func makeScrollable() -> (entity: Entity, render: Render, scrollLayout: Layout) {
-		let render = Render()
-		let baseLayout = Layout()
-		let scrollLayout = Layout()
-		let input = ScrollableInput()
-		let dispatcher = Dispatcher()
+		let render = Render(name: "render")
+		let renderData = RenderDataStorage(name: "renderData")
+		let baseLayout = Layout(name: "baseLayout")
+		let baseLayoutData = LayoutDataStorage(name: "baseLayoutData")
+		let scrollLayout = Layout(name: "scrollLayout")
+		let scrollLayoutData = LayoutDataStorage(name: "scrollLayoutData")
+		let input = ScrollableInput(name: "scrollInput")
+		let dispatcher = Dispatcher(name: "dispatcher")
 
 		input.render = render
 		input.scrollLayout = scrollLayout
 
+		scrollLayout.data = scrollLayoutData
 		scrollLayout.parent = baseLayout
 
-		baseLayout.data.boundingBox = CGSize(width: 400, height: 400)
+		baseLayoutData.boundingBox = CGSize(width: 400, height: 400)
 
-		render.data.borderWidth = 1
+		baseLayout.data = baseLayoutData
+
+		renderData.borderWidth = 1
+
+		render.data = renderData
 		render.layout = baseLayout
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, baseLayout, scrollLayout, input, dispatcher])
+		let entity = Entity(components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, dispatcher])
 		return (entity, render, scrollLayout)
 	}
 }

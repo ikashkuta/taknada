@@ -12,14 +12,17 @@ class Entity {
 		self.components.forEach { $0.unregisterSelf() }
 	}
 
-	final func getComponent<ComponentType: Component>(name: String = "") -> ComponentType {
+	final func getComponent<ComponentType: Component>(componentName: String?) -> ComponentType {
 		for component in self.components {
 			if component is ComponentType {
+				if let name = componentName where component.name != name {
+					continue
+				}
 				return component as! ComponentType
 			}
 		}
 		assertionFailure("Entity \(self) doesn't contain component \(ComponentType.self)")
-		return Component() as! ComponentType
+		return Component(name: "generic_name") as! ComponentType
 	}
 
 	final func getComponents<ComponentType: Component>() -> [ComponentType] {
