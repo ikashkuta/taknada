@@ -19,45 +19,40 @@ final class EntityFactory {
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
 		let render = Render()
 		let layout = Layout()
-		let style = Style()
 		let dispatcher = Dispatcher()
-
-		style.data.backgroundColor = UIColor.purpleColor()
-		style.data.borderWidth = 3
-		style.data.borderColor = UIColor.blueColor()
-		style.data.cornerRadius = 10
 
 		layout.data.boundingBox = CGSize(width: 100, height: 200)
 
+		render.data.backgroundColor = UIColor.purpleColor()
+		render.data.borderWidth = 3
+		render.data.borderColor = UIColor.blueColor()
+		render.data.cornerRadius = 10
 		render.layout = layout
-		render.styles = [style]
 
-		let entity = Entity(components: [render, layout, style, dispatcher])
+		let entity = Entity(components: [render, layout, dispatcher])
 		return (entity, render, layout)
 	}
 
 	static func makeDraggable() -> (entity: Entity, render: Render, layout: Layout) {
 		let render = Render()
+		let renderWorker = RenderWorker()
 		let layout = Layout()
-		let style = Style()
 		let input = DraggableInput()
 		let dispatcher = Dispatcher()
 
 		input.render = render
 		input.layout = layout
 
-		style.data.backgroundColor = UIColor.purpleColor()
-		style.data.borderWidth = 3
-		style.data.borderColor = UIColor.blueColor()
-		style.data.cornerRadius = 10
-
 		layout.data.boundingBox = CGSize(width: 100, height: 100)
 
+		render.data.backgroundColor = UIColor.purpleColor()
+		render.data.borderWidth = 3
+		render.data.borderColor = UIColor.blueColor()
+		render.data.cornerRadius = 10
 		render.layout = layout
-		render.styles = [style]
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, layout, style, input, dispatcher])
+		let entity = Entity(components: [render, layout, input, dispatcher, renderWorker])
 		return (entity, render, layout)
 	}
 
@@ -65,24 +60,21 @@ final class EntityFactory {
 		let render = Render()
 		let baseLayout = Layout()
 		let scrollLayout = Layout()
-		let style = Style()
 		let input = ScrollableInput()
 		let dispatcher = Dispatcher()
 
 		input.render = render
 		input.scrollLayout = scrollLayout
 
-		style.data.borderWidth = 1
-
 		scrollLayout.parent = baseLayout
 
 		baseLayout.data.boundingBox = CGSize(width: 400, height: 400)
 
+		render.data.borderWidth = 1
 		render.layout = baseLayout
-		render.styles = [style]
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, baseLayout, scrollLayout, style, input, dispatcher])
+		let entity = Entity(components: [render, baseLayout, scrollLayout, input, dispatcher])
 		return (entity, render, scrollLayout)
 	}
 }

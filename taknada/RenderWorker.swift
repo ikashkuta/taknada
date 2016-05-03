@@ -13,8 +13,8 @@ class RenderWorker: Worker {
 
 	override func registerSelf() {
 		self.layoutChangedSignal.subscribe { [weak self] fact in
-			guard let sSelf = self else { return }
-			sSelf.render
+//			guard let sSelf = self else { return }
+			// TODO: update layout
 		}
 	}
 }

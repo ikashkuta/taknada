@@ -1,7 +1,9 @@
 import Foundation
 import UIKit
 
-class Render: Component {
+class Render: Component, Restorable {
+
+	let data = RenderData()
 
 	// MARK: - Tree
 
@@ -19,12 +21,25 @@ class Render: Component {
 	}
 
 	var layout: Layout!
-	var styles: [Style]? // TODO: I don't like this, too many double-linked components
 	var inputs: [Input]? // TODO: I don't like this, too many double-linked components
 
 	final var view: UIView?
 	func createView() -> UIView {
 		return UIView.init()
+	}
+
+	// MARK: - Update
+
+	final private var lastUsedDataVersion = UInt.max
+	final var needsUpdate: Bool {
+		return self.data.version != self.lastUsedDataVersion
+	}
+	final func update() {
+		self.view!.backgroundColor = self.data.backgroundColor
+		self.view!.layer.borderColor = self.data.borderColor.CGColor
+		self.view!.layer.borderWidth = self.data.borderWidth
+		self.view!.layer.cornerRadius = self.data.cornerRadius
+		self.lastUsedDataVersion = self.data.version
 	}
 
 	// MARK: - Component
@@ -35,7 +50,41 @@ class Render: Component {
 
 	final override func unregisterSelf() {
 		self.layout = nil
-		self.styles = nil
 		SystemLocator.renderSystem?.unregister(self)
+	}
+}
+
+final class RenderData: PersistentData {
+	let name: String = "RenderData"
+	let guid = "render_guid_uniq-num-per-instance"
+	private(set) var version: UInt = 0
+
+	var backgroundColor: UIColor = UIColor.whiteColor() {
+		didSet {
+			if oldValue != self.backgroundColor {
+				self.version += 1
+			}
+		}
+	}
+	var borderColor: UIColor = UIColor.blackColor() {
+		didSet {
+			if oldValue != self.borderColor {
+				self.version += 1
+			}
+		}
+	}
+	var borderWidth: CGFloat = 0 {
+		didSet {
+			if oldValue != self.borderWidth {
+				self.version += 1
+			}
+		}
+	}
+	var cornerRadius: CGFloat = 0 {
+		didSet {
+			if oldValue != self.cornerRadius {
+				self.version += 1
+			}
+		}
 	}
 }

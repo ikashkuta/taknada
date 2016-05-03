@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+// It seems that this component & system should be used in case of CSS/PostCSS-like things which requires computations.
 class Style: Component {
 	final let data = StyleData()
 

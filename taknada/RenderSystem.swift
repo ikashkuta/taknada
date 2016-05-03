@@ -34,7 +34,7 @@ final class RenderSystem: System<Render> {
 
 	private func update(render: Render) {
 		self.updateView(render)
-		self.updateStyles(render)
+		if render.needsUpdate { render.update() } // Only style for now
 		self.updateFrame(render)
 		render.children.forEach { self.update($0) }
 	}
@@ -55,26 +55,11 @@ final class RenderSystem: System<Render> {
 		render.inputs?.forEach{ $0.detach() }
 	}
 
-	private func updateStyles(render: Render) {
-		render.styles?.forEach{ $0.styleView(render.view!) }
-	}
-
 	private func updateFrame(render: Render) {
 		var globalFrame = render.layout.globalFrame
 		if let parent = render.parent {
 			globalFrame = self.window.view!.convertRect(globalFrame, toView: parent.view!)
 		}
 		render.view!.frame = globalFrame
-	}
-}
-
-extension Style {
-	// TODO: Very bad, General Render Script should take udpated computed data by itself after been notified by dispatcher
-	// TODO: Same with layout
-	func styleView(view: UIView) {
-		view.backgroundColor = self.data.backgroundColor
-		view.layer.borderColor = self.data.borderColor?.CGColor
-		view.layer.borderWidth = self.data.borderWidth
-		view.layer.cornerRadius = self.data.cornerRadius
 	}
 }
