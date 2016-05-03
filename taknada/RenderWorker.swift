@@ -1,11 +1,9 @@
 import Foundation
 
 class RenderWorker: Worker {
-	let styleChangedSignal = Signal<Style.StyleDidUpdateFact>()
 	let layoutChangedSignal = Signal<Layout.LayoutDidUpdateFact>()
 
 	override func publishSignals(publisher: SignalPublisher) {
-		publisher.publishSignal(self.styleChangedSignal)
 		publisher.publishSignal(self.layoutChangedSignal)
 	}
 

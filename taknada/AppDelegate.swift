@@ -10,7 +10,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.layoutSystem?.update()
 		SystemLocator.renderSystem?.update()
 		SystemLocator.dispatchSystem?.update()
-		SystemLocator.styleSystem?.update()
 	}
 
 	var displayLink: CADisplayLink!
@@ -68,10 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.renderSystem = RenderSystem(window: w.render)
 		SystemLocator.layoutSystem = LayoutSystem(window: w.layout)
 		SystemLocator.dispatchSystem = DispatchSystem()
-		SystemLocator.styleSystem = StyleSystem()
 
-		self.setupScene1()
-//		self.setupScene2()
+//		self.setupScene1()
+		self.setupScene2()
 
 		self.fakeRunloop { }
 
