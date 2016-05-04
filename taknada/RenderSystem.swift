@@ -2,13 +2,16 @@ import Foundation
 import UIKit
 
 final class RenderSystem: System<Render> {
-	private var window: Render
+
+	// MARK: - Init & Deinit
 
 	init(window: Render) {
 		self.window = window
 		super.init()
 		self.register(self.window)
 	}
+
+	// MARK: - System
 
 	override func register(component: Render) {
 		super.register(component)
@@ -31,6 +34,10 @@ final class RenderSystem: System<Render> {
 		self.update(self.window)
 		// TODO: remove invisible components, detach inputs from them
 	}
+
+	// MARK: - Private
+
+	private var window: Render
 
 	private func update(render: Render) {
 		self.updateView(render)

@@ -7,7 +7,10 @@ layout, colour, border properties, control state, frame, bounds, network. Nothin
 (because of UIKit's and other requirements) but it mustn't own it. All meaningful components must follow this guides.
 */
 class DataStorage: Component {
-	// Used for determing need for component's update. Otherwise we need to demand conformance to Equitable
+
+	// MARK: - Public API
+
+	// Faster and simpler than Equatable
 	final private(set) var version: UInt = 0
 	final func incrementVersion() {
 		self.version += 1

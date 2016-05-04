@@ -2,6 +2,7 @@ import Foundation
 import CoreGraphics
 
 final class LayoutDataStorage: DataStorage {
+
 	var localTransform = CGAffineTransformIdentity {
 		didSet {
 			if !CGAffineTransformEqualToTransform(oldValue, self.localTransform) {
@@ -9,6 +10,7 @@ final class LayoutDataStorage: DataStorage {
 			}
 		}
 	}
+	
 	var boundingBox = CGSize.zero {
 		didSet {
 			if oldValue != self.boundingBox {

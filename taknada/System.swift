@@ -1,7 +1,12 @@
 import Foundation
 
 class System<ComponentType: Component> {
+
+	// MARK: - Public API
+
 	private(set) var components = [ComponentType]()
+
+	// MARK: - To Subclass
 
 	func register(component: ComponentType) {
 		self.components.append(component)

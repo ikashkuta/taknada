@@ -1,6 +1,9 @@
 import Foundation
 
 final class DispatchSystem: System<Dispatcher> {
+
+	// MARK: - System
+
 	override func register(component: Dispatcher) {
 		super.register(component)
 	}

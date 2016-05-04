@@ -1,13 +1,16 @@
 import Foundation
 
 final class LayoutSystem: System<Layout> {
-	private var window: Layout
+
+	// MARK: - Init & Deinit
 
 	init(window: Layout) {
 		self.window = window
 		super.init()
 		self.register(self.window)
 	}
+
+	// MARK: - System
 
 	override func register(component: Layout) {
 		super.register(component)
@@ -28,4 +31,9 @@ final class LayoutSystem: System<Layout> {
 			}
 		}
 	}
+
+	// MARK: - Private
+
+	private var window: Layout
+
 }

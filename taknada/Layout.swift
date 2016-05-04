@@ -3,7 +3,7 @@ import CoreGraphics
 
 class Layout: Component {
 
-	// MARK: - Public
+	// MARK: - Public API
 
 	final var data: LayoutDataStorage!
 	final private(set) var globalFrame = CGRect.zero
@@ -13,7 +13,18 @@ class Layout: Component {
 		let source: String
 	}
 
-	// MARK: - Update
+	// MARK: - Component
+
+	final override func registerSelf() {
+		SystemLocator.layoutSystem?.register(self)
+	}
+	final override func unregisterSelf() {
+		SystemLocator.layoutSystem?.unregister(self)
+	}
+
+	// MARK: - Private
+
+	// MARK: -- Update
 
 	final private var lastUsedDataVersion = UInt.max
 	final var needsUpdate: Bool {
@@ -32,9 +43,9 @@ class Layout: Component {
 		dispatcher.sendMessage(GlobalFrameDidUpdateFact(source: #function))
 	}
 
-	// MARK: - Tree
+	// MARK: -- Tree
 
-	// TODO: it must be appropriate datastructure for this tree, not Array
+	// TODO: It must be appropriate datastructure for this tree, not Array
 	final private(set) var children = [Layout]()
 	final var parent: Layout? {
 		willSet {
@@ -45,14 +56,5 @@ class Layout: Component {
 			guard let parent = self.parent else { return }
 			parent.children.append(self)
 		}
-	}
-
-	// MARK: - Component
-
-	final override func registerSelf() {
-		SystemLocator.layoutSystem?.register(self)
-	}
-	final override func unregisterSelf() {
-		SystemLocator.layoutSystem?.unregister(self)
 	}
 }

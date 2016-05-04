@@ -1,19 +1,10 @@
 import Foundation
 
 final class Entity {
+
+	// MARK: - Public API
+
 	let guid: UInt
-
-	init(components: [Component]) {
-		self.components = components
-		self.guid = Entity.getNextGuid()
-		self.components.forEach { $0.registerSelf(self) }
-	}
-
-	deinit {
-		self.components.forEach { $0.unregisterSelf() }
-	}
-
-	private let components: [Component]
 
 	func getComponent<ComponentType: Component>(tag: String?) -> ComponentType {
 		for component in self.components {
@@ -36,6 +27,22 @@ final class Entity {
 		}
 		return result
 	}
+
+	// MARK: - Init & Deinit
+
+	init(components: [Component]) {
+		self.components = components
+		self.guid = Entity.getNextGuid()
+		self.components.forEach { $0.registerSelf(self) }
+	}
+
+	deinit {
+		self.components.forEach { $0.unregisterSelf() }
+	}
+
+	// MARK: - Private
+
+	private let components: [Component]
 }
 
 // MARK: - Guids
