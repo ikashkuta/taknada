@@ -15,23 +15,22 @@ final class Entity {
 
 	private let components: [Component]
 
-	func getComponent<ComponentType: Component>(componentName: String?) -> ComponentType {
+	func getComponent<ComponentType: Component>(tag: String?) -> ComponentType {
 		for component in self.components {
 			if component is ComponentType {
-				if let name = componentName where component.name != name {
-					continue
-				}
+				if let tag = tag where !component.tags.contains(tag) { continue }
 				return component as! ComponentType
 			}
 		}
 		assertionFailure("Entity \(self) doesn't contain component \(ComponentType.self)")
-		return Component(name: "generic_name") as! ComponentType
+		return Component() as! ComponentType
 	}
 
-	func getComponents<ComponentType: Component>() -> [ComponentType] {
+	func getComponents<ComponentType: Component>(tag: String?) -> [ComponentType] {
 		var result = [ComponentType]()
 		for component in self.components {
 			if component is ComponentType {
+				if let tag = tag where !component.tags.contains(tag) { continue }
 				result.append(component as! ComponentType)
 			}
 		}

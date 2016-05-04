@@ -1,11 +1,10 @@
 import Foundation
 
 class Component {
-	//NOTE: some meaningful name, that makes sense for entity. "MainLayout", "ScrollableLayout", "ScrollableInput"
-	let name: String
+	let tags: [String]
 
-	init(name: String) {
-		self.name = name
+	init(tags: [String] = []) {
+		self.tags = tags
 	}
 
 	final private weak var entity: Entity!
@@ -16,12 +15,12 @@ class Component {
 
 	// MARK: - Public API
 
-	final func getSibling<ComponentType: Component>(siblingName: String? = nil) -> ComponentType {
-		return self.entity.getComponent(siblingName)
+	final func getSibling<ComponentType: Component>(siblingTag: String? = nil) -> ComponentType {
+		return self.entity.getComponent(siblingTag)
 	}
 
-	final func getSiblings<ComponentType: Component>() -> [ComponentType] {
-		return self.entity.getComponents()
+	final func getSiblings<ComponentType: Component>(siblingsTag: String? = nil) -> [ComponentType] {
+		return self.entity.getComponents(siblingsTag)
 	}
 
 	// MARK: - To Subclass

@@ -3,11 +3,11 @@ import UIKit
 
 final class EntityFactory {
 	static func makeWindow(mainView: UIView) -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render(name: "render")
-		let renderData = RenderDataStorage(name: "renderData")
-		let layout = Layout(name: "layout")
-		let layoutData = LayoutDataStorage(name: "layoutData")
-		let dispatcher = Dispatcher(name: "dispatcher")
+		let render = Render()
+		let renderData = RenderDataStorage()
+		let layout = Layout()
+		let layoutData = LayoutDataStorage()
+		let dispatcher = Dispatcher()
 
 		layoutData.boundingBox = mainView.frame.size
 		
@@ -22,11 +22,11 @@ final class EntityFactory {
 	}
 
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render(name: "render")
-		let renderData = RenderDataStorage(name: "renderData")
-		let layout = Layout(name: "layout")
-		let layoutData = LayoutDataStorage(name: "layoutData")
-		let dispatcher = Dispatcher(name: "dispatcher")
+		let render = Render()
+		let renderData = RenderDataStorage()
+		let layout = Layout()
+		let layoutData = LayoutDataStorage()
+		let dispatcher = Dispatcher()
 
 		layoutData.boundingBox = CGSize(width: 100, height: 200)
 
@@ -45,13 +45,13 @@ final class EntityFactory {
 	}
 
 	static func makeDraggable() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render(name: "render")
-		let renderData = RenderDataStorage(name: "renderData")
-		let renderWorker = RenderWorker(name: "baseRenderWorker")
-		let layout = Layout(name: "layout")
-		let layoutData = LayoutDataStorage(name: "layoutData")
-		let input = DraggableInput(name: "dragInput")
-		let dispatcher = Dispatcher(name: "dispatcher")
+		let render = Render()
+		let renderData = RenderDataStorage()
+		let renderWorker = RenderWorker()
+		let layout = Layout()
+		let layoutData = LayoutDataStorage()
+		let input = DraggableInput()
+		let dispatcher = Dispatcher()
 
 		input.render = render
 		input.layout = layout
@@ -74,14 +74,14 @@ final class EntityFactory {
 	}
 
 	static func makeScrollable() -> (entity: Entity, render: Render, scrollLayout: Layout) {
-		let render = Render(name: "render")
-		let renderData = RenderDataStorage(name: "renderData")
-		let baseLayout = Layout(name: "baseLayout")
-		let baseLayoutData = LayoutDataStorage(name: "baseLayoutData")
-		let scrollLayout = Layout(name: "scrollLayout")
-		let scrollLayoutData = LayoutDataStorage(name: "scrollLayoutData")
-		let input = ScrollableInput(name: "scrollInput")
-		let dispatcher = Dispatcher(name: "dispatcher")
+		let render = Render()
+		let renderData = RenderDataStorage()
+		let baseLayout = Layout()
+		let baseLayoutData = LayoutDataStorage()
+		let scrollLayout = Layout()
+		let scrollLayoutData = LayoutDataStorage()
+		let input = ScrollableInput()
+		let dispatcher = Dispatcher()
 
 		input.render = render
 		input.scrollLayout = scrollLayout
