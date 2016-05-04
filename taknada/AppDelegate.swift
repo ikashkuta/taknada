@@ -13,16 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	var displayLink: CADisplayLink!
-	var job: dispatch_block_t!
-	func fakeRunloop(job: dispatch_block_t) {
-		self.job = job
+	func startFakeRunloop() {
 		self.displayLink = CADisplayLink.init(target: self, selector: #selector(AppDelegate.handleDisplayLink(_:)))
 		self.displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
 	}
 
 	func handleDisplayLink(displayLink: CADisplayLink) {
 		AppDelegate.updateSystems()
-		self.job();
 	}
 
 	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand 
@@ -71,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.setupScene1()
 //		self.setupScene2()
 
-		self.fakeRunloop { }
+		self.startFakeRunloop()
 
 		return true
 	}
