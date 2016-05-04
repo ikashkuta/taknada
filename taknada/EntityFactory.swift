@@ -47,7 +47,6 @@ final class EntityFactory {
 	static func makeDraggable() -> (entity: Entity, render: Render, layout: Layout) {
 		let render = Render()
 		let renderData = RenderDataStorage()
-		let renderWorker = RenderWorker()
 		let layout = Layout()
 		let layoutData = LayoutDataStorage()
 		let input = DraggableInput()
@@ -69,7 +68,7 @@ final class EntityFactory {
 		render.layout = layout
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, renderData, layout, layoutData, input, dispatcher, renderWorker])
+		let entity = Entity(components: [render, renderData, layout, layoutData, input, dispatcher])
 		return (entity, render, layout)
 	}
 
