@@ -1,9 +1,6 @@
 import Foundation
 
 class Component {
-	//NOTE: may be different for compile time (entity, useful for editortime) and runtime (instance of entity)
-	var guid: String = "guid_placeholder"
-
 	//NOTE: some meaningful name, that makes sense for entity. "MainLayout", "ScrollableLayout", "ScrollableInput"
 	let name: String
 
