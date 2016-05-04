@@ -5,7 +5,7 @@ class Render: Component {
 
 	// MARK: - Public API
 
-	final var data: RenderDataStorage!
+	final var basicData: RenderDataStorage!
 	final var layout: Layout!
 	final var inputs: [Input]?
 
@@ -14,7 +14,19 @@ class Render: Component {
 	// MARK: - To Override
 
 	func createView() -> UIView {
-		return UIView.init()
+		return UIView()
+	}
+
+	var needsUpdate: Bool {
+		return self.basicData.version != self.lastUsedDataVersion
+	}
+
+	func update() {
+		self.view!.backgroundColor = self.basicData.backgroundColor
+		self.view!.layer.borderColor = self.basicData.borderColor.CGColor
+		self.view!.layer.borderWidth = self.basicData.borderWidth
+		self.view!.layer.cornerRadius = self.basicData.cornerRadius
+		self.lastUsedDataVersion = self.basicData.version
 	}
 
 	// MARK: - Component
@@ -30,19 +42,8 @@ class Render: Component {
 
 	// MARK: - Private
 
-	// MARK: -- Update
-
 	final private var lastUsedDataVersion = UInt.max
-	final var needsUpdate: Bool {
-		return self.data.version != self.lastUsedDataVersion
-	}
-	final func update() {
-		self.view!.backgroundColor = self.data.backgroundColor
-		self.view!.layer.borderColor = self.data.borderColor.CGColor
-		self.view!.layer.borderWidth = self.data.borderWidth
-		self.view!.layer.cornerRadius = self.data.cornerRadius
-		self.lastUsedDataVersion = self.data.version
-	}
+
 
 	// MARK: -- Tree
 

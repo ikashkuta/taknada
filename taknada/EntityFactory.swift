@@ -13,7 +13,7 @@ final class EntityFactory {
 		
 		layout.data = layoutData
 
-		render.data = renderData
+		render.basicData = renderData
 		render.view = mainView
 		render.layout = layout
 
@@ -37,7 +37,7 @@ final class EntityFactory {
 		renderData.borderColor = UIColor.blueColor()
 		renderData.cornerRadius = 10
 
-		render.data = renderData
+		render.basicData = renderData
 		render.layout = layout
 
 		let entity = Entity(components: [render, renderData, layout, layoutData, dispatcher])
@@ -64,7 +64,7 @@ final class EntityFactory {
 		renderData.borderColor = UIColor.blueColor()
 		renderData.cornerRadius = 10
 
-		render.data = renderData
+		render.basicData = renderData
 		render.layout = layout
 		render.inputs = [input]
 
@@ -94,7 +94,7 @@ final class EntityFactory {
 
 		renderData.borderWidth = 1
 
-		render.data = renderData
+		render.basicData = renderData
 		render.layout = baseLayout
 		render.inputs = [input]
 
