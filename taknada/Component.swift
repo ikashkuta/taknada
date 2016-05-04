@@ -11,17 +11,13 @@ class Component {
 		self.name = name
 	}
 
-	func registerSelf() {
-	}
-
-	func unregisterSelf() {
-	}
-
 	final private weak var entity: Entity!
 	final func registerSelf(entity: Entity) {
 		self.entity = entity
 		self.registerSelf()
 	}
+
+	// MARK: - Public API
 
 	final func getSibling<ComponentType: Component>(siblingName: String? = nil) -> ComponentType {
 		return self.entity.getComponent(siblingName)
@@ -30,4 +26,13 @@ class Component {
 	final func getSiblings<ComponentType: Component>() -> [ComponentType] {
 		return self.entity.getComponents()
 	}
+
+	// MARK: - To Subclass
+
+	func registerSelf() {
+	}
+
+	func unregisterSelf() {
+	}
+
 }

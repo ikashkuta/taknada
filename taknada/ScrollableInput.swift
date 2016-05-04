@@ -2,8 +2,26 @@ import Foundation
 import UIKit
 
 class ScrollableInput: Input {
+
+	// MARK: - Public API
+
 	var render: Render!
 	var scrollLayout: Layout!
+
+	struct DidScrollFact: Fact {
+		var source: String
+		var newTranslation: (CGFloat, CGFloat)
+	}
+
+	// MARK: - Component
+
+	override func unregisterSelf() {
+		self.render = nil
+		self.scrollLayout = nil
+		super.unregisterSelf()
+	}
+
+	// MARK: - Input
 
 	override func detach() {
 		self.render.view?.removeGestureRecognizer(self.scrollView.panGestureRecognizer)
@@ -12,20 +30,18 @@ class ScrollableInput: Input {
 
 	override func attach() {
 		self.scrollView = UIScrollView.init()
+		self.scrollView.directionalLockEnabled = true
 		self.scrollView.contentSize = CGSize(width: 1000, height: 1000)
 		self.scrollView.delegate = self.scrollViewDelegate
 		self.render.view?.addGestureRecognizer(self.scrollView.panGestureRecognizer)
 	}
 
+	// MARK: - Private
+
 	private var scrollView: UIScrollView!
 	private lazy var scrollViewDelegate: ScrollViewDelegate = {
 		return ScrollViewDelegate(input: self)
 	}()
-
-	struct DidScrollFact: Fact {
-		var source: String
-		var newTranslation: (CGFloat, CGFloat)
-	}
 
 	final private func didScroll(offset: CGPoint) {
 		self.scrollLayout.data.localTransform = CGAffineTransformTranslate(self.scrollLayout.data.localTransform,
@@ -48,13 +64,5 @@ class ScrollableInput: Input {
 			self.input.didScroll(scrollView.contentOffset)
 			scrollView.contentOffset = CGPoint.zero
 		}
-	}
-
-	// MARK: - Component
-
-	override func unregisterSelf() {
-		self.render = nil
-		self.scrollLayout = nil
-		super.unregisterSelf()
 	}
 }

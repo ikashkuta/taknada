@@ -2,8 +2,21 @@ import Foundation
 import UIKit
 
 class DraggableInput: Input {
+
+	// MARK: - Public API
+
 	var render: Render!
 	var layout: Layout!
+
+	// MARK: - Component
+
+	override func unregisterSelf() {
+		self.render = nil
+		self.layout = nil
+		super.unregisterSelf()
+	}
+
+	// MARK: - Input
 
 	override func detach() {
 		self.render.view?.removeGestureRecognizer(self.panRecognizer)
@@ -14,6 +27,8 @@ class DraggableInput: Input {
 		self.render.view?.addGestureRecognizer(self.panRecognizer)
 	}
 
+	// MARK: - Private
+
 	private var panRecognizer: UIPanGestureRecognizer!
 
 	@objc
@@ -23,13 +38,5 @@ class DraggableInput: Input {
 		self.layout.data.localTransform = CGAffineTransformTranslate(self.layout.data.localTransform,
 		                                                             translation.x,
 		                                                             translation.y)
-	}
-
-	// MARK: - Component
-
-	override func unregisterSelf() {
-		self.render = nil
-		self.layout = nil
-		super.unregisterSelf()
 	}
 }
