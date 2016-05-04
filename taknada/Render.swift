@@ -6,9 +6,8 @@ class Render: Component {
 	// MARK: - Public API
 
 	final var data: RenderDataStorage!
-
-	var layout: Layout!
-	var inputs: [Input]? // TODO: I don't like this, too many double-linked components
+	final var layout: Layout!
+	final var inputs: [Input]?
 
 	final var view: UIView?
 

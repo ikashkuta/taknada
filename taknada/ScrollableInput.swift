@@ -6,7 +6,7 @@ class ScrollableInput: Input {
 	// MARK: - Public API
 
 	var render: Render!
-	var scrollLayout: Layout!
+	var scrollLayoutData: LayoutDataStorage!
 
 	struct DidScrollFact: Fact {
 		var source: String
@@ -17,7 +17,7 @@ class ScrollableInput: Input {
 
 	override func unregisterSelf() {
 		self.render = nil
-		self.scrollLayout = nil
+		self.scrollLayoutData = nil
 		super.unregisterSelf()
 	}
 
@@ -44,12 +44,12 @@ class ScrollableInput: Input {
 	}()
 
 	final private func didScroll(offset: CGPoint) {
-		self.scrollLayout.data.localTransform = CGAffineTransformTranslate(self.scrollLayout.data.localTransform,
-		                                                                   -offset.x,
-		                                                                   -offset.y)
+		self.scrollLayoutData.localTransform = CGAffineTransformTranslate(self.scrollLayoutData.localTransform,
+		                                                                  -offset.x,
+		                                                                  -offset.y)
 
 		let dispatcher: Dispatcher = self.getSibling()
-		let newTranslation = (self.scrollLayout.data.localTransform.tx, self.scrollLayout.data.localTransform.ty)
+		let newTranslation = (self.scrollLayoutData.localTransform.tx, self.scrollLayoutData.localTransform.ty)
 		dispatcher.sendMessage(DidScrollFact(source: #function, newTranslation: newTranslation))
 	}
 

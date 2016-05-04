@@ -54,7 +54,7 @@ final class EntityFactory {
 		let dispatcher = Dispatcher()
 
 		input.render = render
-		input.layout = layout
+		input.layoutData = layoutData
 
 		layoutData.boundingBox = CGSize(width: 100, height: 100)
 
@@ -84,7 +84,7 @@ final class EntityFactory {
 		let dispatcher = Dispatcher()
 
 		input.render = render
-		input.scrollLayout = scrollLayout
+		input.scrollLayoutData = scrollLayoutData
 
 		scrollLayout.data = scrollLayoutData
 		scrollLayout.parent = baseLayout

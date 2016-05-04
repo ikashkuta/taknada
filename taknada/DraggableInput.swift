@@ -6,13 +6,13 @@ class DraggableInput: Input {
 	// MARK: - Public API
 
 	var render: Render!
-	var layout: Layout!
+	var layoutData: LayoutDataStorage!
 
 	// MARK: - Component
 
 	override func unregisterSelf() {
 		self.render = nil
-		self.layout = nil
+		self.layoutData = nil
 		super.unregisterSelf()
 	}
 
@@ -35,8 +35,8 @@ class DraggableInput: Input {
 	final private func handleGesture(recognizer: UIPanGestureRecognizer) {
 		let translation = recognizer.translationInView(recognizer.view)
 		recognizer.setTranslation(CGPoint.zero, inView: recognizer.view)
-		self.layout.data.localTransform = CGAffineTransformTranslate(self.layout.data.localTransform,
-		                                                             translation.x,
-		                                                             translation.y)
+		self.layoutData.localTransform = CGAffineTransformTranslate(self.layoutData.localTransform,
+		                                                            translation.x,
+		                                                            translation.y)
 	}
 }
