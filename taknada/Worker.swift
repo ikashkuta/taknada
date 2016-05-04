@@ -2,7 +2,7 @@ import Foundation
 
 class Worker: Component {
 
-	// MARK: - To Subclass
+	// MARK: - To Override
 
 	func publishSignals(publisher: SignalPublisher) {
 	}

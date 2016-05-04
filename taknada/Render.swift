@@ -11,7 +11,7 @@ class Render: Component {
 
 	final var view: UIView?
 
-	// MARK: - To Subclass
+	// MARK: - To Override
 
 	func createView() -> UIView {
 		return UIView.init()

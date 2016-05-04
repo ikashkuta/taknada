@@ -6,7 +6,7 @@ class System<ComponentType: Component> {
 
 	private(set) var components = [ComponentType]()
 
-	// MARK: - To Subclass
+	// MARK: - To Override
 
 	func register(component: ComponentType) {
 		self.components.append(component)

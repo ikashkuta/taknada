@@ -1,8 +1,8 @@
 import Foundation
 
-// Rules:
+// The Rules:
 // MARK: - Public API
-// MARK: - To Subclass
+// MARK: - To Override
 // MARK: - Init & Deinit
 // MARK: - BaseClass 1, 2,3
 // MARK: - Private
@@ -27,7 +27,7 @@ class Component {
 		self.tags = tags
 	}
 
-	// MARK: - To Subclass
+	// MARK: - To Override
 
 	func registerSelf() {
 	}

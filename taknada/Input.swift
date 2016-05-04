@@ -7,7 +7,7 @@ import Foundation
 // all user input synchronously - but it should be as dumb as possible.
 class Input: Component {
 
-	// MARK: - To Subclass
+	// MARK: - To Override
 
 	// This pair of functions may be called several times during lifetime of this
 	// component because views may be removed/restored by RenderSystem according
