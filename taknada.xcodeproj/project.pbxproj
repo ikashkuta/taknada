@@ -29,7 +29,7 @@
 		87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */; };
 		87F961131CC2E08300A7B3E2 /* ScrollableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */; };
 		87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */; };
-		87F9611C1CC3027200A7B3E2 /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9611B1CC3027200A7B3E2 /* Worker.swift */; };
+		87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9611B1CC3027200A7B3E2 /* Script.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +69,7 @@
 		87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
 		87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableInput.swift; sourceTree = "<group>"; };
 		87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableInput.swift; sourceTree = "<group>"; };
-		87F9611B1CC3027200A7B3E2 /* Worker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
+		87F9611B1CC3027200A7B3E2 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +176,7 @@
 				87F961011CC1885E00A7B3E2 /* Component.swift */,
 				8778350C1CD8217D00CD77FF /* DataStorage.swift */,
 				87792AAE1CD1796A00588025 /* Dispatcher.swift */,
-				87F9611B1CC3027200A7B3E2 /* Worker.swift */,
+				87F9611B1CC3027200A7B3E2 /* Script.swift */,
 				874B2BCC1CD94BF8001E118F /* Layout */,
 				87F961111CC2C69300A7B3E2 /* Render */,
 				87792AAA1CD1643300588025 /* Input */,
@@ -316,7 +316,7 @@
 				8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */,
 				874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */,
 				87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */,
-				87F9611C1CC3027200A7B3E2 /* Worker.swift in Sources */,
+				87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */,
 				87F961001CC1877A00A7B3E2 /* System.swift in Sources */,
 				87F960FC1CC1873F00A7B3E2 /* RenderSystem.swift in Sources */,
 				87F961061CC18A0B00A7B3E2 /* Layout.swift in Sources */,

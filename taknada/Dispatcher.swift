@@ -1,7 +1,7 @@
 import Foundation
 
 // Message must have a name as an event (what's happend) not action (what should happen)
-// Semantic is important. Only workers know what to do next.
+// Semantic is important. Only scripts know what to do next.
 protocol Fact {
 	var source: String { get } // source of event (line, class, etc.) - to make debug easier. Let's beat Rx stuff by it.
 }
@@ -62,7 +62,7 @@ final class Dispatcher: Component, SignalPublisher {
 	}
 
 	func processSending() {
-		if self.needRegisterWorkers { self.registerWorkers() }
+		if self.needRegisterScripts { self.registerScripts() }
 		if self.dispatchQueue.count == 0 { return }
 		let queueToProcess = self.dispatchQueue
 		self.dispatchQueue.removeAll() // TODO: Not thread-safe :(
@@ -94,12 +94,12 @@ final class Dispatcher: Component, SignalPublisher {
 	typealias DispatchFunction = (Void) -> Void
 	private var dispatchQueue = [DispatchFunction]()
 	private var dispatchTable = [String: [AnyObject]]()
-	private var didRegisterWorkers = false
-	private var needRegisterWorkers: Bool { return !self.didRegisterWorkers }
+	private var didRegisterScripts = false
+	private var needRegisterScripts: Bool { return !self.didRegisterScripts }
 
-	private func registerWorkers() {
-		let workers: [Worker] = self.getSiblings()
-		workers.forEach { $0.publishSignals(self) }
-		self.didRegisterWorkers = true
+	private func registerScripts() {
+		let scripts: [Script] = self.getSiblings()
+		scripts.forEach { $0.publishSignals(self) }
+		self.didRegisterScripts = true
 	}
 }
