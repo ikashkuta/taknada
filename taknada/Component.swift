@@ -3,7 +3,7 @@ import Foundation
 // The Rules:
 // MARK: - Public API
 // MARK: - To Override
-// MARK: - Init & Deinit
+// MARK: - deinit -> designated -> convenient 
 // MARK: - BaseClass 1, 2,3
 // MARK: - Private
 
