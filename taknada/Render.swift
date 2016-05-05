@@ -22,10 +22,11 @@ class Render: Component {
 	}
 
 	func update() {
-		self.view!.backgroundColor = self.basicData.backgroundColor
-		self.view!.layer.borderColor = self.basicData.borderColor.CGColor
-		self.view!.layer.borderWidth = self.basicData.borderWidth
-		self.view!.layer.cornerRadius = self.basicData.cornerRadius
+		let view: UIView! = self.view
+		view.backgroundColor = self.basicData.backgroundColor
+		view.layer.borderColor = self.basicData.borderColor.CGColor
+		view.layer.borderWidth = self.basicData.borderWidth
+		view.layer.cornerRadius = self.basicData.cornerRadius
 		self.lastUsedDataVersion = self.basicData.version
 	}
 
