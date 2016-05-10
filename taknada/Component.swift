@@ -1,6 +1,6 @@
 import Foundation
 
-// Just copypaste them when on creation of new Component and use appropriate clauses
+// Just copypaste it when on creation of new Component and use appropriate clauses, then delete
 // The Rules:
 // MARK: - Public API
 // MARK: - To Override
