@@ -1,5 +1,6 @@
 import Foundation
 
+// Just copypaste them when on creation of new Component and use appropriate clauses
 // The Rules:
 // MARK: - Public API
 // MARK: - To Override

@@ -42,7 +42,7 @@ final class RenderSystem: System<Render> {
 	private func update(render: Render) {
 		self.updateView(render)
 		if render.needsUpdate { render.update() } // Only style for now
-		self.updateFrame(render)
+		self.updateFrame(render) // TODO: omg, i always do it
 		render.children.forEach { self.update($0) }
 	}
 
