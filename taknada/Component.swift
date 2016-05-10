@@ -7,6 +7,9 @@ import Foundation
 // MARK: - deinit -> designated -> convenient 
 // MARK: - BaseClass 1, 2,3
 // MARK: - Private
+//
+// The Order:
+// public/private | final | override | lazy
 
 class Component {
 
