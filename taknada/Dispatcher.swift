@@ -51,9 +51,9 @@ final class Dispatcher: Component, SignalPublisher {
 	// MARK: - Public API
 
 	func sendMessage<SpecificFact: Fact>(fact: SpecificFact) {
-		self.dispatchQueue.append({
+		self.messageQueue.append({ // TODO: Not thread-safe :(
 			let factTypeKey = String(SpecificFact.self)
-			let maybeSignals = self.dispatchTable[factTypeKey] as? [Signal<SpecificFact>]
+			let maybeSignals = self.dispatchMessageTable[factTypeKey] as? [Signal<SpecificFact>]
 			guard let signals: [Signal<SpecificFact>] = maybeSignals else { return }
 			for signal in signals {
 				signal.push(fact)
@@ -63,18 +63,18 @@ final class Dispatcher: Component, SignalPublisher {
 
 	func processSending() {
 		if self.needRegisterScripts { self.registerScripts() }
-		if self.dispatchQueue.count == 0 { return }
-		let queueToProcess = self.dispatchQueue
-		self.dispatchQueue.removeAll() // TODO: Not thread-safe :(
+		if self.messageQueue.count == 0 { return }
+		let queueToProcess = self.messageQueue
+		self.messageQueue.removeAll() // TODO: Not thread-safe :(
 		queueToProcess.forEach { $0() }
 	}
 
 	func publishSignal<FactType: Fact>(signal: Signal<FactType>) {
 		let factTypeKey = String(FactType.self)
-		if self.dispatchTable[factTypeKey] == nil {
-			self.dispatchTable[factTypeKey] = [AnyObject]()
+		if self.dispatchMessageTable[factTypeKey] == nil {
+			self.dispatchMessageTable[factTypeKey] = [AnyObject]()
 		}
-		self.dispatchTable[factTypeKey]!.append(signal)
+		self.dispatchMessageTable[factTypeKey]!.append(signal)
 	}
 
 	// MARK: - Component
@@ -84,16 +84,16 @@ final class Dispatcher: Component, SignalPublisher {
 	}
 
 	override func unregisterSelf() {
-		self.dispatchTable.removeAll()
-		self.dispatchQueue.removeAll()
+		self.dispatchMessageTable.removeAll()
+		self.messageQueue.removeAll()
 		SystemLocator.dispatchSystem?.unregister(self)
 	}
 
 	// MARK: - Private
 
 	typealias DispatchFunction = (Void) -> Void
-	private var dispatchQueue = [DispatchFunction]()
-	private var dispatchTable = [String: [AnyObject]]()
+	private var messageQueue = [DispatchFunction]()
+	private var dispatchMessageTable = [String: [AnyObject]]()
 	private var didRegisterScripts = false
 	private var needRegisterScripts: Bool { return !self.didRegisterScripts }
 
