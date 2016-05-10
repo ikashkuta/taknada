@@ -5,9 +5,9 @@ final class RenderSystem: System<Render> {
 
 	// MARK: - Init & Deinit
 
-	init(window: Render) {
+	init(window: Render, queue: dispatch_queue_t) {
 		self.window = window
-		super.init()
+		super.init(queue: queue)
 		self.register(self.window)
 	}
 

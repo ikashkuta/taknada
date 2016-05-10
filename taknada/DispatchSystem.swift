@@ -2,6 +2,12 @@ import Foundation
 
 final class DispatchSystem: System<Dispatcher> {
 
+	// MARK: - Init
+
+	override init(queue: dispatch_queue_t) {
+		super.init(queue: queue)
+	}
+
 	// MARK: - System
 
 	override func register(component: Dispatcher) {

@@ -6,23 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	var entities = [Entity]()
 
-	static func updateSystems() {
-		SystemLocator.layoutSystem?.update()
-		SystemLocator.renderSystem?.update()
-		SystemLocator.dispatchSystem?.update()
-	}
-
-	var displayLink: CADisplayLink!
-	func startFakeRunloop() {
-		self.displayLink = CADisplayLink.init(target: self, selector: #selector(AppDelegate.handleDisplayLink(_:)))
-		self.displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
-	}
-
-	func handleDisplayLink(displayLink: CADisplayLink) {
-		AppDelegate.updateSystems()
-	}
-
-	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand 
+	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand
 	// appropriate layout node) in order to make this factory methods more clean.
 	func setupScene1() {
 		let e1 = EntityFactory.makeSimple()
@@ -61,14 +45,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let w = EntityFactory.makeWindow(rootViewController.view)
 		self.entities.append(w.entity)
 
-		SystemLocator.renderSystem = RenderSystem(window: w.render)
-		SystemLocator.layoutSystem = LayoutSystem(window: w.layout)
-		SystemLocator.dispatchSystem = DispatchSystem()
+		let renderQueue = dispatch_get_main_queue()
+		let layoutQueue = dispatch_queue_create("layout", DISPATCH_QUEUE_SERIAL) // TODO: QoS
+		let scriptsQueue = dispatch_queue_create("scripts", DISPATCH_QUEUE_SERIAL)
+
+		SystemLocator.renderSystem = RenderSystem(window: w.render, queue: renderQueue)
+		SystemLocator.layoutSystem = LayoutSystem(window: w.layout, queue: layoutQueue)
+		SystemLocator.dispatchSystem = DispatchSystem(queue: scriptsQueue)
 
 		self.setupScene1()
 //		self.setupScene2()
 
-		self.startFakeRunloop()
+		SystemLocator.layoutSystem?.setNeedsUpdate()
+		SystemLocator.renderSystem?.setNeedsUpdate()
+//		SystemLocator.dispatchSystem?.setNeedsUpdate() // don't need to
 
 		return true
 	}

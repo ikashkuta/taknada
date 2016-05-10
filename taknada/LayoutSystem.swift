@@ -4,9 +4,9 @@ final class LayoutSystem: System<Layout> {
 
 	// MARK: - Init & Deinit
 
-	init(window: Layout) {
+	init(window: Layout, queue: dispatch_queue_t) {
 		self.window = window
-		super.init()
+		super.init(queue: queue)
 		self.register(self.window)
 	}
 

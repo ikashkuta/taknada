@@ -6,6 +6,17 @@ class System<ComponentType: Component> {
 
 	private(set) var components = [ComponentType]()
 
+	final func setNeedsUpdate() {
+		if self.waitsForUpdate { return }
+
+		// TODO: it's fine for now, but later, with Update List it shouldn't be like this.
+		self.waitsForUpdate = true
+		dispatch_async(self.queue) {
+			self.waitsForUpdate = false
+			self.update()
+		}
+	}
+
 	// MARK: - To Override
 
 	func register(component: ComponentType) {
@@ -18,4 +29,15 @@ class System<ComponentType: Component> {
 
 	func update() {
 	}
+
+	// MARK: - Init
+
+	init(queue: dispatch_queue_t) {
+		self.queue = queue
+	}
+
+	// MARK: - Private
+
+	private let queue: dispatch_queue_t
+	private var waitsForUpdate: Bool = false
 }
