@@ -8,11 +8,6 @@ class ScrollableInput: Input {
 	var render: Render!
 	var scrollLayoutData: LayoutDataStorage!
 
-	struct DidScrollFact: Fact {
-		var source: String
-		var newTranslation: (CGFloat, CGFloat)
-	}
-
 	// MARK: - Component
 
 	override func unregisterSelf() {
@@ -48,9 +43,7 @@ class ScrollableInput: Input {
 		                                                                  -offset.x,
 		                                                                  -offset.y)
 
-		let dispatcher: Dispatcher = self.getSibling()
-		let newTranslation = (self.scrollLayoutData.localTransform.tx, self.scrollLayoutData.localTransform.ty)
-		dispatcher.sendMessage(DidScrollFact(source: #function, newTranslation: newTranslation))
+		SystemLocator.layoutSystem?.setNeedsUpdate() // TODO:  shouldn't be here :(
 	}
 
 	final private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {
