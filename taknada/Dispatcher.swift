@@ -59,6 +59,8 @@ final class Dispatcher: Component, SignalPublisher {
 				signal.push(fact)
 			}
 		})
+
+		SystemLocator.dispatchSystem?.setNeedsUpdate() // TODO: shouldn't be here :(
 	}
 
 	func processSending() {

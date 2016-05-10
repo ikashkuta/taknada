@@ -38,5 +38,7 @@ class DraggableInput: Input {
 		self.layoutData.localTransform = CGAffineTransformTranslate(self.layoutData.localTransform,
 		                                                            translation.x,
 		                                                            translation.y)
+
+		SystemLocator.layoutSystem?.setNeedsUpdate() // TODO:  shouldn't be here :(
 	}
 }

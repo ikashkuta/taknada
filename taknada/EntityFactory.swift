@@ -9,6 +9,8 @@ final class EntityFactory {
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Dispatcher()
 
+		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
+
 		layoutData.boundingBox = mainView.frame.size
 		
 		layout.data = layoutData
@@ -17,7 +19,7 @@ final class EntityFactory {
 		render.view = mainView
 		render.layout = layout
 
-		let window = Entity(components: [layout, layoutData, render, renderData, dispatcher])
+		let window = Entity(components: [layout, layoutData, render, renderData, layoutToRenderSyncScript, dispatcher])
 		return (window, render, layout)
 	}
 
@@ -27,6 +29,8 @@ final class EntityFactory {
 		let layout = Layout()
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Dispatcher()
+
+		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
 
 		layoutData.boundingBox = CGSize(width: 100, height: 200)
 
@@ -40,7 +44,7 @@ final class EntityFactory {
 		render.basicData = renderData
 		render.layout = layout
 
-		let entity = Entity(components: [render, renderData, layout, layoutData, dispatcher])
+		let entity = Entity(components: [render, renderData, layout, layoutData, layoutToRenderSyncScript, dispatcher])
 		return (entity, render, layout)
 	}
 
@@ -51,6 +55,8 @@ final class EntityFactory {
 		let layoutData = LayoutDataStorage()
 		let input = DraggableInput()
 		let dispatcher = Dispatcher()
+
+		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
 
 		input.render = render
 		input.layoutData = layoutData
@@ -68,7 +74,7 @@ final class EntityFactory {
 		render.layout = layout
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, renderData, layout, layoutData, input, dispatcher])
+		let entity = Entity(components: [render, renderData, layout, layoutData, input, layoutToRenderSyncScript, dispatcher])
 		return (entity, render, layout)
 	}
 
@@ -81,6 +87,8 @@ final class EntityFactory {
 		let scrollLayoutData = LayoutDataStorage()
 		let input = ScrollableInput()
 		let dispatcher = Dispatcher()
+
+		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
 
 		input.render = render
 		input.scrollLayoutData = scrollLayoutData
@@ -98,7 +106,7 @@ final class EntityFactory {
 		render.layout = baseLayout
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, dispatcher])
+		let entity = Entity(components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, layoutToRenderSyncScript, dispatcher])
 		return (entity, render, scrollLayout)
 	}
 }
