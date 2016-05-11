@@ -17,13 +17,13 @@ final class TextLayout: Layout {
 		super.update()
 	}
 
-	final private var lastUsedDataVersion = UInt.max
-
 	override var needsUpdate: Bool {
 		return super.needsUpdate || self.textData.version != self.lastUsedDataVersion
 	}
 
 	// MARK: - Private
+
+	private var lastUsedDataVersion = UInt.max
 
 	private func calcTextSize() -> CGSize {
 		let parentWidth = self.parent!.data.boundingBox.width

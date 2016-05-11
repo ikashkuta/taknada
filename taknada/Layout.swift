@@ -5,12 +5,25 @@ class Layout: Component {
 
 	// MARK: - Public API
 
+	struct GlobalFrameDidUpdateFact: Fact {
+		let source: String
+	}
+
 	final var data: LayoutDataStorage!
 	final private(set) var globalFrame = CGRect.zero
 	final private(set) var globalTransform = CGAffineTransformIdentity
 
-	struct GlobalFrameDidUpdateFact: Fact {
-		let source: String
+	final private(set) var children = [Layout]()
+
+	final var parent: Layout? {
+		willSet {
+			guard let parent = self.parent else { return }
+			parent.children = parent.children.filter { $0 !== self } // TODO: soooo bad :(
+		}
+		didSet {
+			guard let parent = self.parent else { return }
+			parent.children.append(self)
+		}
 	}
 
 	// MARK: - To Override
@@ -30,8 +43,6 @@ class Layout: Component {
 	}
 
 	// MARK: - Private
-
-	// MARK: -- Update
 
 	final private var lastUsedDataVersion = UInt.max
 
@@ -55,21 +66,5 @@ class Layout: Component {
 
 		let dispatcher: Dispatcher = self.getSibling()
 		dispatcher.sendMessage(GlobalFrameDidUpdateFact(source: #function))
-	}
-
-	// MARK: -- Tree
-
-	// TODO: It must be appropriate datastructure for this tree, not Array
-	final private(set) var children = [Layout]()
-
-	final var parent: Layout? {
-		willSet {
-			guard let parent = self.parent else { return }
-			parent.children = parent.children.filter { $0 !== self }
-		}
-		didSet {
-			guard let parent = self.parent else { return }
-			parent.children.append(self)
-		}
 	}
 }

@@ -30,5 +30,5 @@ final class TextRender: Render {
 
 	// MARK: - Private
 
-	final private var lastUsedDataVersion = UInt.max
+	private var lastUsedDataVersion = UInt.max
 }
