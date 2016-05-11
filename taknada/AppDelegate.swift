@@ -8,12 +8,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand
 	// appropriate layout node) in order to make this factory methods more clean.
+	// Remove tuples
 	func setupScene1() {
 		let e1 = EntityFactory.makeSimple()
 		let e2 = EntityFactory.makeSimple()
 		let e3 = EntityFactory.makeDraggable()
 		let b1 = EntityFactory.makeScrollable()
-		self.entities.appendContentsOf([e1.entity, e2.entity, e3.entity, b1.entity])
+		self.entities += [e1.entity, e2.entity, e3.entity, b1.entity]
 
 		e1.layout.data.localTransform = CGAffineTransformMakeTranslation(10, 0)
 		e2.layout.data.localTransform = CGAffineTransformMakeTranslation(130, 0)
@@ -35,6 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.entities += [e1.entity, e2.entity, e3.entity]
 	}
 
+	func setupScene3() {
+		let t1 = EntityFactory.makeText()
+		self.entities += [t1.entity]
+
+		t1.textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
+	}
+
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
 		let rootViewController = UIViewController.init()
@@ -53,12 +61,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.layoutSystem = LayoutSystem(window: w.layout, queue: layoutQueue)
 		SystemLocator.dispatchSystem = DispatchSystem(queue: scriptsQueue)
 
-		self.setupScene1()
+//		self.setupScene1()
 //		self.setupScene2()
+		self.setupScene3()
 
 		SystemLocator.layoutSystem?.setNeedsUpdate()
 		SystemLocator.renderSystem?.setNeedsUpdate()
-//		SystemLocator.dispatchSystem?.setNeedsUpdate() // don't need to
 
 		return true
 	}

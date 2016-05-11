@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 final class EntityFactory {
+
 	static func makeWindow(mainView: UIView) -> (entity: Entity, render: Render, layout: Layout) {
 		let render = Render()
 		let renderData = RenderDataStorage()
@@ -108,5 +109,35 @@ final class EntityFactory {
 
 		let entity = Entity(components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, layoutToRenderSyncScript, dispatcher])
 		return (entity, render, scrollLayout)
+	}
+
+	static func makeText() -> (entity: Entity, render: Render, layout: Layout, textData: TextDataStorage) {
+		let render = TextRender()
+		let renderData = RenderDataStorage()
+		let layout = TextLayout()
+		let baseLayoutData = LayoutDataStorage()
+		let textData = TextDataStorage()
+		let dispatcher = Dispatcher()
+
+		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
+		let textSyncScript = TextSyncScript()
+
+		let input = ScrollableInput()
+
+		input.render = render
+		input.scrollLayoutData = baseLayoutData
+
+		layout.data = baseLayoutData
+		layout.textData = textData
+
+		renderData.borderWidth = 1
+
+		render.basicData = renderData
+		render.layout = layout
+		render.inputs = [input]
+		render.textData = textData
+
+		let entity = Entity(components: [render, renderData, layout, baseLayoutData, textData, layoutToRenderSyncScript, textSyncScript, input, dispatcher])
+		return (entity, render, layout, textData)
 	}
 }
