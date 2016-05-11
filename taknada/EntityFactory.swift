@@ -84,7 +84,7 @@ final class EntityFactory {
 		let renderData = RenderDataStorage()
 		let baseLayout = Layout()
 		let baseLayoutData = LayoutDataStorage()
-		let scrollLayout = Layout()
+		let scrollLayout = StackLayout()
 		let scrollLayoutData = LayoutDataStorage()
 		let input = ScrollableInput()
 		let dispatcher = Dispatcher()
@@ -94,6 +94,9 @@ final class EntityFactory {
 		input.render = render
 		input.scrollLayoutData = scrollLayoutData
 
+		scrollLayoutData.boundingBox = CGSize(width: 200, height: 200)
+
+		scrollLayout.direction = .vertical
 		scrollLayout.data = scrollLayoutData
 		scrollLayout.parent = baseLayout
 
@@ -122,11 +125,6 @@ final class EntityFactory {
 		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
 		let textSyncScript = TextSyncScript()
 
-		let input = ScrollableInput()
-
-		input.render = render
-		input.scrollLayoutData = baseLayoutData
-
 		layout.data = baseLayoutData
 		layout.textData = textData
 
@@ -134,10 +132,9 @@ final class EntityFactory {
 
 		render.basicData = renderData
 		render.layout = layout
-		render.inputs = [input]
 		render.textData = textData
 
-		let entity = Entity(components: [render, renderData, layout, baseLayoutData, textData, layoutToRenderSyncScript, textSyncScript, input, dispatcher])
+		let entity = Entity(components: [render, renderData, layout, baseLayoutData, textData, layoutToRenderSyncScript, textSyncScript, dispatcher])
 		return (entity, render, layout, textData)
 	}
 }

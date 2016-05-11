@@ -14,6 +14,7 @@
 		877825F41CE3E16400FC7B9B /* TextRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F31CE3E16400FC7B9B /* TextRender.swift */; };
 		877825F61CE3E1AC00FC7B9B /* TextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F51CE3E1AC00FC7B9B /* TextLayout.swift */; };
 		877825F81CE3E1D200FC7B9B /* TextSyncScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F71CE3E1D200FC7B9B /* TextSyncScript.swift */; };
+		877825FA1CE3E41E00FC7B9B /* StackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F91CE3E41E00FC7B9B /* StackLayout.swift */; };
 		8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778350C1CD8217D00CD77FF /* DataStorage.swift */; };
 		87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AA81CCEC29C00588025 /* DispatchSystem.swift */; };
 		87792AAC1CD164B800588025 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAB1CD164B800588025 /* Input.swift */; };
@@ -55,6 +56,7 @@
 		877825F31CE3E16400FC7B9B /* TextRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRender.swift; sourceTree = "<group>"; };
 		877825F51CE3E1AC00FC7B9B /* TextLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayout.swift; sourceTree = "<group>"; };
 		877825F71CE3E1D200FC7B9B /* TextSyncScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSyncScript.swift; sourceTree = "<group>"; };
+		877825F91CE3E41E00FC7B9B /* StackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackLayout.swift; sourceTree = "<group>"; };
 		8778350C1CD8217D00CD77FF /* DataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		87792AA81CCEC29C00588025 /* DispatchSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchSystem.swift; sourceTree = "<group>"; };
 		87792AAB1CD164B800588025 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				87F961051CC18A0B00A7B3E2 /* Layout.swift */,
+				877825F91CE3E41E00FC7B9B /* StackLayout.swift */,
 				874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */,
 			);
 			name = Layout;
@@ -354,6 +357,7 @@
 				87F960FC1CC1873F00A7B3E2 /* RenderSystem.swift in Sources */,
 				87F961061CC18A0B00A7B3E2 /* Layout.swift in Sources */,
 				87F960FE1CC1875800A7B3E2 /* LayoutSystem.swift in Sources */,
+				877825FA1CE3E41E00FC7B9B /* StackLayout.swift in Sources */,
 				87F9610A1CC18A7500A7B3E2 /* Entity.swift in Sources */,
 				87F960FA1CC186FE00A7B3E2 /* SystemLocator.swift in Sources */,
 				877825F81CE3E1D200FC7B9B /* TextSyncScript.swift in Sources */,
