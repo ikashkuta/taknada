@@ -18,17 +18,19 @@ class ScrollableInput: Input {
 
 	// MARK: - Input
 
-	override func detach() {
-		self.render.view?.removeGestureRecognizer(self.scrollView.panGestureRecognizer)
-		self.scrollView = nil
-	}
-
 	override func attach() {
 		self.scrollView = UIScrollView.init()
-		self.scrollView.directionalLockEnabled = true
+		self.scrollView.directionalLockEnabled = true // TODO: extract to data storage
 		self.scrollView.contentSize = CGSize(width: 1000, height: 1000)
 		self.scrollView.delegate = self.scrollViewDelegate
 		self.render.view?.addGestureRecognizer(self.scrollView.panGestureRecognizer)
+		self.render.view?.userInteractionEnabled = true
+	}
+
+	override func detach() {
+		self.render.view?.userInteractionEnabled = false
+		self.render.view?.removeGestureRecognizer(self.scrollView.panGestureRecognizer)
+		self.scrollView = nil
 	}
 
 	// MARK: - Private

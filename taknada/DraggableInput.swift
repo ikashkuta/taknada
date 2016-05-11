@@ -18,13 +18,15 @@ class DraggableInput: Input {
 
 	// MARK: - Input
 
-	override func detach() {
-		self.render.view?.removeGestureRecognizer(self.panRecognizer)
-	}
-
 	override func attach() {
 		self.panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DraggableInput.handleGesture))
 		self.render.view?.addGestureRecognizer(self.panRecognizer)
+		self.render.view?.userInteractionEnabled = true
+	}
+
+	override func detach() {
+		self.render.view?.userInteractionEnabled = false
+		self.render.view?.removeGestureRecognizer(self.panRecognizer)
 	}
 
 	// MARK: - Private
