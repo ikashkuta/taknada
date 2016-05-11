@@ -43,6 +43,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		t1.textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
 	}
 
+	func setupScene4() {
+		let t1 = EntityFactory.makeText()
+		let t2 = EntityFactory.makeText()
+		let t3 = EntityFactory.makeText()
+		let b1 = EntityFactory.makeScrollable()
+		self.entities += [t1.entity, t2.entity, t3.entity, b1.entity]
+
+		t1.textData.text = "Hello"
+		t1.textData.font = UIFont.systemFontOfSize(30)
+		t2.textData.text = "My name is"
+		t3.textData.text = "Always IGOR!!!!!!!!!"
+
+		t1.layout.parent = b1.scrollLayout
+		t2.layout.parent = b1.scrollLayout
+		t3.layout.parent = b1.scrollLayout
+
+		t1.render.parent = b1.render
+		t2.render.parent = b1.render
+		t3.render.parent = b1.render
+	}
+
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
 		let rootViewController = UIViewController.init()
@@ -63,7 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //		self.setupScene1()
 //		self.setupScene2()
-		self.setupScene3()
+//		self.setupScene3()
+		self.setupScene4()
 
 		SystemLocator.layoutSystem?.setNeedsUpdate()
 		SystemLocator.renderSystem?.setNeedsUpdate()
