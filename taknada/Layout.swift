@@ -49,6 +49,8 @@ class Layout: Component {
 		for child in self.children {
 			child.updateGlobalFrame()
 		}
+		self.globalFrame = CGRectIntegral(self.globalFrame)
+
 		self.lastUsedDataVersion = self.data.version
 
 		let dispatcher: Dispatcher = self.getSibling()
