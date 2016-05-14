@@ -5,6 +5,8 @@ class System<ComponentType: Component> {
 	// MARK: - Public API
 
 	private(set) var components = [ComponentType]()
+	
+	let queue: dispatch_queue_t
 
 	final func setNeedsUpdate() {
 		if self.waitsForUpdate { return }
@@ -38,6 +40,5 @@ class System<ComponentType: Component> {
 
 	// MARK: - Private
 
-	private let queue: dispatch_queue_t
 	private var waitsForUpdate: Bool = false
 }

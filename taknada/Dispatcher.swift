@@ -51,7 +51,7 @@ final class Dispatcher: Component, SignalPublisher {
 	// MARK: - Public API
 
 	func sendMessage<SpecificFact: Fact>(fact: SpecificFact) {
-		self.messageQueue.append({ // TODO: Not thread-safe :(
+		dispatch_async(self.dispatchQueue, {
 			let factTypeKey = String(SpecificFact.self)
 			let maybeSignals = self.dispatchMessageTable[factTypeKey] as? [Signal<SpecificFact>]
 			guard let signals: [Signal<SpecificFact>] = maybeSignals else { return }
@@ -60,15 +60,10 @@ final class Dispatcher: Component, SignalPublisher {
 			}
 		})
 
-		SystemLocator.dispatchSystem?.setNeedsUpdate() // TODO: shouldn't be here :(
-	}
-
-	func processSending() {
-		if self.needRegisterScripts { self.registerScripts() }
-		if self.messageQueue.count == 0 { return }
-		let queueToProcess = self.messageQueue
-		self.messageQueue.removeAll() // TODO: Not thread-safe :(
-		queueToProcess.forEach { $0() }
+		dispatch_once(&self.didRegisterScripts) {
+			let scripts: [Script] = self.getSiblings()
+			scripts.forEach { $0.publishSignals(self) }
+		}
 	}
 
 	func publishSignal<FactType: Fact>(signal: Signal<FactType>) {
@@ -79,6 +74,8 @@ final class Dispatcher: Component, SignalPublisher {
 		self.dispatchMessageTable[factTypeKey]!.append(signal)
 	}
 
+	let dispatchQueue = dispatch_queue_create("dispatcher", DISPATCH_QUEUE_SERIAL)
+
 	// MARK: - Component
 
 	override func registerSelf() {
@@ -86,22 +83,12 @@ final class Dispatcher: Component, SignalPublisher {
 	}
 
 	override func unregisterSelf() {
-		self.dispatchMessageTable.removeAll()
-		self.messageQueue.removeAll()
+		self.dispatchMessageTable.removeAll() // TODO: potentially at this point some blocks may be in the queue
 		SystemLocator.dispatchSystem?.unregister(self)
 	}
 
 	// MARK: - Private
 
-	typealias DispatchFunction = (Void) -> Void
-	private var messageQueue = [DispatchFunction]()
 	private var dispatchMessageTable = [String: [AnyObject]]()
-	private var didRegisterScripts = false
-	private var needRegisterScripts: Bool { return !self.didRegisterScripts }
-
-	private func registerScripts() {
-		let scripts: [Script] = self.getSiblings()
-		scripts.forEach { $0.publishSignals(self) }
-		self.didRegisterScripts = true
-	}
+	private var didRegisterScripts: dispatch_once_t = 0
 }
