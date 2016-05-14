@@ -13,7 +13,7 @@ final class RenderDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.backgroundColor {
 				self.incrementVersion()
-				self.dispatcher.sendMessage(RenderDataDidUpdateFact(source: #function))
+				self.dispatcher.report(RenderDataDidUpdateFact(source: #function))
 			}
 		}
 	}
@@ -22,7 +22,7 @@ final class RenderDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.borderColor {
 				self.incrementVersion()
-				self.dispatcher.sendMessage(RenderDataDidUpdateFact(source: #function))
+				self.dispatcher.report(RenderDataDidUpdateFact(source: #function))
 			}
 		}
 	}
@@ -31,7 +31,7 @@ final class RenderDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.borderWidth {
 				self.incrementVersion()
-				self.dispatcher.sendMessage(RenderDataDidUpdateFact(source: #function))
+				self.dispatcher.report(RenderDataDidUpdateFact(source: #function))
 			}
 		}
 	}
@@ -40,7 +40,7 @@ final class RenderDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.cornerRadius {
 				self.incrementVersion()
-				self.dispatcher.sendMessage(RenderDataDidUpdateFact(source: #function))
+				self.dispatcher.report(RenderDataDidUpdateFact(source: #function))
 			}
 		}
 	}

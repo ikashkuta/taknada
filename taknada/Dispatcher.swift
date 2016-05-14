@@ -50,7 +50,7 @@ final class Dispatcher: Component, SignalPublisher {
 
 	// MARK: - Public API
 
-	func sendMessage<SpecificFact: Fact>(fact: SpecificFact) {
+	func report<SpecificFact: Fact>(fact: SpecificFact) {
 		dispatch_once(&self.didRegisterScripts) {
 			let scripts: [Script] = self.getSiblings()
 			scripts.forEach { $0.publishSignals(self) }

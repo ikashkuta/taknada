@@ -13,7 +13,7 @@ final class TextDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.text {
 				self.incrementVersion()
-				self.dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
+				self.dispatcher.report(TextDataDidUpdateFact(source: #function))
 			}
 		}
 	}
@@ -22,7 +22,7 @@ final class TextDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.font {
 				self.incrementVersion()
-				self.dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
+				self.dispatcher.report(TextDataDidUpdateFact(source: #function))
 			}
 		}
 	}
@@ -31,7 +31,7 @@ final class TextDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.textColor {
 				self.incrementVersion()
-				self.dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
+				self.dispatcher.report(TextDataDidUpdateFact(source: #function))
 			}
 		}
 	}

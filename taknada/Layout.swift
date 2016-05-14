@@ -69,6 +69,6 @@ class Layout: Component {
 		self.lastUsedDataVersion = self.data.version
 
 		let dispatcher: Dispatcher = self.getSibling()
-		dispatcher.sendMessage(GlobalFrameDidUpdateFact(source: #function))
+		dispatcher.report(GlobalFrameDidUpdateFact(source: #function))
 	}
 }
