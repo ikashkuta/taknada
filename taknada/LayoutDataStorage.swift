@@ -3,6 +3,8 @@ import CoreGraphics
 
 final class LayoutDataStorage: DataStorage {
 
+	// MARK: - Public API
+
 	var localTransform = CGAffineTransformIdentity {
 		didSet {
 			if !CGAffineTransformEqualToTransform(oldValue, self.localTransform) {
