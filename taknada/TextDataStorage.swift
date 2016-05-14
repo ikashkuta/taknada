@@ -13,9 +13,7 @@ final class TextDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.text {
 				self.incrementVersion()
-
-				let dispatcher: Dispatcher = self.getSibling()
-				dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
+				self.dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
 			}
 		}
 	}
@@ -24,9 +22,7 @@ final class TextDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.font {
 				self.incrementVersion()
-
-				let dispatcher: Dispatcher = self.getSibling()
-				dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
+				self.dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
 			}
 		}
 	}
@@ -35,9 +31,7 @@ final class TextDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.textColor {
 				self.incrementVersion()
-
-				let dispatcher: Dispatcher = self.getSibling()
-				dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
+				self.dispatcher.sendMessage(TextDataDidUpdateFact(source: #function))
 			}
 		}
 	}

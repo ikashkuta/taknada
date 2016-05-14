@@ -25,6 +25,11 @@ class Component {
 		return self.entity.getComponents(siblingsTag)
 	}
 
+	final var dispatcher: Dispatcher {
+		let dispatcher: Dispatcher = self.getSibling()
+		return dispatcher
+	}
+
 	// MARK: - Init & Deinit
 
 	init(tags: [String] = []) {
