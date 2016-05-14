@@ -51,6 +51,11 @@ final class Dispatcher: Component, SignalPublisher {
 	// MARK: - Public API
 
 	func sendMessage<SpecificFact: Fact>(fact: SpecificFact) {
+		dispatch_once(&self.didRegisterScripts) {
+			let scripts: [Script] = self.getSiblings()
+			scripts.forEach { $0.publishSignals(self) }
+		}
+		
 		dispatch_async(self.dispatchQueue, {
 			let factTypeKey = String(SpecificFact.self)
 			let maybeSignals = self.dispatchMessageTable[factTypeKey] as? [Signal<SpecificFact>]
@@ -59,17 +64,12 @@ final class Dispatcher: Component, SignalPublisher {
 				signal.push(fact)
 			}
 		})
-
-		dispatch_once(&self.didRegisterScripts) {
-			let scripts: [Script] = self.getSiblings()
-			scripts.forEach { $0.publishSignals(self) }
-		}
 	}
 
-	func publishSignal<FactType: Fact>(signal: Signal<FactType>) {
-		let factTypeKey = String(FactType.self)
+	func publishSignal<SpecificFact: Fact>(signal: Signal<SpecificFact>) {
+		let factTypeKey = String(SpecificFact.self)
 		if self.dispatchMessageTable[factTypeKey] == nil {
-			self.dispatchMessageTable[factTypeKey] = [AnyObject]()
+			self.dispatchMessageTable[factTypeKey] = [Signal<SpecificFact>]()
 		}
 		self.dispatchMessageTable[factTypeKey]!.append(signal)
 	}
