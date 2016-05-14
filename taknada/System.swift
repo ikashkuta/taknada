@@ -8,6 +8,7 @@ class System<ComponentType: Component> {
 	
 	let queue: dispatch_queue_t
 
+	// TODO: Remove it completely, maybe saving only in system that are really need for this
 	final func setNeedsUpdate() {
 		if self.waitsForUpdate { return }
 
