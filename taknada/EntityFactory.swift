@@ -10,17 +10,19 @@ final class EntityFactory {
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Dispatcher()
 
-		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
+		let baseRenderUpdateScript = BaseRenderUpdateScript()
+
+		baseRenderUpdateScript.data = renderData
+		baseRenderUpdateScript.render = render
+		baseRenderUpdateScript.layout = layout
 
 		layoutData.boundingBox = mainView.frame.size
 		
 		layout.data = layoutData
 
-		render.basicData = renderData
 		render.view = mainView
-		render.layout = layout
 
-		let window = Entity(components: [layout, layoutData, render, renderData, layoutToRenderSyncScript, dispatcher])
+		let window = Entity(components: [layout, layoutData, render, renderData, baseRenderUpdateScript, dispatcher])
 		return (window, render, layout)
 	}
 
@@ -31,21 +33,24 @@ final class EntityFactory {
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Dispatcher()
 
-		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
+		let baseRenderUpdateScript = BaseRenderUpdateScript()
+
+		baseRenderUpdateScript.data = renderData
+		baseRenderUpdateScript.render = render
+		baseRenderUpdateScript.layout = layout
 
 		layoutData.boundingBox = CGSize(width: 100, height: 200)
 
 		layout.data = layoutData
 
+		let entity = Entity(components: [render, renderData, layout, layoutData, baseRenderUpdateScript, dispatcher])
+
+		// TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
 		renderData.backgroundColor = UIColor.purpleColor()
 		renderData.borderWidth = 3
 		renderData.borderColor = UIColor.blueColor()
 		renderData.cornerRadius = 10
-
-		render.basicData = renderData
-		render.layout = layout
-
-		let entity = Entity(components: [render, renderData, layout, layoutData, layoutToRenderSyncScript, dispatcher])
+		
 		return (entity, render, layout)
 	}
 
@@ -57,7 +62,11 @@ final class EntityFactory {
 		let input = DraggableInput()
 		let dispatcher = Dispatcher()
 
-		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
+		let baseRenderUpdateScript = BaseRenderUpdateScript()
+
+		baseRenderUpdateScript.data = renderData
+		baseRenderUpdateScript.render = render
+		baseRenderUpdateScript.layout = layout
 
 		input.render = render
 		input.layoutData = layoutData
@@ -66,16 +75,16 @@ final class EntityFactory {
 
 		layout.data = layoutData
 
+		render.inputs = [input]
+
+		let entity = Entity(components: [render, renderData, layout, layoutData, input, baseRenderUpdateScript, dispatcher])
+
+		// TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
 		renderData.backgroundColor = UIColor.purpleColor()
 		renderData.borderWidth = 3
 		renderData.borderColor = UIColor.blueColor()
 		renderData.cornerRadius = 10
 
-		render.basicData = renderData
-		render.layout = layout
-		render.inputs = [input]
-
-		let entity = Entity(components: [render, renderData, layout, layoutData, input, layoutToRenderSyncScript, dispatcher])
 		return (entity, render, layout)
 	}
 
@@ -89,7 +98,11 @@ final class EntityFactory {
 		let input = ScrollableInput()
 		let dispatcher = Dispatcher()
 
-		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
+		let baseRenderUpdateScript = BaseRenderUpdateScript()
+
+		baseRenderUpdateScript.data = renderData
+		baseRenderUpdateScript.render = render
+		baseRenderUpdateScript.layout = baseLayout
 
 		input.render = render
 		input.scrollLayoutData = scrollLayoutData
@@ -104,13 +117,12 @@ final class EntityFactory {
 
 		baseLayout.data = baseLayoutData
 
-		renderData.borderWidth = 1
-
-		render.basicData = renderData
-		render.layout = baseLayout
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, layoutToRenderSyncScript, dispatcher])
+		let entity = Entity(components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, dispatcher])
+
+		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
+
 		return (entity, render, scrollLayout)
 	}
 
@@ -122,19 +134,25 @@ final class EntityFactory {
 		let textData = TextDataStorage()
 		let dispatcher = Dispatcher()
 
-		let layoutToRenderSyncScript = LayoutToRenderSyncScript()
-		let textSyncScript = TextSyncScript()
+		let baseRenderUpdateScript = BaseRenderUpdateScript()
+		let textRenderUpdateScript = TextRenderUpdateScript()
+
+		textRenderUpdateScript.textRender = render
+		textRenderUpdateScript.textData = textData
+
+		baseRenderUpdateScript.data = renderData
+		baseRenderUpdateScript.render = render
+		baseRenderUpdateScript.layout = layout
 
 		layout.data = baseLayoutData
 		layout.textData = textData
 
-		renderData.borderWidth = 1
-
-		render.basicData = renderData
-		render.layout = layout
 		render.textData = textData
 
-		let entity = Entity(components: [render, renderData, layout, baseLayoutData, textData, layoutToRenderSyncScript, textSyncScript, dispatcher])
+		let entity = Entity(components: [render, renderData, layout, baseLayoutData, textData, baseRenderUpdateScript, textRenderUpdateScript, dispatcher])
+
+		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
+
 		return (entity, render, layout, textData)
 	}
 }

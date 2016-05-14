@@ -10,10 +10,10 @@
 		874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */; };
 		874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */; };
 		874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */; };
-		877825F01CE28DF100FC7B9B /* LayoutToRenderSyncScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825EF1CE28DF100FC7B9B /* LayoutToRenderSyncScript.swift */; };
+		877825F01CE28DF100FC7B9B /* BaseRenderUpdateScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825EF1CE28DF100FC7B9B /* BaseRenderUpdateScript.swift */; };
 		877825F41CE3E16400FC7B9B /* TextRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F31CE3E16400FC7B9B /* TextRender.swift */; };
 		877825F61CE3E1AC00FC7B9B /* TextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F51CE3E1AC00FC7B9B /* TextLayout.swift */; };
-		877825F81CE3E1D200FC7B9B /* TextSyncScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F71CE3E1D200FC7B9B /* TextSyncScript.swift */; };
+		877825F81CE3E1D200FC7B9B /* TextRenderUpdateScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */; };
 		877825FA1CE3E41E00FC7B9B /* StackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F91CE3E41E00FC7B9B /* StackLayout.swift */; };
 		8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778350C1CD8217D00CD77FF /* DataStorage.swift */; };
 		87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AA81CCEC29C00588025 /* DispatchSystem.swift */; };
@@ -52,10 +52,10 @@
 		874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDataStorage.swift; sourceTree = "<group>"; };
 		874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderDataStorage.swift; sourceTree = "<group>"; };
 		874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDataStorage.swift; sourceTree = "<group>"; };
-		877825EF1CE28DF100FC7B9B /* LayoutToRenderSyncScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutToRenderSyncScript.swift; sourceTree = "<group>"; };
+		877825EF1CE28DF100FC7B9B /* BaseRenderUpdateScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRenderUpdateScript.swift; sourceTree = "<group>"; };
 		877825F31CE3E16400FC7B9B /* TextRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRender.swift; sourceTree = "<group>"; };
 		877825F51CE3E1AC00FC7B9B /* TextLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayout.swift; sourceTree = "<group>"; };
-		877825F71CE3E1D200FC7B9B /* TextSyncScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSyncScript.swift; sourceTree = "<group>"; };
+		877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRenderUpdateScript.swift; sourceTree = "<group>"; };
 		877825F91CE3E41E00FC7B9B /* StackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackLayout.swift; sourceTree = "<group>"; };
 		8778350C1CD8217D00CD77FF /* DataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		87792AA81CCEC29C00588025 /* DispatchSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchSystem.swift; sourceTree = "<group>"; };
@@ -106,30 +106,31 @@
 			isa = PBXGroup;
 			children = (
 				87F961051CC18A0B00A7B3E2 /* Layout.swift */,
+				877825F51CE3E1AC00FC7B9B /* TextLayout.swift */,
 				877825F91CE3E41E00FC7B9B /* StackLayout.swift */,
-				874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */,
 			);
 			name = Layout;
+			sourceTree = "<group>";
+		};
+		874D48E11CE7D21D00851D96 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8778350C1CD8217D00CD77FF /* DataStorage.swift */,
+				874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */,
+				874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */,
+				874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		877825F11CE2959B00FC7B9B /* Script */ = {
 			isa = PBXGroup;
 			children = (
 				87F9611B1CC3027200A7B3E2 /* Script.swift */,
-				877825EF1CE28DF100FC7B9B /* LayoutToRenderSyncScript.swift */,
+				877825EF1CE28DF100FC7B9B /* BaseRenderUpdateScript.swift */,
+				877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */,
 			);
 			name = Script;
-			sourceTree = "<group>";
-		};
-		877825F21CE3E14E00FC7B9B /* Text */ = {
-			isa = PBXGroup;
-			children = (
-				877825F31CE3E16400FC7B9B /* TextRender.swift */,
-				877825F51CE3E1AC00FC7B9B /* TextLayout.swift */,
-				874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */,
-				877825F71CE3E1D200FC7B9B /* TextSyncScript.swift */,
-			);
-			name = Text;
 			sourceTree = "<group>";
 		};
 		87792AAA1CD1643300588025 /* Input */ = {
@@ -207,9 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				87F961011CC1885E00A7B3E2 /* Component.swift */,
-				8778350C1CD8217D00CD77FF /* DataStorage.swift */,
 				87792AAE1CD1796A00588025 /* Dispatcher.swift */,
-				877825F21CE3E14E00FC7B9B /* Text */,
+				874D48E11CE7D21D00851D96 /* Data */,
 				874B2BCC1CD94BF8001E118F /* Layout */,
 				87F961111CC2C69300A7B3E2 /* Render */,
 				87792AAA1CD1643300588025 /* Input */,
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				87F961031CC189FB00A7B3E2 /* Render.swift */,
-				874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */,
+				877825F31CE3E16400FC7B9B /* TextRender.swift */,
 				87F9610B1CC27D6F00A7B3E2 /* MapRender.swift */,
 			);
 			name = Render;
@@ -340,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87F961021CC1885E00A7B3E2 /* Component.swift in Sources */,
-				877825F01CE28DF100FC7B9B /* LayoutToRenderSyncScript.swift in Sources */,
+				877825F01CE28DF100FC7B9B /* BaseRenderUpdateScript.swift in Sources */,
 				87F9610C1CC27D6F00A7B3E2 /* MapRender.swift in Sources */,
 				87792AAF1CD1796A00588025 /* Dispatcher.swift in Sources */,
 				874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */,
@@ -360,7 +360,7 @@
 				877825FA1CE3E41E00FC7B9B /* StackLayout.swift in Sources */,
 				87F9610A1CC18A7500A7B3E2 /* Entity.swift in Sources */,
 				87F960FA1CC186FE00A7B3E2 /* SystemLocator.swift in Sources */,
-				877825F81CE3E1D200FC7B9B /* TextSyncScript.swift in Sources */,
+				877825F81CE3E1D200FC7B9B /* TextRenderUpdateScript.swift in Sources */,
 				87792AAC1CD164B800588025 /* Input.swift in Sources */,
 				874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */,
 				877825F61CE3E1AC00FC7B9B /* TextLayout.swift in Sources */,

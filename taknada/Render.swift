@@ -5,11 +5,64 @@ class Render: Component {
 
 	// MARK: - Public API
 
-	final var basicData: RenderDataStorage!
-	final var layout: Layout!
 	final var inputs: [Input]?
 
 	final var view: UIView?
+
+	final private(set) var children = [Render]()
+
+	final var parent: Render? {
+		willSet {
+			guard let parent = self.parent else { return }
+			parent.children = parent.children.filter { $0 !== self }  // TODO: soooo bad :(
+		}
+		didSet {
+			guard let parent = self.parent else { return }
+			parent.children.append(self)
+		}
+	}
+
+	final func commitUpdate(update: () -> Void) {
+		SystemLocator.renderSystem?.applyUpdateCommit({ [weak self] in
+			if self != nil {
+				update()
+			}
+		})
+	}
+
+	final func updateFrame(globalFrame: CGRect) {
+		self.commitUpdate {
+			var relativeFrame = globalFrame
+			if let parent = self.parent {
+				relativeFrame = SystemLocator.renderSystem!.convert(globalFrame: globalFrame, toRelativeToRender: parent)
+			}
+			self.view!.frame = relativeFrame
+		}
+	}
+
+	final func updateBackgroundColor(color: UIColor) {
+		self.commitUpdate { 
+			self.view!.backgroundColor = color
+		}
+	}
+
+	final func updateBorderColor(color: UIColor) {
+		self.commitUpdate {
+			self.view!.layer.borderColor = color.CGColor
+		}
+	}
+
+	final func updateBorderWidth(width: CGFloat) {
+		self.commitUpdate {
+			self.view!.layer.borderWidth = width
+		}
+	}
+
+	final func updateCornerRadius(radius: CGFloat) {
+		self.commitUpdate {
+			self.view!.layer.cornerRadius = radius
+		}
+	}
 
 	// MARK: - To Override
 
@@ -17,47 +70,15 @@ class Render: Component {
 		return UIView()
 	}
 
-	var needsUpdate: Bool {
-		return self.basicData.version != self.lastUsedDataVersion
-	}
-
-	func update() {
-		let view: UIView! = self.view
-		view.backgroundColor = self.basicData.backgroundColor
-		view.layer.borderColor = self.basicData.borderColor.CGColor
-		view.layer.borderWidth = self.basicData.borderWidth
-		view.layer.cornerRadius = self.basicData.cornerRadius
-		self.lastUsedDataVersion = self.basicData.version
-	}
-
 	// MARK: - Component
 
-	final override func registerSelf() {
+	override func registerSelf() {
 		SystemLocator.renderSystem?.register(self)
 	}
 
-	final override func unregisterSelf() {
-		self.layout = nil
+	override func unregisterSelf() {
+		self.inputs = nil
+		self.parent = nil
 		SystemLocator.renderSystem?.unregister(self)
-	}
-
-	// MARK: - Private
-
-	final private var lastUsedDataVersion = UInt.max
-
-
-	// MARK: -- Tree
-
-	// TODO: it must be appropriate datastructure for this tree, not Array
-	final private(set) var children = [Render]()
-	final var parent: Render? {
-		willSet {
-			guard let parent = self.parent else { return }
-			parent.children = parent.children.filter { $0 !== self }
-		}
-		didSet {
-			guard let parent = self.parent else { return }
-			parent.children.append(self)
-		}
 	}
 }

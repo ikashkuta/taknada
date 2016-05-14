@@ -7,6 +7,27 @@ final class TextRender: Render {
 
 	final var textData: TextDataStorage!
 
+	final func updateText(text: String) {
+		self.commitUpdate {
+			let label = self.view as! UILabel
+			label.text = self.textData.text
+		}
+	}
+
+	final func updateFont(font: UIFont) {
+		self.commitUpdate {
+			let label = self.view as! UILabel
+			label.font = self.textData.font
+		}
+	}
+
+	final func updateTextColor(textColor: UIColor) {
+		self.commitUpdate {
+			let label = self.view as! UILabel
+			label.textColor = self.textData.textColor
+		}
+	}
+
 	// MARK: - Render
 
 	override func createView() -> UIView {
@@ -15,20 +36,11 @@ final class TextRender: Render {
 		return view
 	}
 
-	override var needsUpdate: Bool {
-		return super.needsUpdate || self.textData.version != lastUsedDataVersion
+
+	// MARK: - Component
+
+	override func unregisterSelf() {
+		self.textData = nil
+		super.unregisterSelf()
 	}
-
-	override func update() {
-		super.update()
-
-		let label = self.view as! UILabel
-		label.text = self.textData.text
-		label.font = self.textData.font
-		label.textColor = self.textData.textColor
-	}
-
-	// MARK: - Private
-
-	private var lastUsedDataVersion = UInt.max
 }
