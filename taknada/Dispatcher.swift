@@ -83,7 +83,7 @@ final class Dispatcher: Component, SignalPublisher {
 	}
 
 	override func unregisterSelf() {
-		self.dispatchMessageTable.removeAll() // TODO: potentially at this point some blocks may be in the queue
+		self.dispatchMessageTable.removeAll() // TODO: alarm, potentially at this point some blocks may be in the queue
 		SystemLocator.dispatchSystem?.unregister(self)
 	}
 
