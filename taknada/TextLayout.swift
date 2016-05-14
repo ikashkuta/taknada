@@ -11,9 +11,8 @@ final class TextLayout: Layout {
 	// MARK: - Layout
 
 	override func update() {
-		self.data.boundingBox = self.calcTextSize()
+		self.data.boundingBox = self.calculateTextSize()
 		self.lastUsedDataVersion = self.textData.version
-
 		super.update()
 	}
 
@@ -21,11 +20,19 @@ final class TextLayout: Layout {
 		return super.needsUpdate || self.textData.version != self.lastUsedDataVersion
 	}
 
+
+	// MARK: - Component
+
+	override func unregisterSelf() {
+		self.textData = nil
+		super.unregisterSelf()
+	}
+
 	// MARK: - Private
 
 	private var lastUsedDataVersion = UInt.max
 
-	private func calcTextSize() -> CGSize {
+	private func calculateTextSize() -> CGSize {
 		let parentWidth = self.parent!.data.boundingBox.width
 		let maxSize = CGSize(width: parentWidth, height: CGFloat.max)
 		let options: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]

@@ -10,7 +10,9 @@ class Layout: Component {
 	}
 
 	final var data: LayoutDataStorage!
+
 	final private(set) var globalFrame = CGRect.zero
+	
 	final private(set) var globalTransform = CGAffineTransformIdentity
 
 	final private(set) var children = [Layout]()
@@ -34,11 +36,13 @@ class Layout: Component {
 
 	// MARK: - Component
 
-	final override func registerSelf() {
+	override func registerSelf() {
 		SystemLocator.layoutSystem?.register(self)
 	}
 
-	final override func unregisterSelf() {
+	override func unregisterSelf() {
+		self.data = nil
+		self.parent = nil
 		SystemLocator.layoutSystem?.unregister(self)
 	}
 
