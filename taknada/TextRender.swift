@@ -9,22 +9,22 @@ final class TextRender: Render {
 
 	final func updateText(text: String) {
 		self.commitUpdate {
-			let label = self.view as! UILabel
-			label.text = self.textData.text
+			let label = self.view as? UILabel
+			label?.text = self.textData.text
 		}
 	}
 
 	final func updateFont(font: UIFont) {
 		self.commitUpdate {
-			let label = self.view as! UILabel
-			label.font = self.textData.font
+			let label = self.view as? UILabel
+			label?.font = self.textData.font
 		}
 	}
 
 	final func updateTextColor(textColor: UIColor) {
 		self.commitUpdate {
-			let label = self.view as! UILabel
-			label.textColor = self.textData.textColor
+			let label = self.view as? UILabel
+			label?.textColor = self.textData.textColor
 		}
 	}
 

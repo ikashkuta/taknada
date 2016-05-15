@@ -41,26 +41,26 @@ class Render: Component {
 	}
 
 	final func updateBackgroundColor(color: UIColor) {
-		self.commitUpdate { 
-			self.view!.backgroundColor = color
+		self.commitUpdate {
+			self.view?.backgroundColor = color
 		}
 	}
 
 	final func updateBorderColor(color: UIColor) {
 		self.commitUpdate {
-			self.view!.layer.borderColor = color.CGColor
+			self.view?.layer.borderColor = color.CGColor
 		}
 	}
 
 	final func updateBorderWidth(width: CGFloat) {
 		self.commitUpdate {
-			self.view!.layer.borderWidth = width
+			self.view?.layer.borderWidth = width
 		}
 	}
 
 	final func updateCornerRadius(radius: CGFloat) {
 		self.commitUpdate {
-			self.view!.layer.cornerRadius = radius
+			self.view?.layer.cornerRadius = radius
 		}
 	}
 
