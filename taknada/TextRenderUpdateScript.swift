@@ -18,7 +18,7 @@ final class TextRenderUpdateScript: Script {
 	override func registerSelf() {
 		super.registerSelf()
 		
-		textDataDidChangeSignal.subscribe { [weak self] (_) in
+		textDataDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
 			sSelf.textRender.updateText(sSelf.textData.text)
 			sSelf.textRender.updateTextColor(sSelf.textData.textColor)

@@ -20,12 +20,12 @@ final class BaseRenderUpdateScript: Script {
 	override func registerSelf() {
 		super.registerSelf()
 
-		globalFrameDidChangeSignal.subscribe { [weak self] (_) in
+		globalFrameDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
 			sSelf.render.updateFrame(sSelf.layout.globalFrame)
 		}
 
-		renderDataDidChangeSignal.subscribe { [weak self] (_) in
+		renderDataDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
 			if sSelf.hasUpdatedFromLatestData { return }
 			sSelf.render.updateBorderColor(sSelf.data.borderColor)
