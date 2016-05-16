@@ -31,6 +31,7 @@ final class TextLayout: Layout {
 
 	// MARK: - Private
 
+	// TODO: Actually, it seems that it should be inside of script not layout component..
 	private var lastUsedDataVersion = UInt.max
 
 	private func calculateTextSize() -> CGSize {

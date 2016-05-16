@@ -15,7 +15,7 @@ final class StackLayout: Layout {
 	// MARK: - Layout
 
 	override var needsUpdate: Bool {
-		// TODO: remove true when parent's situation will be fixed in Layout.
+		// TODO: it needs update on adding/removing child
 		return super.needsUpdate || true
 	}
 
