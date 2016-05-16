@@ -15,12 +15,12 @@ final class StackLayout: Layout {
 	// MARK: - Layout
 
 	override var needsUpdate: Bool {
+		// TODO: remove true when parent's situation will be fixed in Layout.
 		return super.needsUpdate || true
 	}
 
 	override func update() {
 		self.calculate()
-
 		super.update()
 	}
 
@@ -33,11 +33,9 @@ final class StackLayout: Layout {
 			child.data.localTransform = transform
 			let tx, ty: CGFloat
 			if self.direction == .horizontal {
-				child.data.boundingBox.height = self.data.boundingBox.height
 				tx = child.data.boundingBox.width
 				ty = 0
 			} else {
-				child.data.boundingBox.width = self.data.boundingBox.width
 				tx = 0
 				ty = child.data.boundingBox.height
 			}

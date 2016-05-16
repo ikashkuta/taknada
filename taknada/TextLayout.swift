@@ -17,7 +17,8 @@ final class TextLayout: Layout {
 	}
 
 	override var needsUpdate: Bool {
-		return super.needsUpdate || self.textData.version != self.lastUsedDataVersion
+		// TODO: remove true when parent's situation will be fixed in Layout.
+		return super.needsUpdate || self.textData.version != self.lastUsedDataVersion || true
 	}
 
 
