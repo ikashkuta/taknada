@@ -100,9 +100,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let w = EntityFactory.makeWindow(rootViewController.view)
 		self.entities.append(w.entity)
 
-		let renderQueue = dispatch_get_main_queue()
-		let layoutQueue = dispatch_queue_create("layout", DISPATCH_QUEUE_SERIAL) // TODO: QoS
-		let scriptsQueue = dispatch_queue_create("scripts", DISPATCH_QUEUE_SERIAL)
+		let attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INTERACTIVE, 0);
+		let renderQueue = dispatch_queue_create("org.taknada.render", attr);
+		dispatch_set_target_queue(renderQueue, dispatch_get_main_queue())
+
+		let layoutQueue = dispatch_queue_create("org.taknada.layout", DISPATCH_QUEUE_SERIAL)
+		let scriptsQueue = dispatch_queue_create("org.taknada.scripts", DISPATCH_QUEUE_SERIAL)
 
 		SystemLocator.renderSystem = RenderSystem(window: w.render, queue: renderQueue)
 		SystemLocator.layoutSystem = LayoutSystem(window: w.layout, queue: layoutQueue)
