@@ -44,8 +44,6 @@ class ScrollableInput: Input {
 		self.scrollLayoutData.localTransform = CGAffineTransformTranslate(self.scrollLayoutData.localTransform,
 		                                                                  -offset.x,
 		                                                                  -offset.y)
-
-		SystemLocator.layoutSystem?.setNeedsUpdate() // TODO:  shouldn't be here :(
 	}
 
 	final private class ScrollViewDelegate: NSObject, UIScrollViewDelegate {

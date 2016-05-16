@@ -9,6 +9,7 @@ final class LayoutDataStorage: DataStorage {
 		didSet {
 			if !CGAffineTransformEqualToTransform(oldValue, self.localTransform) {
 				self.incrementVersion()
+				SystemLocator.layoutSystem?.setNeedsUpdate()
 			}
 		}
 	}
@@ -17,6 +18,7 @@ final class LayoutDataStorage: DataStorage {
 		didSet {
 			if oldValue != self.boundingBox {
 				self.incrementVersion()
+				SystemLocator.layoutSystem?.setNeedsUpdate()
 			}
 		}
 	}
