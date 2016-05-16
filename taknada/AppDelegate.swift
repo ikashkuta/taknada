@@ -105,9 +105,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.layoutSystem = LayoutSystem(window: w.layout, queue: layoutQueue)
 		SystemLocator.dispatchSystem = DispatchSystem(queue: scriptsQueue)
 
-		SystemLocator.layoutSystem?.setNeedsUpdate()
-		SystemLocator.renderSystem?.setNeedsUpdate()
-
 //		self.setupScene1()
 //		self.setupScene2()
 //		self.setupScene3()

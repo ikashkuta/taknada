@@ -53,22 +53,22 @@ class Layout: Component {
 	// TODO: when I finally have versions thrown away this should be private, because now every
 	// subclass have to mix it's own logic into this property :(
 	var needsUpdate: Bool {
-		return self.data.version != self.lastUsedDataVersion
+		// TODO: parent should be here
+		return self.data.version != self.lastUsedDataVersion || true
 	}
 
 	private final func updateGlobalFrame() {
 		let parentGlobalTransform = self.parent?.globalTransform ?? self.data.localTransform
 		self.globalTransform = CGAffineTransformConcat(parentGlobalTransform, self.data.localTransform)
+
 		let frame = CGRect(origin: CGPoint.zero, size: self.data.boundingBox)
 		self.globalFrame = CGRectApplyAffineTransform(frame, self.globalTransform)
+		self.dispatcher.report(GlobalFrameDidUpdateFact(source: #function))
+
 		for child in self.children {
 			child.updateGlobalFrame()
 		}
-		self.globalFrame = CGRectIntegral(self.globalFrame)
 
 		self.lastUsedDataVersion = self.data.version
-
-		let dispatcher: Dispatcher = self.getSibling()
-		dispatcher.report(GlobalFrameDidUpdateFact(source: #function))
 	}
 }

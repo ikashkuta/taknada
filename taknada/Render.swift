@@ -32,11 +32,11 @@ class Render: Component {
 
 	final func updateFrame(globalFrame: CGRect) {
 		self.commitUpdate {
-			var relativeFrame = globalFrame
+			var relativeFrame = CGRectIntegral(globalFrame)
 			if let parent = self.parent {
 				relativeFrame = SystemLocator.renderSystem!.convert(globalFrame: globalFrame, toRelativeToRender: parent)
 			}
-			self.view!.frame = relativeFrame
+			self.view?.frame = relativeFrame
 		}
 	}
 
