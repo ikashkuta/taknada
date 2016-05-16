@@ -1,4 +1,5 @@
 import Foundation
+import CoreGraphics
 
 final class LayoutSystem: System<Layout> {
 
@@ -11,6 +12,16 @@ final class LayoutSystem: System<Layout> {
 			self.waitsForUpdate = false
 			self.update(self.window)
 		}
+	}
+
+	func isLayoutVisible(layout: Layout) -> Bool {
+		guard let parent = layout.parent else { return true } // root is always visible
+		let parentsGlobalFrame = parent.globalFrame
+		let intersects = CGRectIntersectsRect(parentsGlobalFrame, layout.globalFrame)
+		let contains1 = CGRectContainsRect(parentsGlobalFrame, layout.globalFrame)
+		let contains2 = CGRectContainsRect(layout.globalFrame, parentsGlobalFrame)
+		let result = contains1 || contains2 || intersects
+		return result
 	}
 
 	// MARK: - Init & Deinit

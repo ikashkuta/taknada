@@ -23,6 +23,8 @@ final class BaseRenderUpdateScript: Script {
 
 		self.globalFrameDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
+			let isLayoutVisible = SystemLocator.layoutSystem?.isLayoutVisible(sSelf.layout) ?? false
+			sSelf.render.updateView(alive: isLayoutVisible)
 			sSelf.render.updateFrame(sSelf.layout.globalFrame)
 		}
 
