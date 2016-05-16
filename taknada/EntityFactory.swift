@@ -17,7 +17,7 @@ final class EntityFactory {
 		baseRenderUpdateScript.layout = layout
 
 		layoutData.boundingBox = mainView.frame.size
-		
+
 		layout.data = layoutData
 
 		render.view = mainView
@@ -50,7 +50,7 @@ final class EntityFactory {
 		renderData.borderWidth = 3
 		renderData.borderColor = UIColor.blueColor()
 		renderData.cornerRadius = 10
-		
+
 		return (entity, render, layout)
 	}
 
@@ -152,7 +152,7 @@ final class EntityFactory {
 		let entity = Entity(components: [render, renderData, layout, baseLayoutData, textData, baseRenderUpdateScript, textRenderUpdateScript, dispatcher])
 
 		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
-
+		
 		return (entity, render, layout, textData)
 	}
 }
