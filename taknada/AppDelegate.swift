@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		t1.textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
 	}
 
-	func setupScene4() {
+	func setupScene4(window: Entity) {
 		let t1 = EntityFactory.makeText()
 		let t2 = EntityFactory.makeText()
 		let t3 = EntityFactory.makeText()
@@ -55,14 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let b1 = EntityFactory.makeScrollable()
 		self.entities += [t1.entity, t2.entity, t3.entity, t4.entity, t5.entity, t6.entity, t7.entity, t8.entity, b1.entity]
 
+		let windowLayout: Layout = window.getComponent()
+		b1.baseLayout.parent = windowLayout
+
 		t1.textData.text = "Hello"
 		t1.textData.font = UIFont.systemFontOfSize(30)
 		t2.textData.text = "My name is"
 		t3.textData.text = "Always IGOR!!!!!!!!!"
 		t3.textData.textColor = UIColor.blueColor()
-		t4.textData.text = "And yours?"
+		t4.textData.text = "And yours? Yours! Yours! Yours! Yours! Yours! Yours! Yours! Yours!"
 		t4.textData.font = UIFont.systemFontOfSize(10)
-		t5.textData.text = "What is you name?"
+		t5.textData.text = "What is you name? Say again? I didn't hear you."
 		t6.textData.text = "VADOS?"
 		t7.textData.textColor = UIColor.purpleColor()
 		t7.textData.text = "What is it?"
@@ -108,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //		self.setupScene1()
 //		self.setupScene2()
 //		self.setupScene3()
-		self.setupScene4()
+		self.setupScene4(w.entity)
 
 		return true
 	}
