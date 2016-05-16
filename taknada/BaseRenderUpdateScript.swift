@@ -13,6 +13,7 @@ final class BaseRenderUpdateScript: Script {
 	override func publishSignals(publisher: SignalPublisher) {
 		publisher.publishSignal(self.globalFrameDidChangeSignal)
 		publisher.publishSignal(self.renderDataDidChangeSignal)
+		publisher.publishSignal(self.viewHaveBecomeAliveSignal)
 	}
 
 	// MARK: - Component
@@ -23,6 +24,11 @@ final class BaseRenderUpdateScript: Script {
 		self.globalFrameDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
 			sSelf.render.updateFrame(sSelf.layout.globalFrame)
+		}
+
+		self.viewHaveBecomeAliveSignal.listen { [weak self] (_) in
+			guard let sSelf = self else { return }
+			sSelf.updateViewFromData()
 		}
 
 		self.renderDataDidChangeSignal.listen { [weak self] (_) in
@@ -43,6 +49,7 @@ final class BaseRenderUpdateScript: Script {
 
 	private let globalFrameDidChangeSignal = Signal<Layout.GlobalFrameDidUpdateFact>()
 	private let renderDataDidChangeSignal = Signal<RenderDataStorage.RenderDataDidUpdateFact>()
+	private let viewHaveBecomeAliveSignal = Signal<Render.ViewHasBecomeAliveFact>()
 
 	private var lastUsedDataVersion = UInt.max
 

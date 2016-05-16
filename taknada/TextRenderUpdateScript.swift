@@ -11,6 +11,7 @@ final class TextRenderUpdateScript: Script {
 
 	override func publishSignals(publisher: SignalPublisher) {
 		publisher.publishSignal(self.textDataDidChangeSignal)
+		publisher.publishSignal(self.viewHaveBecomeAliveSignal)
 	}
 
 	// MARK: - Component
@@ -19,6 +20,11 @@ final class TextRenderUpdateScript: Script {
 		super.registerSelf()
 		
 		self.textDataDidChangeSignal.listen { [weak self] (_) in
+			guard let sSelf = self else { return }
+			sSelf.updateViewFromData()
+		}
+
+		self.viewHaveBecomeAliveSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
 			sSelf.updateViewFromData()
 		}
@@ -32,7 +38,8 @@ final class TextRenderUpdateScript: Script {
 
 	// MARK: - Private
 
-	let textDataDidChangeSignal = Signal<TextDataStorage.TextDataDidUpdateFact>()
+	private let textDataDidChangeSignal = Signal<TextDataStorage.TextDataDidUpdateFact>()
+	private let viewHaveBecomeAliveSignal = Signal<Render.ViewHasBecomeAliveFact>()
 
 	private var lastUsedDataVersion = UInt.max
 
