@@ -21,6 +21,7 @@ final class TextRenderUpdateScript: Script {
 		
 		self.textDataDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
+			if sSelf.hasUpdatedFromLatestData { return }
 			sSelf.updateViewFromData()
 		}
 
