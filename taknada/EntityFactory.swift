@@ -88,7 +88,7 @@ final class EntityFactory {
 		return (entity, render, layout)
 	}
 
-	static func makeScrollable() -> (entity: Entity, render: Render, scrollLayout: Layout) {
+	static func makeScrollable() -> (entity: Entity, render: Render, baseLayout: Layout, scrollLayout: Layout) {
 		let render = Render()
 		let renderData = RenderDataStorage()
 		let baseLayout = Layout()
@@ -123,7 +123,7 @@ final class EntityFactory {
 
 		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
 
-		return (entity, render, scrollLayout)
+		return (entity, render, baseLayout, scrollLayout)
 	}
 
 	static func makeText() -> (entity: Entity, render: Render, layout: Layout, textData: TextDataStorage) {
