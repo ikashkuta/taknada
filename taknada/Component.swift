@@ -9,7 +9,7 @@ import Foundation
 // MARK: - Private
 //
 // The Order:
-// public/private | final | override | lazy
+// public/private | static | class | final | override | lazy
 
 class Component {
 
