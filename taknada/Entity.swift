@@ -6,7 +6,7 @@ final class Entity {
 
 	let guid: UInt
 
-	func getComponent<ComponentType: Component>(tag: String?) -> ComponentType {
+	func getComponent<ComponentType: Component>(tag: String? = nil) -> ComponentType {
 		for component in self.components {
 			if component is ComponentType {
 				if let tag = tag where !component.tags.contains(tag) { continue }
@@ -17,7 +17,7 @@ final class Entity {
 		return Component() as! ComponentType
 	}
 
-	func getComponents<ComponentType: Component>(tag: String?) -> [ComponentType] {
+	func getComponents<ComponentType: Component>(tag: String? = nil) -> [ComponentType] {
 		var result = [ComponentType]()
 		for component in self.components {
 			if component is ComponentType {
