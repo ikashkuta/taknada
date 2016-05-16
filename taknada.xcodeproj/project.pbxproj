@@ -10,7 +10,7 @@
 		874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */; };
 		874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */; };
 		874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */; };
-		877825F01CE28DF100FC7B9B /* BaseRenderUpdateScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825EF1CE28DF100FC7B9B /* BaseRenderUpdateScript.swift */; };
+		877825F01CE28DF100FC7B9B /* RenderUpdateScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */; };
 		877825F41CE3E16400FC7B9B /* TextRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F31CE3E16400FC7B9B /* TextRender.swift */; };
 		877825F61CE3E1AC00FC7B9B /* TextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F51CE3E1AC00FC7B9B /* TextLayout.swift */; };
 		877825F81CE3E1D200FC7B9B /* TextRenderUpdateScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */; };
@@ -52,7 +52,7 @@
 		874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDataStorage.swift; sourceTree = "<group>"; };
 		874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderDataStorage.swift; sourceTree = "<group>"; };
 		874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDataStorage.swift; sourceTree = "<group>"; };
-		877825EF1CE28DF100FC7B9B /* BaseRenderUpdateScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRenderUpdateScript.swift; sourceTree = "<group>"; };
+		877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderUpdateScript.swift; sourceTree = "<group>"; };
 		877825F31CE3E16400FC7B9B /* TextRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRender.swift; sourceTree = "<group>"; };
 		877825F51CE3E1AC00FC7B9B /* TextLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayout.swift; sourceTree = "<group>"; };
 		877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRenderUpdateScript.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				87F9611B1CC3027200A7B3E2 /* Script.swift */,
-				877825EF1CE28DF100FC7B9B /* BaseRenderUpdateScript.swift */,
+				877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */,
 				877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */,
 			);
 			name = Script;
@@ -340,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87F961021CC1885E00A7B3E2 /* Component.swift in Sources */,
-				877825F01CE28DF100FC7B9B /* BaseRenderUpdateScript.swift in Sources */,
+				877825F01CE28DF100FC7B9B /* RenderUpdateScript.swift in Sources */,
 				87F9610C1CC27D6F00A7B3E2 /* MapRender.swift in Sources */,
 				87792AAF1CD1796A00588025 /* Dispatcher.swift in Sources */,
 				874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */,

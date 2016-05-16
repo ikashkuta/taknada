@@ -10,7 +10,7 @@ final class EntityFactory {
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Dispatcher()
 
-		let baseRenderUpdateScript = BaseRenderUpdateScript()
+		let baseRenderUpdateScript = RenderUpdateScript()
 
 		baseRenderUpdateScript.data = renderData
 		baseRenderUpdateScript.render = render
@@ -33,7 +33,7 @@ final class EntityFactory {
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Dispatcher()
 
-		let baseRenderUpdateScript = BaseRenderUpdateScript()
+		let baseRenderUpdateScript = RenderUpdateScript()
 
 		baseRenderUpdateScript.data = renderData
 		baseRenderUpdateScript.render = render
@@ -62,7 +62,7 @@ final class EntityFactory {
 		let input = DraggableInput()
 		let dispatcher = Dispatcher()
 
-		let baseRenderUpdateScript = BaseRenderUpdateScript()
+		let baseRenderUpdateScript = RenderUpdateScript()
 
 		baseRenderUpdateScript.data = renderData
 		baseRenderUpdateScript.render = render
@@ -98,7 +98,7 @@ final class EntityFactory {
 		let input = ScrollableInput()
 		let dispatcher = Dispatcher()
 
-		let baseRenderUpdateScript = BaseRenderUpdateScript()
+		let baseRenderUpdateScript = RenderUpdateScript()
 
 		baseRenderUpdateScript.data = renderData
 		baseRenderUpdateScript.render = render
@@ -134,7 +134,7 @@ final class EntityFactory {
 		let textData = TextDataStorage()
 		let dispatcher = Dispatcher()
 
-		let baseRenderUpdateScript = BaseRenderUpdateScript()
+		let baseRenderUpdateScript = RenderUpdateScript()
 		let textRenderUpdateScript = TextRenderUpdateScript()
 
 		textRenderUpdateScript.textRender = render
