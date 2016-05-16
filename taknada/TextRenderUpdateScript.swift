@@ -18,13 +18,9 @@ final class TextRenderUpdateScript: Script {
 	override func registerSelf() {
 		super.registerSelf()
 		
-		textDataDidChangeSignal.listen { [weak self] (_) in
+		self.textDataDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
-			sSelf.textRender.updateText(sSelf.textData.text)
-			sSelf.textRender.updateTextColor(sSelf.textData.textColor)
-			sSelf.textRender.updateFont(sSelf.textData.font)
-			sSelf.lastUsedDataVersion = sSelf.textData.version
-			SystemLocator.layoutSystem?.setNeedsUpdate()
+			sSelf.updateViewFromData()
 		}
 	}
 
@@ -42,5 +38,13 @@ final class TextRenderUpdateScript: Script {
 
 	private var hasUpdatedFromLatestData: Bool {
 		return self.textData.version == self.lastUsedDataVersion
+	}
+
+	private func updateViewFromData() {
+		self.textRender.updateText(self.textData.text)
+		self.textRender.updateTextColor(self.textData.textColor)
+		self.textRender.updateFont(self.textData.font)
+		self.lastUsedDataVersion = self.textData.version
+		SystemLocator.layoutSystem?.setNeedsUpdate()
 	}
 }

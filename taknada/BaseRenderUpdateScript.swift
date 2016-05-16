@@ -20,19 +20,15 @@ final class BaseRenderUpdateScript: Script {
 	override func registerSelf() {
 		super.registerSelf()
 
-		globalFrameDidChangeSignal.listen { [weak self] (_) in
+		self.globalFrameDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
 			sSelf.render.updateFrame(sSelf.layout.globalFrame)
 		}
 
-		renderDataDidChangeSignal.listen { [weak self] (_) in
+		self.renderDataDidChangeSignal.listen { [weak self] (_) in
 			guard let sSelf = self else { return }
 			if sSelf.hasUpdatedFromLatestData { return }
-			sSelf.render.updateBorderColor(sSelf.data.borderColor)
-			sSelf.render.updateBorderWidth(sSelf.data.borderWidth)
-			sSelf.render.updateCornerRadius(sSelf.data.cornerRadius)
-			sSelf.render.updateBackgroundColor(sSelf.data.backgroundColor)
-			sSelf.lastUsedDataVersion = sSelf.data.version
+			sSelf.updateViewFromData()
 		}
 	}
 
@@ -52,5 +48,13 @@ final class BaseRenderUpdateScript: Script {
 
 	private var hasUpdatedFromLatestData: Bool {
 		return self.data.version == self.lastUsedDataVersion
+	}
+
+	private func updateViewFromData() {
+		self.render.updateBorderColor(self.data.borderColor)
+		self.render.updateBorderWidth(self.data.borderWidth)
+		self.render.updateCornerRadius(self.data.cornerRadius)
+		self.render.updateBackgroundColor(self.data.backgroundColor)
+		self.lastUsedDataVersion = self.data.version
 	}
 }
