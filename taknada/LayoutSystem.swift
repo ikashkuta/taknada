@@ -15,8 +15,8 @@ final class LayoutSystem: System<Layout> {
 	}
 
 	func isLayoutVisible(layout: Layout) -> Bool {
-		guard let parent = layout.parent else { return true } // root is always visible
-		let parentsGlobalFrame = parent.globalFrame
+		if layout.parent == nil { return true } // root is always visible
+		let parentsGlobalFrame = self.window.globalFrame
 		let intersects = CGRectIntersectsRect(parentsGlobalFrame, layout.globalFrame)
 		let contains1 = CGRectContainsRect(parentsGlobalFrame, layout.globalFrame)
 		let contains2 = CGRectContainsRect(layout.globalFrame, parentsGlobalFrame)
