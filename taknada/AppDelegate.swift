@@ -9,12 +9,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand
 	// appropriate layout node) in order to make this factory methods more clean.
 	// Remove tuples
-	func setupScene1() {
+	func setupScene1(window: Entity) {
 		let e1 = EntityFactory.makeSimple()
 		let e2 = EntityFactory.makeSimple()
 		let e3 = EntityFactory.makeDraggable()
 		let b1 = EntityFactory.makeScrollable()
 		self.entities += [e1.entity, e2.entity, e3.entity, b1.entity]
+
+		let windowLayout: Layout = window.getComponent()
+		b1.baseLayout.parent = windowLayout
 
 		e1.layout.data.localTransform = CGAffineTransformMakeTranslation(10, 0)
 		e2.layout.data.localTransform = CGAffineTransformMakeTranslation(130, 0)
@@ -29,18 +32,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		e3.render.parent = b1.render
 	}
 
-	func setupScene2() {
+	func setupScene2(window: Entity) {
 		let e1 = EntityFactory.makeDraggable()
 		let e2 = EntityFactory.makeDraggable()
 		let e3 = EntityFactory.makeDraggable()
 		self.entities += [e1.entity, e2.entity, e3.entity]
+
+		let windowLayout: Layout = window.getComponent()
+		e1.layout.parent = windowLayout
+		e2.layout.parent = windowLayout
+		e3.layout.parent = windowLayout
 	}
 
-	func setupScene3() {
+	func setupScene3(window: Entity) {
 		let t1 = EntityFactory.makeText()
 		self.entities += [t1.entity]
 
 		t1.textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
+
+		let windowLayout: Layout = window.getComponent()
+		t1.layout.parent = windowLayout
 	}
 
 	func setupScene4(window: Entity) {
@@ -97,8 +108,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.window?.rootViewController = rootViewController
 		self.window?.makeKeyAndVisible()
 
-		let w = EntityFactory.makeWindow(rootViewController.view)
-		self.entities.append(w.entity)
+		let windowEntity = EntityFactory.makeWindow(rootViewController.view)
+		self.entities.append(windowEntity)
 
 		let attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INTERACTIVE, 0);
 		let renderQueue = dispatch_queue_create("org.taknada.render", attr);
@@ -107,14 +118,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let layoutQueue = dispatch_queue_create("org.taknada.layout", DISPATCH_QUEUE_SERIAL)
 		let scriptsQueue = dispatch_queue_create("org.taknada.scripts", DISPATCH_QUEUE_SERIAL)
 
-		SystemLocator.renderSystem = RenderSystem(window: w.render, queue: renderQueue)
-		SystemLocator.layoutSystem = LayoutSystem(window: w.layout, queue: layoutQueue)
+		SystemLocator.renderSystem = RenderSystem(window: windowEntity.getComponent(), queue: renderQueue)
+		SystemLocator.layoutSystem = LayoutSystem(window: windowEntity.getComponent(), queue: layoutQueue)
 		SystemLocator.dispatchSystem = DispatchSystem(queue: scriptsQueue)
 
-//		self.setupScene1()
-//		self.setupScene2()
-//		self.setupScene3()
-		self.setupScene4(w.entity)
+//		self.setupScene1(windowEntity)
+//		self.setupScene2(windowEntity)
+//		self.setupScene3(windowEntity)
+		self.setupScene4(windowEntity)
+
+		// Currently needed for scene 2 :(
+//		SystemLocator.layoutSystem?.setNeedsUpdate()
 
 		return true
 	}

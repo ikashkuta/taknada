@@ -3,7 +3,7 @@ import UIKit
 
 final class EntityFactory {
 
-	static func makeWindow(mainView: UIView) -> (entity: Entity, render: Render, layout: Layout) {
+	static func makeWindow(mainView: UIView) -> Entity {
 		let render = Render()
 		let renderData = RenderDataStorage()
 		let layout = Layout()
@@ -23,7 +23,7 @@ final class EntityFactory {
 		render.view = mainView
 
 		let window = Entity(components: [layout, layoutData, render, renderData, baseRenderUpdateScript, dispatcher])
-		return (window, render, layout)
+		return window
 	}
 
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
