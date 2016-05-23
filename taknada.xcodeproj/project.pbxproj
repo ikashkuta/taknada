@@ -19,6 +19,7 @@
 		87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AA81CCEC29C00588025 /* DispatchSystem.swift */; };
 		87792AAC1CD164B800588025 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAB1CD164B800588025 /* Input.swift */; };
 		87792AAF1CD1796A00588025 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAE1CD1796A00588025 /* Dispatcher.swift */; };
+		87EC30AE1CEBC320007FA75F /* Conventions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC30AD1CEBC320007FA75F /* Conventions.swift */; };
 		87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F960D51CC1867800A7B3E2 /* AppDelegate.swift */; };
 		87F960DD1CC1867800A7B3E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DC1CC1867800A7B3E2 /* Assets.xcassets */; };
 		87F960E01CC1867800A7B3E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DE1CC1867800A7B3E2 /* LaunchScreen.storyboard */; };
@@ -61,6 +62,7 @@
 		87792AA81CCEC29C00588025 /* DispatchSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchSystem.swift; sourceTree = "<group>"; };
 		87792AAB1CD164B800588025 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		87792AAE1CD1796A00588025 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
+		87EC30AD1CEBC320007FA75F /* Conventions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conventions.swift; sourceTree = "<group>"; };
 		87F960D21CC1867800A7B3E2 /* taknada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taknada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F960D51CC1867800A7B3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87F960DC1CC1867800A7B3E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				87F9611B1CC3027200A7B3E2 /* Script.swift */,
+				87792AAE1CD1796A00588025 /* Dispatcher.swift */,
 				877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */,
 				877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */,
 			);
@@ -208,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				87F961011CC1885E00A7B3E2 /* Component.swift */,
-				87792AAE1CD1796A00588025 /* Dispatcher.swift */,
 				874D48E11CE7D21D00851D96 /* Data */,
 				874B2BCC1CD94BF8001E118F /* Layout */,
 				87F961111CC2C69300A7B3E2 /* Render */,
@@ -223,6 +225,7 @@
 			children = (
 				87F961091CC18A7500A7B3E2 /* Entity.swift */,
 				87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */,
+				87EC30AD1CEBC320007FA75F /* Conventions.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				87792AAC1CD164B800588025 /* Input.swift in Sources */,
 				874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */,
 				877825F61CE3E1AC00FC7B9B /* TextLayout.swift in Sources */,
+				87EC30AE1CEBC320007FA75F /* Conventions.swift in Sources */,
 				87F961041CC189FB00A7B3E2 /* Render.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
