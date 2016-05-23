@@ -4,7 +4,6 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-	var entities = [Entity]()
 
 	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand
 	// appropriate layout node) in order to make this factory methods more clean.
@@ -14,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let e2 = EntityFactory.makeSimple()
 		let e3 = EntityFactory.makeDraggable()
 		let b1 = EntityFactory.makeScrollable()
-		self.entities += [e1.entity, e2.entity, e3.entity, b1.entity]
 
 		let windowLayout: Layout = window.getComponent()
 		b1.baseLayout.parent = windowLayout
@@ -36,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let e1 = EntityFactory.makeDraggable()
 		let e2 = EntityFactory.makeDraggable()
 		let e3 = EntityFactory.makeDraggable()
-		self.entities += [e1.entity, e2.entity, e3.entity]
 
 		let windowLayout: Layout = window.getComponent()
 		e1.layout.parent = windowLayout
@@ -46,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func setupScene3(window: Entity) {
 		let t1 = EntityFactory.makeText()
-		self.entities += [t1.entity]
 
 		t1.textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
 
@@ -64,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let t7 = EntityFactory.makeText()
 		let t8 = EntityFactory.makeText()
 		let b1 = EntityFactory.makeScrollable()
-		self.entities += [t1.entity, t2.entity, t3.entity, t4.entity, t5.entity, t6.entity, t7.entity, t8.entity, b1.entity]
 
 		let windowLayout: Layout = window.getComponent()
 		b1.baseLayout.parent = windowLayout

@@ -34,6 +34,11 @@ final class Entity {
 		return result
 	}
 
+	func destroy() {
+		self.components.forEach { $0.unregisterSelf() }
+		Entity.entities.remove(self)
+	}
+
 	// MARK: - Init & Deinit
 
 	init(name: String, components: [Component]) {
@@ -41,22 +46,31 @@ final class Entity {
 		self.components = components
 		self.guid = Entity.getNextGuid()
 		self.components.forEach { $0.registerSelf(self) }
-	}
-
-	deinit {
-		self.components.forEach { $0.unregisterSelf() }
+		Entity.entities.insert(self)
 	}
 
 	// MARK: - Private
 
 	private let components: [Component]
 
-	static private var guidFactory: UInt = 0
+	private static var guidFactory: UInt = 0
 
-	static private func getNextGuid() -> UInt {
+	private static func getNextGuid() -> UInt {
 		// TODO: Not thread-safe :(
 		let result = self.guidFactory
 		self.guidFactory += 1
 		return result
+	}
+
+	private static var entities = Set<Entity>()
+}
+
+func ==(lhs: Entity, rhs: Entity) -> Bool {
+	return lhs === rhs
+}
+
+extension Entity: Hashable {
+	var hashValue: Int {
+		return self.guid.hashValue
 	}
 }
