@@ -9,7 +9,8 @@ final class Entity {
 	let guid: UInt
 
 	// Since Entity is final class, which is done on purpose, I want to have some way to
-	// distinguish entities during debug.
+	// distinguish entities during debug. And, at restoration time, this name will be needed
+	// to find appropriate entity factory.
 	let name: String
 
 	func getComponent<ComponentType: Component>(tag: String? = nil) -> ComponentType {
