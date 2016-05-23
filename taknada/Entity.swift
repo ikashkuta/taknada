@@ -1,10 +1,16 @@
 import Foundation
 
+// Entity is final on purpose: with this I force you to use components for any
+// state that entity may have. Do not create wrapper classes, extensions at last.
 final class Entity {
 
 	// MARK: - Public API
 
 	let guid: UInt
+
+	// Since Entity is final class, which is done on purpose, I want to have some way to
+	// distinguish entities during debug.
+	let name: String
 
 	func getComponent<ComponentType: Component>(tag: String? = nil) -> ComponentType {
 		for component in self.components {
@@ -30,7 +36,8 @@ final class Entity {
 
 	// MARK: - Init & Deinit
 
-	init(components: [Component]) {
+	init(name: String, components: [Component]) {
+		self.name = name
 		self.components = components
 		self.guid = Entity.getNextGuid()
 		self.components.forEach { $0.registerSelf(self) }
@@ -43,13 +50,11 @@ final class Entity {
 	// MARK: - Private
 
 	private let components: [Component]
-}
 
-// MARK: - Guids
-
-extension Entity {
 	static private var guidFactory: UInt = 0
+
 	static private func getNextGuid() -> UInt {
+		// TODO: Not thread-safe :(
 		let result = self.guidFactory
 		self.guidFactory += 1
 		return result

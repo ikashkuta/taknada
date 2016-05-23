@@ -22,7 +22,8 @@ final class EntityFactory {
 
 		render.view = mainView
 
-		let window = Entity(components: [layout, layoutData, render, renderData, baseRenderUpdateScript, dispatcher])
+		let window = Entity(name: "Window",
+		                    components: [layout, layoutData, render, renderData, baseRenderUpdateScript, dispatcher])
 		return window
 	}
 
@@ -43,7 +44,8 @@ final class EntityFactory {
 
 		layout.data = layoutData
 
-		let entity = Entity(components: [render, renderData, layout, layoutData, baseRenderUpdateScript, dispatcher])
+		let entity = Entity(name: "Simple",
+		                    components: [render, renderData, layout, layoutData, baseRenderUpdateScript, dispatcher])
 
 		// TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
 		renderData.backgroundColor = UIColor.purpleColor()
@@ -77,7 +79,8 @@ final class EntityFactory {
 
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, renderData, layout, layoutData, input, baseRenderUpdateScript, dispatcher])
+		let entity = Entity(name: "SimpleDraggable",
+		                    components: [render, renderData, layout, layoutData, input, baseRenderUpdateScript, dispatcher])
 
 		// TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
 		renderData.backgroundColor = UIColor.purpleColor()
@@ -119,7 +122,8 @@ final class EntityFactory {
 
 		render.inputs = [input]
 
-		let entity = Entity(components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, dispatcher])
+		let entity = Entity(name: "SimpleScrollable",
+		                    components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, dispatcher])
 
 		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
 
@@ -149,7 +153,8 @@ final class EntityFactory {
 
 		render.textData = textData
 
-		let entity = Entity(components: [render, renderData, layout, baseLayoutData, textData, baseRenderUpdateScript, textRenderUpdateScript, dispatcher])
+		let entity = Entity(name: "Test",
+		                    components: [render, renderData, layout, baseLayoutData, textData, baseRenderUpdateScript, textRenderUpdateScript, dispatcher])
 
 		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
 		
