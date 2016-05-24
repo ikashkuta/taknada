@@ -25,8 +25,8 @@ class Component {
 		return self.entity.getComponents(siblingsTag)
 	}
 
-	final var dispatcher: Dispatcher {
-		let dispatcher: Dispatcher = self.getSibling()
+	final var manager: Manager {
+		let dispatcher: Manager = self.getSibling()
 		return dispatcher
 	}
 

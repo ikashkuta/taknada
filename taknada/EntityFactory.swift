@@ -32,7 +32,7 @@ final class EntityFactory {
 		let renderData = RenderDataStorage()
 		let layout = Layout()
 		let layoutData = LayoutDataStorage()
-		let dispatcher = Dispatcher()
+		let dispatcher = Manager()
 
 		let baseRenderUpdateScript = RenderUpdateScript()
 
@@ -62,7 +62,7 @@ final class EntityFactory {
 		let layout = Layout()
 		let layoutData = LayoutDataStorage()
 		let input = DraggableInput()
-		let dispatcher = Dispatcher()
+		let dispatcher = Manager()
 
 		let baseRenderUpdateScript = RenderUpdateScript()
 
@@ -94,12 +94,12 @@ final class EntityFactory {
 	static func makeScrollable() -> (entity: Entity, render: Render, baseLayout: Layout, scrollLayout: Layout) {
 		let render = Render()
 		let renderData = RenderDataStorage()
-		let baseLayout = Layout()
+		let baseLayout = Layout(tags: [ConventionTags.mainLayout])
 		let baseLayoutData = LayoutDataStorage()
 		let scrollLayout = StackLayout()
 		let scrollLayoutData = LayoutDataStorage()
 		let input = ScrollableInput()
-		let dispatcher = Dispatcher()
+		let dispatcher = Manager()
 
 		let baseRenderUpdateScript = RenderUpdateScript()
 
@@ -136,7 +136,7 @@ final class EntityFactory {
 		let layout = TextLayout()
 		let baseLayoutData = LayoutDataStorage()
 		let textData = TextDataStorage()
-		let dispatcher = Dispatcher()
+		let dispatcher = WindowManager()
 
 		let baseRenderUpdateScript = RenderUpdateScript()
 		let textRenderUpdateScript = TextRenderUpdateScript()

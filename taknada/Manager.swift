@@ -30,11 +30,12 @@ protocol SignalPublisher {
 	func publishSignal<FactType: Fact>(signal: Signal<FactType>)
 }
 
-final class Dispatcher: Component, SignalPublisher {
+// Think of it as a Manager of Entity (in other words, manager of entity team of components ;)
+class Manager: Component, SignalPublisher {
 
 	// MARK: - Public API
 
-	func report<SpecificFact: Fact>(fact: SpecificFact) {
+	final func report<SpecificFact: Fact>(fact: SpecificFact) {
 		dispatch_once(&self.didRegisterScripts) {
 			let scripts: [Script] = self.getSiblings()
 			scripts.forEach { $0.publishSignals(self) }
@@ -50,7 +51,7 @@ final class Dispatcher: Component, SignalPublisher {
 		})
 	}
 
-	func publishSignal<SpecificFact: Fact>(signal: Signal<SpecificFact>) {
+	final func publishSignal<SpecificFact: Fact>(signal: Signal<SpecificFact>) {
 		let factTypeKey = String(SpecificFact.self)
 		if self.dispatchMessageTable[factTypeKey] == nil {
 			self.dispatchMessageTable[factTypeKey] = [Signal<SpecificFact>]()
@@ -63,12 +64,12 @@ final class Dispatcher: Component, SignalPublisher {
 	// MARK: - Component
 
 	override func registerSelf() {
-		SystemLocator.dispatchSystem?.register(self)
+		SystemLocator.scriptSystem?.register(self)
 	}
 
 	override func unregisterSelf() {
 		self.dispatchMessageTable.removeAll() // TODO: alarm, potentially at this point some blocks may be in the queue
-		SystemLocator.dispatchSystem?.unregister(self)
+		SystemLocator.scriptSystem?.unregister(self)
 	}
 
 	// MARK: - Private

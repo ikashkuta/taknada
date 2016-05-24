@@ -115,7 +115,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		SystemLocator.renderSystem = RenderSystem(window: windowEntity.getComponent(), queue: renderQueue)
 		SystemLocator.layoutSystem = LayoutSystem(window: windowEntity.getComponent(), queue: layoutQueue)
-		SystemLocator.dispatchSystem = DispatchSystem(queue: scriptsQueue)
+		SystemLocator.scriptSystem = ScriptSystem(queue: scriptsQueue)
 
 //		self.setupScene1(windowEntity)
 //		self.setupScene2(windowEntity)

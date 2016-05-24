@@ -63,7 +63,7 @@ class Layout: Component {
 
 		let frame = CGRect(origin: CGPoint.zero, size: self.data.boundingBox)
 		self.globalFrame = CGRectApplyAffineTransform(frame, self.globalTransform)
-		self.dispatcher.report(GlobalFrameDidUpdateFact(source: #function))
+		self.manager.report(GlobalFrameDidUpdateFact(source: #function))
 
 		for child in self.children {
 			child.updateGlobalFrame()

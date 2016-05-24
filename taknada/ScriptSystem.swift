@@ -1,6 +1,6 @@
 import Foundation
 
-final class DispatchSystem: System<Dispatcher> {
+final class ScriptSystem: System<Manager> {
 
 	// MARK: - Init
 
@@ -10,12 +10,12 @@ final class DispatchSystem: System<Dispatcher> {
 
 	// MARK: - System
 
-	override func register(component: Dispatcher) {
+	override func register(component: Manager) {
 		super.register(component)
 		dispatch_set_target_queue(component.dispatchQueue, self.queue)
 	}
 
-	override func unregister(component: Dispatcher) {
+	override func unregister(component: Manager) {
 		super.unregister(component)
 	}
 }

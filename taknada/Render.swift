@@ -77,7 +77,7 @@ class Render: Component {
 			maybeUpdate = {
 				if self.view != nil { return }
 				self.initView()
-				self.dispatcher.report(ViewHasBecomeAliveFact(source: #function))
+				self.manager.report(ViewHasBecomeAliveFact(source: #function))
 			}
 		} else if shouldDestroy {
 			maybeUpdate = {

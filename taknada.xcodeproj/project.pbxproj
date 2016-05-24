@@ -16,9 +16,9 @@
 		877825F81CE3E1D200FC7B9B /* TextRenderUpdateScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */; };
 		877825FA1CE3E41E00FC7B9B /* StackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F91CE3E41E00FC7B9B /* StackLayout.swift */; };
 		8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8778350C1CD8217D00CD77FF /* DataStorage.swift */; };
-		87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AA81CCEC29C00588025 /* DispatchSystem.swift */; };
+		87792AA91CCEC29C00588025 /* ScriptSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AA81CCEC29C00588025 /* ScriptSystem.swift */; };
 		87792AAC1CD164B800588025 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAB1CD164B800588025 /* Input.swift */; };
-		87792AAF1CD1796A00588025 /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAE1CD1796A00588025 /* Dispatcher.swift */; };
+		87792AAF1CD1796A00588025 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAE1CD1796A00588025 /* Manager.swift */; };
 		87EC30AE1CEBC320007FA75F /* Conventions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC30AD1CEBC320007FA75F /* Conventions.swift */; };
 		87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F960D51CC1867800A7B3E2 /* AppDelegate.swift */; };
 		87F960DD1CC1867800A7B3E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DC1CC1867800A7B3E2 /* Assets.xcassets */; };
@@ -59,9 +59,9 @@
 		877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRenderUpdateScript.swift; sourceTree = "<group>"; };
 		877825F91CE3E41E00FC7B9B /* StackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackLayout.swift; sourceTree = "<group>"; };
 		8778350C1CD8217D00CD77FF /* DataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
-		87792AA81CCEC29C00588025 /* DispatchSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchSystem.swift; sourceTree = "<group>"; };
+		87792AA81CCEC29C00588025 /* ScriptSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptSystem.swift; sourceTree = "<group>"; };
 		87792AAB1CD164B800588025 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
-		87792AAE1CD1796A00588025 /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
+		87792AAE1CD1796A00588025 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		87EC30AD1CEBC320007FA75F /* Conventions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conventions.swift; sourceTree = "<group>"; };
 		87F960D21CC1867800A7B3E2 /* taknada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taknada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F960D51CC1867800A7B3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				87F9611B1CC3027200A7B3E2 /* Script.swift */,
-				87792AAE1CD1796A00588025 /* Dispatcher.swift */,
+				87792AAE1CD1796A00588025 /* Manager.swift */,
 				877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */,
 				877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */,
 			);
@@ -201,7 +201,7 @@
 				87F960FF1CC1877A00A7B3E2 /* System.swift */,
 				87F960FB1CC1873F00A7B3E2 /* RenderSystem.swift */,
 				87F960FD1CC1875800A7B3E2 /* LayoutSystem.swift */,
-				87792AA81CCEC29C00588025 /* DispatchSystem.swift */,
+				87792AA81CCEC29C00588025 /* ScriptSystem.swift */,
 				87F960F91CC186FE00A7B3E2 /* SystemLocator.swift */,
 			);
 			name = Systems;
@@ -345,11 +345,11 @@
 				87F961021CC1885E00A7B3E2 /* Component.swift in Sources */,
 				877825F01CE28DF100FC7B9B /* RenderUpdateScript.swift in Sources */,
 				87F9610C1CC27D6F00A7B3E2 /* MapRender.swift in Sources */,
-				87792AAF1CD1796A00588025 /* Dispatcher.swift in Sources */,
+				87792AAF1CD1796A00588025 /* Manager.swift in Sources */,
 				874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */,
 				87F961131CC2E08300A7B3E2 /* ScrollableInput.swift in Sources */,
 				87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */,
-				87792AA91CCEC29C00588025 /* DispatchSystem.swift in Sources */,
+				87792AA91CCEC29C00588025 /* ScriptSystem.swift in Sources */,
 				87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */,
 				8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */,
 				874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */,
