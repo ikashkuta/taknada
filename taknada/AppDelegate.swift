@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.scriptSystem = ScriptSystem(queue: scriptsQueue)
 
 //		let scene1 = Scene1.make(windowEntity)
-		let scene2 = Scene2.make(windowEntity)
-		let scene3 = Scene3.make(windowEntity)
+//		let scene2 = Scene2.make(windowEntity)
+//		let scene3 = Scene3.make(windowEntity)
 //		let scene4 = Scene4.make(windowEntity)
 
 		SystemLocator.layoutSystem?.setNeedsUpdate() // TODO: Currently needed for scene 2 :(

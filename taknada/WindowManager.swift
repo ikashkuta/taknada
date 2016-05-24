@@ -23,8 +23,7 @@ final class WindowManager: Manager {
 	// MARK: - Private
 
 	private var layout: Layout {
-		let mainLayout: Layout = self.getSibling(ConventionTags.mainLayout)
-		return mainLayout
+		return self.getSibling(ConventionTags.mainLayout)
 	}
 }
 

@@ -10,6 +10,7 @@
 		871BF6271CF4F4DD00EF2796 /* Scene1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF6261CF4F4DD00EF2796 /* Scene1.swift */; };
 		871BF6291CF4F5E000EF2796 /* Scene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF6281CF4F5E000EF2796 /* Scene2.swift */; };
 		871BF62B1CF4F7C500EF2796 /* Scene3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF62A1CF4F7C500EF2796 /* Scene3.swift */; };
+		871BF62E1CF4F93F00EF2796 /* StackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF62D1CF4F93F00EF2796 /* StackManager.swift */; };
 		874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */; };
 		874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */; };
 		874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */; };
@@ -59,6 +60,7 @@
 		871BF6261CF4F4DD00EF2796 /* Scene1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene1.swift; sourceTree = "<group>"; };
 		871BF6281CF4F5E000EF2796 /* Scene2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene2.swift; sourceTree = "<group>"; };
 		871BF62A1CF4F7C500EF2796 /* Scene3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene3.swift; sourceTree = "<group>"; };
+		871BF62D1CF4F93F00EF2796 /* StackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackManager.swift; sourceTree = "<group>"; };
 		874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDataStorage.swift; sourceTree = "<group>"; };
 		874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderDataStorage.swift; sourceTree = "<group>"; };
 		874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDataStorage.swift; sourceTree = "<group>"; };
@@ -116,6 +118,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		871BF62C1CF4F92C00EF2796 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				87792AAE1CD1796A00588025 /* Manager.swift */,
+				8766A20D1CF30BE300BAF858 /* WindowManager.swift */,
+				871BF62D1CF4F93F00EF2796 /* StackManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		874B2BCC1CD94BF8001E118F /* Layout */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,9 +153,8 @@
 		877825F11CE2959B00FC7B9B /* Script */ = {
 			isa = PBXGroup;
 			children = (
+				871BF62C1CF4F92C00EF2796 /* Managers */,
 				87F9611B1CC3027200A7B3E2 /* Script.swift */,
-				87792AAE1CD1796A00588025 /* Manager.swift */,
-				8766A20D1CF30BE300BAF858 /* WindowManager.swift */,
 				877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */,
 				877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */,
 			);
@@ -388,6 +399,7 @@
 				87F960FA1CC186FE00A7B3E2 /* SystemLocator.swift in Sources */,
 				877825F81CE3E1D200FC7B9B /* TextRenderUpdateScript.swift in Sources */,
 				87792AAC1CD164B800588025 /* Input.swift in Sources */,
+				871BF62E1CF4F93F00EF2796 /* StackManager.swift in Sources */,
 				874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */,
 				871BF62B1CF4F7C500EF2796 /* Scene3.swift in Sources */,
 				877825F61CE3E1AC00FC7B9B /* TextLayout.swift in Sources */,

@@ -20,10 +20,10 @@ class Scene4: Script {
 		let t6 = EntityFactory.makeText()
 		let t7 = EntityFactory.makeText()
 		let t8 = EntityFactory.makeText()
-		let b1 = EntityFactory.makeScrollable()
+		let b1 = StackManager.make()
 
 		let windowManager: WindowManager = window.getComponent(ConventionTags.mainManager)
-		windowManager.addEntity(b1.entity)
+		windowManager.addEntity(b1)
 
 		t1.textData.text = "Hello"
 		t1.textData.font = UIFont.systemFontOfSize(30)
@@ -38,24 +38,15 @@ class Scene4: Script {
 		t7.textData.text = "What is it?"
 		t8.textData.text = "Some kind of OS?"
 
-		// TODO: Proper adding
-		t1.layout.parent = b1.scrollLayout
-		t2.layout.parent = b1.scrollLayout
-		t3.layout.parent = b1.scrollLayout
-		t4.layout.parent = b1.scrollLayout
-		t5.layout.parent = b1.scrollLayout
-		t6.layout.parent = b1.scrollLayout
-		t7.layout.parent = b1.scrollLayout
-		t8.layout.parent = b1.scrollLayout
-
-		t1.render.parent = b1.render
-		t2.render.parent = b1.render
-		t3.render.parent = b1.render
-		t4.render.parent = b1.render
-		t5.render.parent = b1.render
-		t6.render.parent = b1.render
-		t7.render.parent = b1.render
-		t8.render.parent = b1.render
+		let stackManager: StackManager = b1.getComponent(ConventionTags.mainManager)
+		stackManager.addEntity(t1.entity)
+		stackManager.addEntity(t2.entity)
+		stackManager.addEntity(t3.entity)
+		stackManager.addEntity(t4.entity)
+		stackManager.addEntity(t5.entity)
+		stackManager.addEntity(t6.entity)
+		stackManager.addEntity(t7.entity)
+		stackManager.addEntity(t8.entity)
 	}
 }
 

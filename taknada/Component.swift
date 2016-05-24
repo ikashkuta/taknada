@@ -17,6 +17,7 @@ class Component {
 
 	final let tags: [String]
 
+	// TODO: add caching to lookup
 	final func getSibling<ComponentType: Component>(siblingTag: String? = nil) -> ComponentType {
 		return self.entity.getComponent(siblingTag)
 	}

@@ -67,47 +67,8 @@ final class EntityFactory {
 		return (entity, render, layout)
 	}
 
-	static func makeScrollable() -> (entity: Entity, render: Render, baseLayout: Layout, scrollLayout: Layout) {
-		let render = Render()
-		let renderData = RenderDataStorage()
-		let baseLayout = Layout(tags: [ConventionTags.mainLayout])
-		let baseLayoutData = LayoutDataStorage()
-		let scrollLayout = StackLayout()
-		let scrollLayoutData = LayoutDataStorage()
-		let input = ScrollableInput()
-		let dispatcher = Manager()
-
-		let baseRenderUpdateScript = RenderUpdateScript()
-
-		baseRenderUpdateScript.data = renderData
-		baseRenderUpdateScript.render = render
-		baseRenderUpdateScript.layout = baseLayout
-
-		input.render = render
-		input.scrollLayoutData = scrollLayoutData
-
-		scrollLayoutData.boundingBox = CGSize(width: 200, height: 200)
-
-		scrollLayout.direction = .vertical
-		scrollLayout.data = scrollLayoutData
-		scrollLayout.parent = baseLayout
-
-		baseLayoutData.boundingBox = CGSize(width: 400, height: 400)
-
-		baseLayout.data = baseLayoutData
-
-		render.inputs = [input]
-
-		let entity = Entity(name: "SimpleScrollable",
-		                    components: [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, dispatcher])
-
-		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
-
-		return (entity, render, baseLayout, scrollLayout)
-	}
-
 	static func makeText() -> (entity: Entity, render: Render, layout: Layout, textData: TextDataStorage) {
-		let render = TextRender()
+		let render = TextRender(tags: [ConventionTags.mainRender])
 		let renderData = RenderDataStorage()
 		let layout = TextLayout(tags: [ConventionTags.mainLayout])
 		let baseLayoutData = LayoutDataStorage()
