@@ -3,30 +3,6 @@ import UIKit
 
 final class EntityFactory {
 
-	static func makeWindow(mainView: UIView) -> Entity {
-		let render = Render()
-		let renderData = RenderDataStorage()
-		let layout = Layout()
-		let layoutData = LayoutDataStorage()
-		let dispatcher = Dispatcher()
-
-		let baseRenderUpdateScript = RenderUpdateScript()
-
-		baseRenderUpdateScript.data = renderData
-		baseRenderUpdateScript.render = render
-		baseRenderUpdateScript.layout = layout
-
-		layoutData.boundingBox = mainView.frame.size
-
-		layout.data = layoutData
-
-		render.view = mainView
-
-		let window = Entity(name: "Window",
-		                    components: [layout, layoutData, render, renderData, baseRenderUpdateScript, dispatcher])
-		return window
-	}
-
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
 		let render = Render()
 		let renderData = RenderDataStorage()

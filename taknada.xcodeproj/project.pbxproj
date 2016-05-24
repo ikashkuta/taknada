@@ -10,6 +10,7 @@
 		874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */; };
 		874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */; };
 		874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */; };
+		8766A20E1CF30BE300BAF858 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8766A20D1CF30BE300BAF858 /* WindowManager.swift */; };
 		877825F01CE28DF100FC7B9B /* RenderUpdateScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */; };
 		877825F41CE3E16400FC7B9B /* TextRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F31CE3E16400FC7B9B /* TextRender.swift */; };
 		877825F61CE3E1AC00FC7B9B /* TextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877825F51CE3E1AC00FC7B9B /* TextLayout.swift */; };
@@ -37,6 +38,7 @@
 		87F961131CC2E08300A7B3E2 /* ScrollableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */; };
 		87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */; };
 		87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9611B1CC3027200A7B3E2 /* Script.swift */; };
+		A0A4AD381CF382C70058DBA3 /* EntityStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A4AD371CF382C70058DBA3 /* EntityStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,7 @@
 		874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDataStorage.swift; sourceTree = "<group>"; };
 		874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderDataStorage.swift; sourceTree = "<group>"; };
 		874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDataStorage.swift; sourceTree = "<group>"; };
+		8766A20D1CF30BE300BAF858 /* WindowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderUpdateScript.swift; sourceTree = "<group>"; };
 		877825F31CE3E16400FC7B9B /* TextRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRender.swift; sourceTree = "<group>"; };
 		877825F51CE3E1AC00FC7B9B /* TextLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLayout.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableInput.swift; sourceTree = "<group>"; };
 		87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableInput.swift; sourceTree = "<group>"; };
 		87F9611B1CC3027200A7B3E2 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		A0A4AD371CF382C70058DBA3 /* EntityStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 				874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */,
 				874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */,
 				874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */,
+				A0A4AD371CF382C70058DBA3 /* EntityStorage.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -130,6 +135,7 @@
 			children = (
 				87F9611B1CC3027200A7B3E2 /* Script.swift */,
 				87792AAE1CD1796A00588025 /* Manager.swift */,
+				8766A20D1CF30BE300BAF858 /* WindowManager.swift */,
 				877825EF1CE28DF100FC7B9B /* RenderUpdateScript.swift */,
 				877825F71CE3E1D200FC7B9B /* TextRenderUpdateScript.swift */,
 			);
@@ -345,12 +351,14 @@
 				87F961021CC1885E00A7B3E2 /* Component.swift in Sources */,
 				877825F01CE28DF100FC7B9B /* RenderUpdateScript.swift in Sources */,
 				87F9610C1CC27D6F00A7B3E2 /* MapRender.swift in Sources */,
+				A0A4AD381CF382C70058DBA3 /* EntityStorage.swift in Sources */,
 				87792AAF1CD1796A00588025 /* Manager.swift in Sources */,
 				874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */,
 				87F961131CC2E08300A7B3E2 /* ScrollableInput.swift in Sources */,
 				87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */,
 				87792AA91CCEC29C00588025 /* ScriptSystem.swift in Sources */,
 				87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */,
+				8766A20E1CF30BE300BAF858 /* WindowManager.swift in Sources */,
 				8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */,
 				874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */,
 				87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */,
