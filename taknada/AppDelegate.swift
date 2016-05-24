@@ -5,51 +5,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-	// TODO: We need more precise getComponent() method (name, guid, more semantics in order to understand
-	// appropriate layout node) in order to make this factory methods more clean.
-	// Remove tuples
-	func setupScene1(window: Entity) {
-		let e1 = EntityFactory.makeSimple()
-		let e2 = EntityFactory.makeSimple()
-		let e3 = EntityFactory.makeDraggable()
-		let b1 = EntityFactory.makeScrollable()
-
-		let windowLayout: Layout = window.getComponent()
-		b1.baseLayout.parent = windowLayout
-
-		e1.layout.data.localTransform = CGAffineTransformMakeTranslation(10, 0)
-		e2.layout.data.localTransform = CGAffineTransformMakeTranslation(130, 0)
-		e3.layout.data.localTransform = CGAffineTransformMakeTranslation(250, 0)
-
-		e1.layout.parent = b1.scrollLayout
-		e2.layout.parent = b1.scrollLayout
-		e3.layout.parent = b1.scrollLayout
-
-		e1.render.parent = b1.render
-		e2.render.parent = b1.render
-		e3.render.parent = b1.render
-	}
-
-	func setupScene2(window: Entity) {
-		let e1 = EntityFactory.makeDraggable()
-		let e2 = EntityFactory.makeDraggable()
-		let e3 = EntityFactory.makeDraggable()
-
-		let windowLayout: Layout = window.getComponent()
-		e1.layout.parent = windowLayout
-		e2.layout.parent = windowLayout
-		e3.layout.parent = windowLayout
-	}
-
-	func setupScene3(window: Entity) {
-		let t1 = EntityFactory.makeText()
-
-		t1.textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
-
-		let windowLayout: Layout = window.getComponent()
-		t1.layout.parent = windowLayout
-	}
-
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
 		let rootViewController = UIViewController.init()
@@ -70,15 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SystemLocator.layoutSystem = LayoutSystem(window: windowEntity.getComponent(), queue: layoutQueue)
 		SystemLocator.scriptSystem = ScriptSystem(queue: scriptsQueue)
 
-//		self.setupScene1(windowEntity)
-//		self.setupScene2(windowEntity)
-//		self.setupScene3(windowEntity)
+//		let scene1 = Scene1.make(windowEntity)
+		let scene2 = Scene2.make(windowEntity)
+		let scene3 = Scene3.make(windowEntity)
+//		let scene4 = Scene4.make(windowEntity)
 
-//		self.setupScene4(windowEntity)
-		let scene4 = Scene4Script.make(windowEntity)
-
-		// Currently needed for scene 2 :(
-//		SystemLocator.layoutSystem?.setNeedsUpdate()
+		SystemLocator.layoutSystem?.setNeedsUpdate() // TODO: Currently needed for scene 2 :(
 
 		return true
 	}

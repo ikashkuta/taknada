@@ -4,9 +4,9 @@ import UIKit
 final class EntityFactory {
 
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render()
+		let render = Render(tags: [ConventionTags.mainRender])
 		let renderData = RenderDataStorage()
-		let layout = Layout()
+		let layout = Layout(tags: [ConventionTags.mainLayout])
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Manager()
 
@@ -33,9 +33,9 @@ final class EntityFactory {
 	}
 
 	static func makeDraggable() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render()
+		let render = Render(tags: [ConventionTags.mainRender])
 		let renderData = RenderDataStorage()
-		let layout = Layout()
+		let layout = Layout(tags: [ConventionTags.mainLayout])
 		let layoutData = LayoutDataStorage()
 		let input = DraggableInput()
 		let dispatcher = Manager()
@@ -109,7 +109,7 @@ final class EntityFactory {
 	static func makeText() -> (entity: Entity, render: Render, layout: Layout, textData: TextDataStorage) {
 		let render = TextRender()
 		let renderData = RenderDataStorage()
-		let layout = TextLayout()
+		let layout = TextLayout(tags: [ConventionTags.mainLayout])
 		let baseLayoutData = LayoutDataStorage()
 		let textData = TextDataStorage()
 		let dispatcher = WindowManager()
@@ -129,7 +129,7 @@ final class EntityFactory {
 
 		render.textData = textData
 
-		let entity = Entity(name: "Test",
+		let entity = Entity(name: "Text",
 		                    components: [render, renderData, layout, baseLayoutData, textData, baseRenderUpdateScript, textRenderUpdateScript, dispatcher])
 
 		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory

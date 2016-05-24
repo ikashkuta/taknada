@@ -1,18 +1,9 @@
 import Foundation
 import UIKit
 
-class Scene4Script: Script {
+class Scene4: Script {
 
 	// MARK: - Public API
-
-	static func make(window: Entity) -> Entity {
-		let script = Scene4Script()
-
-		script.window = window
-
-		let scene = Entity(name: "Scene4", components: [script])
-		return scene
-	}
 
 	var window: Entity!
 
@@ -47,6 +38,7 @@ class Scene4Script: Script {
 		t7.textData.text = "What is it?"
 		t8.textData.text = "Some kind of OS?"
 
+		// TODO: Proper adding
 		t1.layout.parent = b1.scrollLayout
 		t2.layout.parent = b1.scrollLayout
 		t3.layout.parent = b1.scrollLayout
@@ -64,5 +56,16 @@ class Scene4Script: Script {
 		t6.render.parent = b1.render
 		t7.render.parent = b1.render
 		t8.render.parent = b1.render
+	}
+}
+
+extension Scene4 {
+	static func make(window: Entity) -> Entity {
+		let script = Scene4()
+
+		script.window = window
+
+		let scene = Entity(name: String(Scene4.self), components: [script])
+		return scene
 	}
 }

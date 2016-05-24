@@ -52,7 +52,7 @@ extension WindowManager {
 		render.view = window
 
 		let components = [layout, layoutData, render, renderData, baseRenderUpdateScript, entityStorage, manager]
-		let window = Entity(name: "Window", components: components)
+		let window = Entity(name: String(WindowManager.self), components: components)
 		return window
 	}
 }
