@@ -14,14 +14,10 @@ class Scene3: Script {
 
 		let text = Entity.Text.make()
 
-		let textRenderData: RenderDataStorage = text.getComponent(ConventionTags.Basic.mainRenderData)
-		textRenderData.borderWidth = 1
+		ConventionTags.Basic.getMainRenderData(text).borderWidth = 1
+		ConventionTags.Text.getMainTextData(text).text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
 
-		let textData: TextDataStorage = text.getComponent(ConventionTags.Text.mainTextData)
-		textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
-
-		let windowManager: WindowManager = window.getComponent(ConventionTags.Basic.mainManager)
-		windowManager.addEntity(text)
+		ConventionTags.Window.getManager(window).addEntity(text)
 	}
 }
 

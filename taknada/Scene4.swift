@@ -22,14 +22,10 @@ class Scene4: Script {
 		let t8 = Entity.Text.make()
 		let stack = Entity.Stack.make()
 
-		let stackRenderData: RenderDataStorage = stack.getComponent(ConventionTags.Basic.mainRenderData)
-		stackRenderData.borderWidth = 1
+		ConventionTags.Basic.getMainRenderData(stack).borderWidth = 1
+		ConventionTags.Basic.getMainLayoutData(stack).boundingBox = CGSize(width: 300, height: 300)
 
-		let stackLayoutData: LayoutDataStorage = stack.getComponent(ConventionTags.Basic.mainLayoutData)
-		stackLayoutData.boundingBox = CGSize(width: 300, height: 300)
-
-		let windowManager: WindowManager = window.getComponent(ConventionTags.Basic.mainManager)
-		windowManager.addEntity(stack)
+		ConventionTags.Window.getManager(window).addEntity(stack)
 
 		ConventionTags.Text.getMainTextData(t1).text = "Hello"
 		ConventionTags.Text.getMainTextData(t1).font = UIFont.systemFontOfSize(30)
