@@ -31,6 +31,9 @@ protocol SignalPublisher {
 }
 
 // Think of it as a Manager of Entity (in other words, manager of entity team of components ;)
+// Duties:
+// Defines entity: knows everything about it. In fact, usually standard Manager is fine.
+// Collects all reports, passes them to other parts of entity, explicitly passes some reports to its supervisor.
 class Manager: Component, SignalPublisher {
 
 	// MARK: - Public API
