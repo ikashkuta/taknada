@@ -28,7 +28,7 @@ extension Entity {
 			let scrollLayoutData = LayoutDataStorage()
 			let input = ScrollableInput()
 			let entityStorate = EntityStorage()
-			let manager = StackManager(tags: [ConventionTags.Basic.mainManager])
+			let manager = StackManager(tags: [ConventionTags.Basic.mainManager, ConventionTags.Stack.manager])
 
 			manager.entityStorage = entityStorate
 
@@ -50,9 +50,7 @@ extension Entity {
 			render.inputs = [input]
 
 			let components = [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, entityStorate, manager]
-			let entity = Entity(name: "Stack", components: components)
-			
-			return entity
+			return Entity(name: "Stack", components: components)
 		}
 	}
 }

@@ -36,9 +36,7 @@ extension Entity {
 			render.textData = textData
 
 			let components = [render, renderData, layout, baseLayoutData, textData, baseRenderUpdateScript, textRenderUpdateScript, dispatcher]
-			let entity = Entity(name: "Text", components: components)
-			
-			return entity
+			return Entity(name: "Text", components: components)
 		}
 	}
 }

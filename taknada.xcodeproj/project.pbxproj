@@ -28,6 +28,7 @@
 		87792AA91CCEC29C00588025 /* ScriptSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AA81CCEC29C00588025 /* ScriptSystem.swift */; };
 		87792AAC1CD164B800588025 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAB1CD164B800588025 /* Input.swift */; };
 		87792AAF1CD1796A00588025 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87792AAE1CD1796A00588025 /* Manager.swift */; };
+		87D6AD561CF6502F000B5548 /* SimpleRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6AD551CF6502F000B5548 /* SimpleRect.swift */; };
 		87EC30AE1CEBC320007FA75F /* Conventions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC30AD1CEBC320007FA75F /* Conventions.swift */; };
 		87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F960D51CC1867800A7B3E2 /* AppDelegate.swift */; };
 		87F960DD1CC1867800A7B3E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87F960DC1CC1867800A7B3E2 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		87792AA81CCEC29C00588025 /* ScriptSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptSystem.swift; sourceTree = "<group>"; };
 		87792AAB1CD164B800588025 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		87792AAE1CD1796A00588025 /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		87D6AD551CF6502F000B5548 /* SimpleRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRect.swift; sourceTree = "<group>"; };
 		87EC30AD1CEBC320007FA75F /* Conventions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conventions.swift; sourceTree = "<group>"; };
 		87F960D21CC1867800A7B3E2 /* taknada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taknada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87F960D51CC1867800A7B3E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				871BF62F1CF6436500EF2796 /* Window.swift */,
 				871BF6311CF643D400EF2796 /* Stack.swift */,
 				871BF6331CF6465200EF2796 /* Text.swift */,
+				87D6AD551CF6502F000B5548 /* SimpleRect.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */,
 				87F961131CC2E08300A7B3E2 /* ScrollableInput.swift in Sources */,
 				87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */,
+				87D6AD561CF6502F000B5548 /* SimpleRect.swift in Sources */,
 				87792AA91CCEC29C00588025 /* ScriptSystem.swift in Sources */,
 				87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */,
 				8766A20E1CF30BE300BAF858 /* WindowManager.swift in Sources */,

@@ -19,7 +19,7 @@ extension Entity {
 			let layout = Layout(tags: [ConventionTags.Basic.mainLayout])
 			let layoutData = LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
 			let entityStorage = EntityStorage()
-			let manager = WindowManager(tags: [ConventionTags.Basic.mainManager])
+			let manager = WindowManager(tags: [ConventionTags.Basic.mainManager, ConventionTags.Window.manager])
 
 			manager.entityStorage = entityStorage
 
@@ -36,8 +36,7 @@ extension Entity {
 			render.view = window
 
 			let components = [layout, layoutData, render, renderData, baseRenderUpdateScript, entityStorage, manager]
-			let window = Entity(name: "Window", components: components)
-			return window
+			return Entity(name: "Window", components: components)
 		}
 	}
 }
