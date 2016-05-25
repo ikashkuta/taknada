@@ -25,9 +25,10 @@ extension Entity {
 				= TextDataStorage(tags: [ConventionTags.Text.mainTextData])
 			let dispatcher
 				= WindowManager()
-
-			let baseRenderUpdateScript = RenderUpdateScript()
-			let textRenderUpdateScript = TextRenderUpdateScript()
+			let baseRenderUpdateScript
+				= RenderUpdateScript()
+			let textRenderUpdateScript
+				= TextRenderUpdateScript()
 
 			textRenderUpdateScript.textRender = render
 			textRenderUpdateScript.textData = textData

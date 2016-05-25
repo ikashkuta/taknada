@@ -38,10 +38,10 @@ extension Entity {
 				= EntityStorage()
 			let manager
 				= StackManager(tags: [ConventionTags.Basic.mainManager, ConventionTags.Stack.manager])
+			let baseRenderUpdateScript
+				= RenderUpdateScript()
 
 			manager.entityStorage = entityStorate
-
-			let baseRenderUpdateScript = RenderUpdateScript()
 
 			baseRenderUpdateScript.data = renderData
 			baseRenderUpdateScript.render = render

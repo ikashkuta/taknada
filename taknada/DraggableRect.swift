@@ -15,8 +15,8 @@ extension Entity {
 				= DraggableInput()
 			let dispatcher
 				= Manager(tags: [ConventionTags.Basic.mainManager])
-
-			let baseRenderUpdateScript = RenderUpdateScript()
+			let baseRenderUpdateScript
+				= RenderUpdateScript()
 
 			baseRenderUpdateScript.data = renderData
 			baseRenderUpdateScript.render = render
