@@ -15,7 +15,7 @@ class Scene1: Script {
 		let e1 = EntityFactory.makeSimple()
 		let e2 = EntityFactory.makeSimple()
 		let e3 = EntityFactory.makeDraggable()
-		let b1 = StackManager.make()
+		let b1 = Entity.makeStack()
 
 		let windowManager: WindowManager = window.getComponent(ConventionTags.mainManager)
 		windowManager.addEntity(b1)

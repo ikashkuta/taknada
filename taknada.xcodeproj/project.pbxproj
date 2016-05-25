@@ -11,6 +11,8 @@
 		871BF6291CF4F5E000EF2796 /* Scene2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF6281CF4F5E000EF2796 /* Scene2.swift */; };
 		871BF62B1CF4F7C500EF2796 /* Scene3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF62A1CF4F7C500EF2796 /* Scene3.swift */; };
 		871BF62E1CF4F93F00EF2796 /* StackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF62D1CF4F93F00EF2796 /* StackManager.swift */; };
+		871BF6301CF6436500EF2796 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF62F1CF6436500EF2796 /* Window.swift */; };
+		871BF6321CF643D400EF2796 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF6311CF643D400EF2796 /* Stack.swift */; };
 		874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */; };
 		874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */; };
 		874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */; };
@@ -61,6 +63,8 @@
 		871BF6281CF4F5E000EF2796 /* Scene2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene2.swift; sourceTree = "<group>"; };
 		871BF62A1CF4F7C500EF2796 /* Scene3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene3.swift; sourceTree = "<group>"; };
 		871BF62D1CF4F93F00EF2796 /* StackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackManager.swift; sourceTree = "<group>"; };
+		871BF62F1CF6436500EF2796 /* Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
+		871BF6311CF643D400EF2796 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDataStorage.swift; sourceTree = "<group>"; };
 		874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderDataStorage.swift; sourceTree = "<group>"; };
 		874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDataStorage.swift; sourceTree = "<group>"; };
@@ -255,6 +259,8 @@
 				87F961091CC18A7500A7B3E2 /* Entity.swift */,
 				87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */,
 				87EC30AD1CEBC320007FA75F /* Conventions.swift */,
+				871BF62F1CF6436500EF2796 /* Window.swift */,
+				871BF6311CF643D400EF2796 /* Stack.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				8766A20E1CF30BE300BAF858 /* WindowManager.swift in Sources */,
 				8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */,
 				874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */,
+				871BF6301CF6436500EF2796 /* Window.swift in Sources */,
 				87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */,
 				87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */,
 				877825F41CE3E16400FC7B9B /* TextRender.swift in Sources */,
@@ -398,6 +405,7 @@
 				87F9610A1CC18A7500A7B3E2 /* Entity.swift in Sources */,
 				87F960FA1CC186FE00A7B3E2 /* SystemLocator.swift in Sources */,
 				877825F81CE3E1D200FC7B9B /* TextRenderUpdateScript.swift in Sources */,
+				871BF6321CF643D400EF2796 /* Stack.swift in Sources */,
 				87792AAC1CD164B800588025 /* Input.swift in Sources */,
 				871BF62E1CF4F93F00EF2796 /* StackManager.swift in Sources */,
 				874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */,

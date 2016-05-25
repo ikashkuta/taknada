@@ -20,7 +20,7 @@ class Scene4: Script {
 		let t6 = EntityFactory.makeText()
 		let t7 = EntityFactory.makeText()
 		let t8 = EntityFactory.makeText()
-		let b1 = StackManager.make()
+		let b1 = Entity.makeStack()
 
 		let windowManager: WindowManager = window.getComponent(ConventionTags.mainManager)
 		windowManager.addEntity(b1)

@@ -7,6 +7,7 @@ final class WindowManager: Manager {
 
 	var entityStorage: EntityStorage!
 
+	/// `entity` should have ConventionTags.mainLayout layout
 	func addEntity(entity: Entity) {
 		self.entityStorage.add(entity)
 		let layoutOfEntity: Layout = entity.getComponent(ConventionTags.mainLayout)
@@ -24,34 +25,5 @@ final class WindowManager: Manager {
 
 	private var layout: Layout {
 		return self.getSibling(ConventionTags.mainLayout)
-	}
-}
-
-extension WindowManager {
-	static func make(window: UIView) -> Entity {
-		let render = Render(tags: [ConventionTags.mainRender])
-		let renderData = RenderDataStorage()
-		let layout = Layout(tags: [ConventionTags.mainLayout])
-		let layoutData = LayoutDataStorage()
-		let entityStorage = EntityStorage()
-		let manager = WindowManager(tags: [ConventionTags.mainManager])
-
-		manager.entityStorage = entityStorage
-
-		let baseRenderUpdateScript = RenderUpdateScript()
-
-		baseRenderUpdateScript.data = renderData
-		baseRenderUpdateScript.render = render
-		baseRenderUpdateScript.layout = layout
-
-		layoutData.boundingBox = window.frame.size
-
-		layout.data = layoutData
-
-		render.view = window
-
-		let components = [layout, layoutData, render, renderData, baseRenderUpdateScript, entityStorage, manager]
-		let window = Entity(name: String(WindowManager.self), components: components)
-		return window
 	}
 }
