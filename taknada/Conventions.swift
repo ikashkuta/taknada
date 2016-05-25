@@ -11,4 +11,10 @@ struct ConventionTags {
 	
 	static let mainManager
 		= "MainManager"
+
+	static let mainRenderData
+		= "mainRenderData"
+
+	static let mainLayoutData
+		= "mainLayoutData"
 }

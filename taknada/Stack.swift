@@ -1,13 +1,11 @@
 import Foundation
 
-import CoreGraphics // TODO: remove
-
 extension Entity {
 	static func makeStack() -> Entity {
 		let render = Render(tags: [ConventionTags.mainRender])
-		let renderData = RenderDataStorage()
+		let renderData = RenderDataStorage(tags: [ConventionTags.mainRenderData])
 		let baseLayout = Layout(tags: [ConventionTags.mainLayout])
-		let baseLayoutData = LayoutDataStorage()
+		let baseLayoutData = LayoutDataStorage(tags: [ConventionTags.mainLayoutData])
 		let scrollLayout = StackLayout(tags: [ConventionTags.Stack.scrollLayout])
 		let scrollLayoutData = LayoutDataStorage()
 		let input = ScrollableInput()
@@ -25,8 +23,6 @@ extension Entity {
 		input.render = render
 		input.scrollLayoutData = scrollLayoutData
 
-		scrollLayoutData.boundingBox = CGSize(width: 200, height: 200) // TODO: Should be dynamic
-
 		scrollLayout.direction = .vertical
 		scrollLayout.data = scrollLayoutData
 		scrollLayout.parent = baseLayout
@@ -37,10 +33,6 @@ extension Entity {
 
 		let components = [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, entityStorate, manager]
 		let entity = Entity(name: "Stack", components: components)
-
-		// TODO: this configuratoin should be done outside of factory
-		renderData.borderWidth = 1
-		baseLayoutData.boundingBox = CGSize(width: 400, height: 400)
 		
 		return entity
 	}

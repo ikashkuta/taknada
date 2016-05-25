@@ -20,10 +20,16 @@ class Scene4: Script {
 		let t6 = EntityFactory.makeText()
 		let t7 = EntityFactory.makeText()
 		let t8 = EntityFactory.makeText()
-		let b1 = Entity.makeStack()
+		let stack = Entity.makeStack()
+
+		let stackRenderData: RenderDataStorage = stack.getComponent(ConventionTags.mainRenderData)
+		stackRenderData.borderWidth = 1
+
+		let stackLayoutData: LayoutDataStorage = stack.getComponent(ConventionTags.mainLayoutData)
+		stackLayoutData.boundingBox = CGSize(width: 300, height: 300)
 
 		let windowManager: WindowManager = window.getComponent(ConventionTags.mainManager)
-		windowManager.addEntity(b1)
+		windowManager.addEntity(stack)
 
 		t1.textData.text = "Hello"
 		t1.textData.font = UIFont.systemFontOfSize(30)
@@ -38,7 +44,7 @@ class Scene4: Script {
 		t7.textData.text = "What is it?"
 		t8.textData.text = "Some kind of OS?"
 
-		let stackManager: StackManager = b1.getComponent(ConventionTags.mainManager)
+		let stackManager: StackManager = stack.getComponent(ConventionTags.mainManager)
 		stackManager.addEntity(t1.entity)
 		stackManager.addEntity(t2.entity)
 		stackManager.addEntity(t3.entity)
