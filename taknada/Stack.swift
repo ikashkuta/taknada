@@ -20,15 +20,24 @@ extension ConventionTags {
 extension Entity {
 	struct Stack {
 		static func make() -> Entity {
-			let render = Render(tags: [ConventionTags.Basic.mainRender])
-			let renderData = RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
-			let baseLayout = Layout(tags: [ConventionTags.Basic.mainLayout])
-			let baseLayoutData = LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
-			let scrollLayout = StackLayout(tags: [ConventionTags.Stack.scrollLayout])
-			let scrollLayoutData = LayoutDataStorage()
-			let input = ScrollableInput()
-			let entityStorate = EntityStorage()
-			let manager = StackManager(tags: [ConventionTags.Basic.mainManager, ConventionTags.Stack.manager])
+			let render
+				= Render(tags: [ConventionTags.Basic.mainRender])
+			let renderData
+				= RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
+			let baseLayout
+				= Layout(tags: [ConventionTags.Basic.mainLayout])
+			let baseLayoutData
+				= LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
+			let scrollLayout
+				= StackLayout(tags: [ConventionTags.Stack.scrollLayout])
+			let scrollLayoutData
+				= LayoutDataStorage()
+			let input
+				= ScrollableInput()
+			let entityStorate
+				= EntityStorage()
+			let manager
+				= StackManager(tags: [ConventionTags.Basic.mainManager, ConventionTags.Stack.manager])
 
 			manager.entityStorage = entityStorate
 

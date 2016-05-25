@@ -43,7 +43,7 @@
 		87F961061CC18A0B00A7B3E2 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961051CC18A0B00A7B3E2 /* Layout.swift */; };
 		87F9610A1CC18A7500A7B3E2 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961091CC18A7500A7B3E2 /* Entity.swift */; };
 		87F9610C1CC27D6F00A7B3E2 /* MapRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9610B1CC27D6F00A7B3E2 /* MapRender.swift */; };
-		87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */; };
+		87F9610E1CC2829200A7B3E2 /* DraggableRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9610D1CC2829200A7B3E2 /* DraggableRect.swift */; };
 		87F961131CC2E08300A7B3E2 /* ScrollableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */; };
 		87F9611A1CC2FC0700A7B3E2 /* DraggableInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */; };
 		87F9611C1CC3027200A7B3E2 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F9611B1CC3027200A7B3E2 /* Script.swift */; };
@@ -101,7 +101,7 @@
 		87F961051CC18A0B00A7B3E2 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		87F961091CC18A7500A7B3E2 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		87F9610B1CC27D6F00A7B3E2 /* MapRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapRender.swift; sourceTree = "<group>"; };
-		87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityFactory.swift; sourceTree = "<group>"; };
+		87F9610D1CC2829200A7B3E2 /* DraggableRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableRect.swift; sourceTree = "<group>"; };
 		87F961121CC2E08300A7B3E2 /* ScrollableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableInput.swift; sourceTree = "<group>"; };
 		87F961191CC2FC0700A7B3E2 /* DraggableInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableInput.swift; sourceTree = "<group>"; };
 		87F9611B1CC3027200A7B3E2 /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
@@ -261,12 +261,12 @@
 			isa = PBXGroup;
 			children = (
 				87F961091CC18A7500A7B3E2 /* Entity.swift */,
-				87F9610D1CC2829200A7B3E2 /* EntityFactory.swift */,
 				87EC30AD1CEBC320007FA75F /* Conventions.swift */,
-				871BF62F1CF6436500EF2796 /* Window.swift */,
+				87F9610D1CC2829200A7B3E2 /* DraggableRect.swift */,
+				87D6AD551CF6502F000B5548 /* SimpleRect.swift */,
 				871BF6311CF643D400EF2796 /* Stack.swift */,
 				871BF6331CF6465200EF2796 /* Text.swift */,
-				87D6AD551CF6502F000B5548 /* SimpleRect.swift */,
+				871BF62F1CF6436500EF2796 /* Window.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -396,7 +396,7 @@
 				87F960D61CC1867800A7B3E2 /* AppDelegate.swift in Sources */,
 				87D6AD561CF6502F000B5548 /* SimpleRect.swift in Sources */,
 				87792AA91CCEC29C00588025 /* ScriptSystem.swift in Sources */,
-				87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */,
+				87F9610E1CC2829200A7B3E2 /* DraggableRect.swift in Sources */,
 				8766A20E1CF30BE300BAF858 /* WindowManager.swift in Sources */,
 				871BF6341CF6465200EF2796 /* Text.swift in Sources */,
 				8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */,

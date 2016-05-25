@@ -14,12 +14,18 @@ extension ConventionTags {
 extension Entity {
 	struct Window {
 		static func make(window: UIView) -> Entity {
-			let render = Render(tags: [ConventionTags.Basic.mainRender])
-			let renderData = RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
-			let layout = Layout(tags: [ConventionTags.Basic.mainLayout])
-			let layoutData = LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
-			let entityStorage = EntityStorage()
-			let manager = WindowManager(tags: [ConventionTags.Basic.mainManager, ConventionTags.Window.manager])
+			let render
+				= Render(tags: [ConventionTags.Basic.mainRender])
+			let renderData
+				= RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
+			let layout
+				= Layout(tags: [ConventionTags.Basic.mainLayout])
+			let layoutData
+				= LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
+			let entityStorage
+				= EntityStorage()
+			let manager
+				= WindowManager(tags: [ConventionTags.Basic.mainManager, ConventionTags.Window.manager])
 
 			manager.entityStorage = entityStorage
 

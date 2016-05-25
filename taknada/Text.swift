@@ -13,12 +13,18 @@ extension ConventionTags {
 extension Entity {
 	struct Text {
 		static func make() -> Entity {
-			let render = TextRender(tags: [ConventionTags.Basic.mainRender])
-			let renderData = RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
-			let layout = TextLayout(tags: [ConventionTags.Basic.mainLayout])
-			let baseLayoutData = LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
-			let textData = TextDataStorage(tags: [ConventionTags.Text.mainTextData])
-			let dispatcher = WindowManager()
+			let render
+				= TextRender(tags: [ConventionTags.Basic.mainRender])
+			let renderData
+				= RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
+			let layout
+				= TextLayout(tags: [ConventionTags.Basic.mainLayout])
+			let baseLayoutData
+				= LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
+			let textData
+				= TextDataStorage(tags: [ConventionTags.Text.mainTextData])
+			let dispatcher
+				= WindowManager()
 
 			let baseRenderUpdateScript = RenderUpdateScript()
 			let textRenderUpdateScript = TextRenderUpdateScript()
