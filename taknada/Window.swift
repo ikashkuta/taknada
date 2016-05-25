@@ -1,31 +1,43 @@
 import Foundation
 import UIKit
 
+extension ConventionTags {
+	struct Window {
+		static let manager = "WindowManager"
+
+		static func getManager(entity: Entity) -> WindowManager {
+			return entity.getComponent(self.manager)
+		}
+	}
+}
+
 extension Entity {
-	static func makeWindow(window: UIView) -> Entity {
-		let render = Render(tags: [ConventionTags.mainRender])
-		let renderData = RenderDataStorage()
-		let layout = Layout(tags: [ConventionTags.mainLayout])
-		let layoutData = LayoutDataStorage()
-		let entityStorage = EntityStorage()
-		let manager = WindowManager(tags: [ConventionTags.mainManager])
+	struct Window {
+		static func make(window: UIView) -> Entity {
+			let render = Render(tags: [ConventionTags.Basic.mainRender])
+			let renderData = RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
+			let layout = Layout(tags: [ConventionTags.Basic.mainLayout])
+			let layoutData = LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
+			let entityStorage = EntityStorage()
+			let manager = WindowManager(tags: [ConventionTags.Basic.mainManager])
 
-		manager.entityStorage = entityStorage
+			manager.entityStorage = entityStorage
 
-		let baseRenderUpdateScript = RenderUpdateScript()
+			let baseRenderUpdateScript = RenderUpdateScript()
 
-		baseRenderUpdateScript.data = renderData
-		baseRenderUpdateScript.render = render
-		baseRenderUpdateScript.layout = layout
+			baseRenderUpdateScript.data = renderData
+			baseRenderUpdateScript.render = render
+			baseRenderUpdateScript.layout = layout
 
-		layoutData.boundingBox = window.frame.size
+			layoutData.boundingBox = window.frame.size
 
-		layout.data = layoutData
+			layout.data = layoutData
 
-		render.view = window
+			render.view = window
 
-		let components = [layout, layoutData, render, renderData, baseRenderUpdateScript, entityStorage, manager]
-		let window = Entity(name: "Window", components: components)
-		return window
+			let components = [layout, layoutData, render, renderData, baseRenderUpdateScript, entityStorage, manager]
+			let window = Entity(name: "Window", components: components)
+			return window
+		}
 	}
 }

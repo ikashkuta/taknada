@@ -1,39 +1,58 @@
 import Foundation
 
+extension ConventionTags {
+	struct Stack {
+		static let scrollLayout = "ScrollLayout"
+
+		static func getScrollLayout(entity: Entity) -> Layout {
+			return entity.getComponent(self.scrollLayout)
+		}
+
+
+		static let manager = "StackManager"
+
+		static func getManager(entity: Entity) -> StackManager {
+			return entity.getComponent(self.manager)
+		}
+	}
+}
+
 extension Entity {
-	static func makeStack() -> Entity {
-		let render = Render(tags: [ConventionTags.mainRender])
-		let renderData = RenderDataStorage(tags: [ConventionTags.mainRenderData])
-		let baseLayout = Layout(tags: [ConventionTags.mainLayout])
-		let baseLayoutData = LayoutDataStorage(tags: [ConventionTags.mainLayoutData])
-		let scrollLayout = StackLayout(tags: [ConventionTags.Stack.scrollLayout])
-		let scrollLayoutData = LayoutDataStorage()
-		let input = ScrollableInput()
-		let entityStorate = EntityStorage()
-		let manager = StackManager(tags: [ConventionTags.mainManager])
+	struct Stack {
+		static func make() -> Entity {
+			let render = Render(tags: [ConventionTags.Basic.mainRender])
+			let renderData = RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
+			let baseLayout = Layout(tags: [ConventionTags.Basic.mainLayout])
+			let baseLayoutData = LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
+			let scrollLayout = StackLayout(tags: [ConventionTags.Stack.scrollLayout])
+			let scrollLayoutData = LayoutDataStorage()
+			let input = ScrollableInput()
+			let entityStorate = EntityStorage()
+			let manager = StackManager(tags: [ConventionTags.Basic.mainManager])
 
-		manager.entityStorage = entityStorate
+			manager.entityStorage = entityStorate
 
-		let baseRenderUpdateScript = RenderUpdateScript()
+			let baseRenderUpdateScript = RenderUpdateScript()
 
-		baseRenderUpdateScript.data = renderData
-		baseRenderUpdateScript.render = render
-		baseRenderUpdateScript.layout = baseLayout
+			baseRenderUpdateScript.data = renderData
+			baseRenderUpdateScript.render = render
+			baseRenderUpdateScript.layout = baseLayout
 
-		input.render = render
-		input.scrollLayoutData = scrollLayoutData
+			input.render = render
+			input.scrollLayoutData = scrollLayoutData
 
-		scrollLayout.direction = .vertical
-		scrollLayout.data = scrollLayoutData
-		scrollLayout.parent = baseLayout
+			scrollLayout.direction = .vertical
+			scrollLayout.data = scrollLayoutData
+			scrollLayout.parent = baseLayout
 
-		baseLayout.data = baseLayoutData
+			baseLayout.data = baseLayoutData
 
-		render.inputs = [input]
+			render.inputs = [input]
 
-		let components = [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, entityStorate, manager]
-		let entity = Entity(name: "Stack", components: components)
-		
-		return entity
+			let components = [render, renderData, baseLayout, baseLayoutData, scrollLayout, scrollLayoutData, input, baseRenderUpdateScript, entityStorate, manager]
+			let entity = Entity(name: "Stack", components: components)
+			
+			return entity
+		}
 	}
 }

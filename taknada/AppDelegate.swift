@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.window?.rootViewController = rootViewController
 		self.window?.makeKeyAndVisible()
 
-		let windowEntity = Entity.makeWindow(rootViewController.view)
+		let windowEntity = Entity.Window.make(rootViewController.view)
 
 		let attr = dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INTERACTIVE, 0);
 		let renderQueue = dispatch_queue_create("org.taknada.render", attr);

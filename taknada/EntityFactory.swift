@@ -4,9 +4,9 @@ import UIKit
 final class EntityFactory {
 
 	static func makeSimple() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render(tags: [ConventionTags.mainRender])
+		let render = Render(tags: [ConventionTags.Basic.mainRender])
 		let renderData = RenderDataStorage()
-		let layout = Layout(tags: [ConventionTags.mainLayout])
+		let layout = Layout(tags: [ConventionTags.Basic.mainLayout])
 		let layoutData = LayoutDataStorage()
 		let dispatcher = Manager()
 
@@ -33,12 +33,12 @@ final class EntityFactory {
 	}
 
 	static func makeDraggable() -> (entity: Entity, render: Render, layout: Layout) {
-		let render = Render(tags: [ConventionTags.mainRender])
-		let renderData = RenderDataStorage()
-		let layout = Layout(tags: [ConventionTags.mainLayout])
-		let layoutData = LayoutDataStorage()
+		let render = Render(tags: [ConventionTags.Basic.mainRender])
+		let renderData = RenderDataStorage(tags: [ConventionTags.Basic.mainRenderData])
+		let layout = Layout(tags: [ConventionTags.Basic.mainLayout])
+		let layoutData = LayoutDataStorage(tags: [ConventionTags.Basic.mainLayoutData])
 		let input = DraggableInput()
-		let dispatcher = Manager()
+		let dispatcher = Manager(tags: [ConventionTags.Basic.mainManager])
 
 		let baseRenderUpdateScript = RenderUpdateScript()
 
@@ -65,36 +65,5 @@ final class EntityFactory {
 		renderData.cornerRadius = 10
 
 		return (entity, render, layout)
-	}
-
-	static func makeText() -> (entity: Entity, render: Render, layout: Layout, textData: TextDataStorage) {
-		let render = TextRender(tags: [ConventionTags.mainRender])
-		let renderData = RenderDataStorage()
-		let layout = TextLayout(tags: [ConventionTags.mainLayout])
-		let baseLayoutData = LayoutDataStorage()
-		let textData = TextDataStorage()
-		let dispatcher = WindowManager()
-
-		let baseRenderUpdateScript = RenderUpdateScript()
-		let textRenderUpdateScript = TextRenderUpdateScript()
-
-		textRenderUpdateScript.textRender = render
-		textRenderUpdateScript.textData = textData
-
-		baseRenderUpdateScript.data = renderData
-		baseRenderUpdateScript.render = render
-		baseRenderUpdateScript.layout = layout
-
-		layout.data = baseLayoutData
-		layout.textData = textData
-
-		render.textData = textData
-
-		let entity = Entity(name: "Text",
-		                    components: [render, renderData, layout, baseLayoutData, textData, baseRenderUpdateScript, textRenderUpdateScript, dispatcher])
-
-		renderData.borderWidth = 1 // TODO: moreover, all data (not only this) configuratoin should have been done outside of factory
-		
-		return (entity, render, layout, textData)
 	}
 }

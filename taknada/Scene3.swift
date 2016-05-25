@@ -12,12 +12,16 @@ class Scene3: Script {
 	override func registerSelf() {
 		super.registerSelf()
 
-		let t1 = EntityFactory.makeText()
+		let text = Entity.Text.make()
 
-		t1.textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
+		let textRenderData: RenderDataStorage = text.getComponent(ConventionTags.Basic.mainRenderData)
+		textRenderData.borderWidth = 1
 
-		let windowManager: WindowManager = window.getComponent(ConventionTags.mainManager)
-		windowManager.addEntity(t1.entity)
+		let textData: TextDataStorage = text.getComponent(ConventionTags.Text.mainTextData)
+		textData.text = "Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world! Hello world!"
+
+		let windowManager: WindowManager = window.getComponent(ConventionTags.Basic.mainManager)
+		windowManager.addEntity(text)
 	}
 }
 

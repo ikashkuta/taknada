@@ -1,12 +1,5 @@
 import Foundation
 
-extension ConventionTags {
-	struct Stack {
-		static let scrollLayout
-			= "ScrollLayout"
-	}
-}
-
 final class StackManager: Manager {
 
 	// MARK: - Public API
@@ -16,21 +9,13 @@ final class StackManager: Manager {
 	/// `entity` should have ConventionTags.mainLayout layout & ConventionTags.mainRender render
 	func addEntity(entity: Entity) {
 		self.entityStorage.add(entity)
-
-		let layout: Layout = entity.getComponent(ConventionTags.mainLayout)
-		layout.parent = self.scrollLayout
-
-		let render: Render = entity.getComponent(ConventionTags.mainRender)
-		render.parent = self.render
+		ConventionTags.Basic.getMainLayout(entity).parent = self.scrollLayout
+		ConventionTags.Basic.getMainRender(entity).parent = self.render
 	}
 
 	func removeEntity(entity: Entity) {
-		let render: Render = entity.getComponent(ConventionTags.mainRender)
-		render.parent = nil
-
-		let layout: Layout = entity.getComponent(ConventionTags.mainLayout)
-		layout.parent = nil
-
+		ConventionTags.Basic.getMainRender(entity).parent = nil
+		ConventionTags.Basic.getMainLayout(entity).parent = nil
 		self.entityStorage.remove(entity)
 		entity.destroy()
 	}
@@ -42,6 +27,6 @@ final class StackManager: Manager {
 	}
 
 	private var render: Render {
-		return self.getSibling(ConventionTags.mainRender)
+		return self.getSibling(ConventionTags.Basic.mainRender)
 	}
 }

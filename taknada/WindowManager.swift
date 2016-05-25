@@ -9,14 +9,14 @@ final class WindowManager: Manager {
 
 	/// `entity` should have ConventionTags.mainLayout layout
 	func addEntity(entity: Entity) {
+		// TODO: probably, this manager should lister to changes in entity storage and do
+		// things accordingly. Will be much easier later when persistence come.
 		self.entityStorage.add(entity)
-		let layoutOfEntity: Layout = entity.getComponent(ConventionTags.mainLayout)
-		layoutOfEntity.parent = self.layout
+		ConventionTags.Basic.getMainLayout(entity).parent = self.layout
 	}
 
 	func removeEntity(entity: Entity) {
-		let layoutOfEntity: Layout = entity.getComponent(ConventionTags.mainLayout)
-		layoutOfEntity.parent = nil
+		ConventionTags.Basic.getMainLayout(entity).parent = nil
 		self.entityStorage.remove(entity)
 		entity.destroy()
 	}
@@ -24,6 +24,6 @@ final class WindowManager: Manager {
 	// MARK: - Private
 
 	private var layout: Layout {
-		return self.getSibling(ConventionTags.mainLayout)
+		return self.getSibling(ConventionTags.Basic.mainLayout)
 	}
 }

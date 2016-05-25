@@ -13,6 +13,7 @@
 		871BF62E1CF4F93F00EF2796 /* StackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF62D1CF4F93F00EF2796 /* StackManager.swift */; };
 		871BF6301CF6436500EF2796 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF62F1CF6436500EF2796 /* Window.swift */; };
 		871BF6321CF643D400EF2796 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF6311CF643D400EF2796 /* Stack.swift */; };
+		871BF6341CF6465200EF2796 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871BF6331CF6465200EF2796 /* Text.swift */; };
 		874B2BCE1CD94E18001E118F /* LayoutDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */; };
 		874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */; };
 		874D8F301CDAA7E50054B49D /* TextDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */; };
@@ -65,6 +66,7 @@
 		871BF62D1CF4F93F00EF2796 /* StackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackManager.swift; sourceTree = "<group>"; };
 		871BF62F1CF6436500EF2796 /* Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		871BF6311CF643D400EF2796 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		871BF6331CF6465200EF2796 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		874B2BCD1CD94E18001E118F /* LayoutDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDataStorage.swift; sourceTree = "<group>"; };
 		874B2BCF1CD94E41001E118F /* RenderDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderDataStorage.swift; sourceTree = "<group>"; };
 		874D8F2F1CDAA7E50054B49D /* TextDataStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextDataStorage.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				87EC30AD1CEBC320007FA75F /* Conventions.swift */,
 				871BF62F1CF6436500EF2796 /* Window.swift */,
 				871BF6311CF643D400EF2796 /* Stack.swift */,
+				871BF6331CF6465200EF2796 /* Text.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				87792AA91CCEC29C00588025 /* ScriptSystem.swift in Sources */,
 				87F9610E1CC2829200A7B3E2 /* EntityFactory.swift in Sources */,
 				8766A20E1CF30BE300BAF858 /* WindowManager.swift in Sources */,
+				871BF6341CF6465200EF2796 /* Text.swift in Sources */,
 				8778350D1CD8217D00CD77FF /* DataStorage.swift in Sources */,
 				874B2BD01CD94E41001E118F /* RenderDataStorage.swift in Sources */,
 				871BF6301CF6436500EF2796 /* Window.swift in Sources */,
