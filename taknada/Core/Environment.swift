@@ -27,7 +27,7 @@ open class Environment {
 	}
 
 	open func make() -> EntityRef {
-		let entity = Entity(kind: "", guid: 0, components: [], environment: self)
+		let entity = Entity(kind: "", guid: "", components: [], environment: self)
 		return EntityRef(ref: entity)
 	}
 
@@ -45,8 +45,8 @@ open class Environment {
 	private var entities = Set<Entity>()
 
 	// TODO: Make thread-safe
-	private func getNextGuid() -> UInt {
-		let result = self.guidFactory
+	private func getNextGuid() -> String {
+		let result = String(self.guidFactory)
 		self.guidFactory += 1
 		return result
 	}

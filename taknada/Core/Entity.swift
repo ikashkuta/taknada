@@ -12,7 +12,7 @@ internal final class Entity {
 	}
 
 	init(kind: String,
-	     guid: UInt,
+	     guid: String,
 	     components: [Component.Type],
 	     environment: Environment) {
 		self.environment = environment
