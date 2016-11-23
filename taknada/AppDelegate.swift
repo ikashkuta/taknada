@@ -13,4 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.window?.makeKeyAndVisible()
 		return true
 	}
+
+	var env: Environment!
+
+	func makeTestScene() {
+		let renderSystem = RenderSystem(window: self.window!, queue: DispatchQueue.main)
+	}
+
+	func makeText() {
+
+	}
+
+	func makeButton() {
+
+	}
+
+	func makeAlertView() {
+		self.makeText()
+		self.makeButton()
+		self.makeButton()
+		//let c = EntityConfig(name: "AlertView", components: )
+	}
 }

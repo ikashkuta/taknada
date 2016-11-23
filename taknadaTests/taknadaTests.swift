@@ -1,23 +1,23 @@
-//
-//  taknadaTests.swift
-//  taknadaTests
-//
-//  Created by Igor on 16/11/16.
-//  Copyright © 2016 taknada. All rights reserved.
-//
-
 import XCTest
 @testable import taknada
+
+// The Rules:
+// MARK: Lifespan : deinit -> designated -> convenient
+// MARK: API : Public/Open
+// MARK: To Override
+// MARK: Ancestry : Protocol 1, 2, 3; BaseClass 1, 2, 3
+// MARK: Stuff : Private/Fileprivate
+//
+// The Order:
+// public/private | static/final | class / struct / enum | override | lazy
 
 class taknadaTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
