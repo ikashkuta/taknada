@@ -6,8 +6,8 @@ internal final class Entity {
 
 	deinit {
 		self.components.forEach {
-			self.environment.unregisterComponent(component: $0)
-			$0.unregister()
+			self.environment.unregisterComponent(component: $0.component)
+			$0.component.unregister()
 		}
 	}
 
@@ -16,34 +16,53 @@ internal final class Entity {
 	     components: [Component.Type],
 	     environment: Environment) {
 		self.environment = environment
-		self.components = components.map { $0.init() }
+		self.components = components.map { ($0.init(), []) }
 
 		self.storage["kind"] = kind
 		self.storage["guid"] = guid
 
 		let ref = EntityRef(ref: self)
 		self.components.forEach {
-			$0.register(entity: ref)
-			self.environment.registerComponent(component: $0)
+			$0.component.register(entity: ref)
+			self.environment.registerComponent(component: $0.component)
 		}
 	}
 
 	// MARK: API
 
-	func write(key: String, data: Textable, persistent: Bool) {
+	internal func write(key: String, data: Textable, persistent: Bool) {
 		// TODO: persistence
 		self.storage[key] = data
 	}
 
-	func read(key: String) -> Textable? {
+	internal func read(key: String) -> Textable? {
 		return self.storage[key]
 	}
 
-	func subscribe(key: String) -> Observable<Textable> {
+	internal func subscribe(key: String) -> Observable<Textable> {
 		return Observable()
 	}
 
-	func receive(message: Textable) {
+	internal func receive(message: Textable) {
+	}
+
+	internal func getComponents<T>(_ tag: String? = nil) -> [T] {
+		var result = [T]()
+		for (component, tags) in self.components {
+			guard component is T else { continue }
+			if let tag = tag, !tags.contains(tag) { continue }
+			result.append(component as! T)
+		}
+		return result
+	}
+
+	internal func getComponent<T>(_ tag: String? = nil) -> T {
+		let result: T? = self.getComponents(tag).first
+		if result == nil {
+			// TODO: Really? I think better to notify about error and go ahead
+			assertionFailure("Entity \(self) doesn't contain component \(T.self)")
+		}
+		return result!
 	}
 
 	// MARK: Stuff
@@ -51,7 +70,7 @@ internal final class Entity {
 	internal var storage = [String: Textable]()
 
 	private unowned let environment: Environment
-	private let components: [Component]
+	private let components: [(component: Component, tags: [String])]
 }
 
 extension Entity: Equatable {
