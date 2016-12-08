@@ -8,7 +8,7 @@ public protocol MessageReceiver {
 public protocol Component: class {
 
     init()
-    func register(entity: EntityRef)
+    func register(entity: Entity)
     func unregister()
 }
 

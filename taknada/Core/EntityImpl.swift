@@ -21,7 +21,7 @@ internal final class EntityImpl {
         self.storage["kind"] = kind
         self.storage["guid"] = guid
 
-        let ref = EntityRef(ref: self)
+        let ref = Entity(ref: self)
         self.components.forEach {
             $0.component.register(entity: ref)
             self.environment.registerComponent(component: $0.component)
@@ -47,13 +47,13 @@ internal final class EntityImpl {
 
     // MARK: Messages
 
-    private var connections = [EntityRef]()
+    private var connections = [Entity]()
 
-    func addConnection(with entity: EntityRef) {
+    func addConnection(with entity: Entity) {
         connections.append(entity)
     }
 
-    func removeConnection(with entity: EntityRef) {
+    func removeConnection(with entity: Entity) {
         guard let ref = entity.ref else { return }
         guard let idx = connections.index(where: { $0.ref == ref }) else { return }
         connections.remove(at: idx)

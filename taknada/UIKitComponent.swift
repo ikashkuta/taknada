@@ -19,7 +19,7 @@ class UIKitComponent: Component {
 
     }
 
-    func register(entity: EntityRef) {
+    func register(entity: Entity) {
         // TODO: subscribe to corner radius, border colour, border width, frame, colour, etc.. Call to super is mandatory!
     }
 

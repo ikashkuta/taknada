@@ -1,6 +1,6 @@
 import Foundation
 
-public struct EntityRef {
+public struct Entity {
 
     // MARK: Lifespan
 
@@ -14,10 +14,10 @@ public struct EntityRef {
     internal let isLocal: Bool = true
 }
 
-extension EntityRef: TextRepresentable {
+extension Entity: TextRepresentable {
 }
 
-extension EntityRef { // Minidb
+extension Entity { // Minidb
 
     public func write(key: String, data: TextRepresentable, persistent: Bool) {
         ref?.write(key: key, data: data, persistent: persistent)
@@ -32,7 +32,7 @@ extension EntityRef { // Minidb
     }
 }
 
-extension EntityRef { // Messages
+extension Entity { // Messages
 
     public func receive(message: TextRepresentable) { // incoming messages
         ref?.receive(message: message)
@@ -43,7 +43,7 @@ extension EntityRef { // Messages
     }
 }
 
-extension EntityRef { // Convenience vars
+extension Entity { // Convenience vars
 
     public var kind: String {
         return read(key: "kind")!

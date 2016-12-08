@@ -12,12 +12,12 @@ open class Environment {
 
     // MARK: Message Dispatching
 
-    open func dispatch(message: TextRepresentable, to entity: EntityRef) {
+    open func dispatch(message: TextRepresentable, to entity: Entity) {
         let dispatchFunction = entity.isLocal ? dispatchLocal : dispatchExternal
         dispatchFunction(message, entity)
     }
 
-    private func dispatchLocal(message: TextRepresentable, to entity: EntityRef) {
+    private func dispatchLocal(message: TextRepresentable, to entity: Entity) {
         if message is KillMessage {
             guard let ref = entity.ref else { return }
             entities.remove(ref)
@@ -27,19 +27,19 @@ open class Environment {
         entity.receive(message: message)
     }
 
-    private func dispatchExternal(message: TextRepresentable, to entity: EntityRef) {
+    private func dispatchExternal(message: TextRepresentable, to entity: Entity) {
         fatalError("TODO")
     }
 
     // MARK: URL Namespace System
 
-    open func query(with url: URL) -> [EntityRef] {
+    open func query(with url: URL) -> [Entity] {
         fatalError("TODO")
     }
 
-    open func make() -> EntityRef {
+    open func make() -> Entity {
         let entity = EntityImpl(kind: "", guid: guidGenerator.getNextGuid(), components: [], environment: self)
-        return EntityRef(ref: entity)
+        return Entity(ref: entity)
     }
 
     // MARK: Components
