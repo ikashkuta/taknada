@@ -14,12 +14,12 @@ public class UIKitSystem: System {
 
     public func register(component: Component) {
         guard let render = component as? UIKitComponent else { return }
-        self.components.insert(render)
+        components.insert(render)
     }
 
     public func unregister(component: Component) {
         guard let render = component as? UIKitComponent else { return }
-        self.components.remove(render)
+        components.remove(render)
     }
 
     // MARK: Stuff

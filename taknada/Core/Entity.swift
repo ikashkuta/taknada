@@ -5,8 +5,8 @@ internal final class Entity {
     // MARK: Lifespan
 
     deinit {
-        self.components.forEach {
-            self.environment.unregisterComponent(component: $0.component)
+        components.forEach {
+            environment.unregisterComponent(component: $0.component)
             $0.component.unregister()
         }
     }
@@ -34,11 +34,11 @@ internal final class Entity {
 
     func write(key: String, data: TextRepresentable, persistent: Bool) {
         // TODO: persistence
-        self.storage[key] = data
+        storage[key] = data
     }
 
     func read(key: String) -> TextRepresentable? {
-        return self.storage[key]
+        return storage[key]
     }
 
     func subscribe(key: String) -> Observable<TextRepresentable> {
@@ -50,25 +50,25 @@ internal final class Entity {
     private var connections = [EntityRef]()
 
     func addConnection(with entity: EntityRef) {
-        self.connections.append(entity)
+        connections.append(entity)
     }
 
     func removeConnection(with entity: EntityRef) {
         guard let ref = entity.ref else { return }
-        guard let idx = self.connections.index(where: { $0.ref == ref }) else { return }
-        self.connections.remove(at: idx)
+        guard let idx = connections.index(where: { $0.ref == ref }) else { return }
+        connections.remove(at: idx)
     }
 
     func post(message: TextRepresentable) {
-        self.receive(message: message)
-        self.connections.forEach {
+        receive(message: message)
+        connections.forEach {
             // TODO: cleanup empty refs, expecially remote ones
-            self.environment.dispatch(message: message, to: $0)
+            environment.dispatch(message: message, to: $0)
         }
     }
 
     func receive(message: TextRepresentable) {
-        self.components.forEach {
+        components.forEach {
             guard let receiver = $0 as? MessageReceiver else { return }
             receiver.receive(message: message)
         }
@@ -80,7 +80,7 @@ internal final class Entity {
 
     func getComponents<T>(_ tag: String? = nil) -> [T] {
         var result = [T]()
-        for (component, tags) in self.components {
+        for (component, tags) in components {
             guard component is T else { continue }
             if let tag = tag, !tags.contains(tag) { continue }
             result.append(component as! T)
@@ -89,7 +89,7 @@ internal final class Entity {
     }
 
     func getComponent<T>(_ tag: String? = nil) -> T {
-        let result: T? = self.getComponents(tag).first
+        let result: T? = getComponents(tag).first
         if result == nil {
             // TODO: Really? I think better to notify about error and go ahead
             assertionFailure("Entity \(self) doesn't contain component \(T.self)")

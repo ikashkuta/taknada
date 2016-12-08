@@ -13,14 +13,14 @@ open class Environment {
     // MARK: Message Dispatching
 
     open func dispatch(message: TextRepresentable, to entity: EntityRef) {
-        let dispatchFunction = entity.isLocal ? self.dispatchLocal : self.dispatchExternal
+        let dispatchFunction = entity.isLocal ? dispatchLocal : dispatchExternal
         dispatchFunction(message, entity)
     }
 
     private func dispatchLocal(message: TextRepresentable, to entity: EntityRef) {
         if message is KillMessage {
             guard let ref = entity.ref else { return }
-            self.entities.remove(ref)
+            entities.remove(ref)
             return
         }
 
@@ -38,18 +38,18 @@ open class Environment {
     }
 
     open func make() -> EntityRef {
-        let entity = Entity(kind: "", guid: self.guidGenerator.getNextGuid(), components: [], environment: self)
+        let entity = Entity(kind: "", guid: guidGenerator.getNextGuid(), components: [], environment: self)
         return EntityRef(ref: entity)
     }
 
     // MARK: Components
 
     internal func registerComponent(component: Component) {
-        self.systems.forEach { $0.register(component: component) }
+        systems.forEach { $0.register(component: component) }
     }
 
     internal func unregisterComponent(component: Component) {
-        self.systems.forEach { $0.unregister(component: component) }
+        systems.forEach { $0.unregister(component: component) }
     }
 
     // MARK: Stuff
@@ -63,8 +63,8 @@ open class Environment {
 private final class GuidGenerator {
 
     func getNextGuid() -> String {
-        let result = String(self.nextGuid)
-        self.nextGuid += 1
+        let result = String(nextGuid)
+        nextGuid += 1
         return result
     }
 
