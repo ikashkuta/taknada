@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		874882CD1DE4FC5E0047D39A /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882CC1DE4FC5E0047D39A /* Entity.swift */; };
+		874882CD1DE4FC5E0047D39A /* EntityImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882CC1DE4FC5E0047D39A /* EntityImpl.swift */; };
 		874882CF1DE4FC730047D39A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882CE1DE4FC730047D39A /* Environment.swift */; };
 		874882D31DE4FFEF0047D39A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D21DE4FFEF0047D39A /* Protocols.swift */; };
 		874882D51DE500000047D39A /* EntityRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D41DE500000047D39A /* EntityRef.swift */; };
@@ -32,7 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		874882CC1DE4FC5E0047D39A /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Entity.swift; path = Core/Entity.swift; sourceTree = "<group>"; };
+		874882CC1DE4FC5E0047D39A /* EntityImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntityImpl.swift; path = Core/EntityImpl.swift; sourceTree = "<group>"; };
 		874882CE1DE4FC730047D39A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = Core/Environment.swift; sourceTree = "<group>"; };
 		874882D21DE4FFEF0047D39A /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Protocols.swift; path = Core/Protocols.swift; sourceTree = "<group>"; };
 		874882D41DE500000047D39A /* EntityRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntityRef.swift; path = Core/EntityRef.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		874882CB1DE4FC550047D39A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				874882CC1DE4FC5E0047D39A /* Entity.swift */,
+				874882CC1DE4FC5E0047D39A /* EntityImpl.swift */,
 				874882D41DE500000047D39A /* EntityRef.swift */,
 				874882CE1DE4FC730047D39A /* Environment.swift */,
 				874882D81DE5038D0047D39A /* Observable.swift */,
@@ -234,7 +234,7 @@
 			files = (
 				87AA5E891DDC383E000F5EDA /* AppDelegate.swift in Sources */,
 				878BA4AB1DDD286100D59E34 /* UIKitSystem.swift in Sources */,
-				874882CD1DE4FC5E0047D39A /* Entity.swift in Sources */,
+				874882CD1DE4FC5E0047D39A /* EntityImpl.swift in Sources */,
 				87A48FC21DDD0BCC00F22E13 /* UIKitComponent.swift in Sources */,
 				874882D91DE5038D0047D39A /* Observable.swift in Sources */,
 				874882D51DE500000047D39A /* EntityRef.swift in Sources */,

@@ -38,7 +38,7 @@ open class Environment {
     }
 
     open func make() -> EntityRef {
-        let entity = Entity(kind: "", guid: guidGenerator.getNextGuid(), components: [], environment: self)
+        let entity = EntityImpl(kind: "", guid: guidGenerator.getNextGuid(), components: [], environment: self)
         return EntityRef(ref: entity)
     }
 
@@ -55,7 +55,7 @@ open class Environment {
     // MARK: Stuff
 
     private let systems: [System]
-    private var entities = Set<Entity>()
+    private var entities = Set<EntityImpl>()
     private var guidGenerator = GuidGenerator()
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 
-internal final class Entity {
+internal final class EntityImpl {
 
     // MARK: Lifespan
 
@@ -102,14 +102,14 @@ internal final class Entity {
     private unowned let environment: Environment
 }
 
-extension Entity: Equatable {
+extension EntityImpl: Equatable {
 
-    static func ==(lhs: Entity, rhs: Entity) -> Bool {
+    static func ==(lhs: EntityImpl, rhs: EntityImpl) -> Bool {
         return lhs === rhs
     }
 }
 
-extension Entity: Hashable {
+extension EntityImpl: Hashable {
 
     var hashValue: Int {
         return Unmanaged.passUnretained(self).toOpaque().hashValue

@@ -4,13 +4,13 @@ public struct EntityRef {
 
     // MARK: Lifespan
 
-    internal init(ref: Entity) {
+    internal init(ref: EntityImpl) {
         self.ref = ref
     }
 
     // MARK: Stuff
 
-    internal weak var ref: Entity?
+    internal weak var ref: EntityImpl?
     internal let isLocal: Bool = true
 }
 
