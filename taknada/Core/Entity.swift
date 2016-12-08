@@ -30,29 +30,29 @@ internal final class Entity {
 
     // MARK: Storage
 
-    internal var storage = [String: Textable]()
+    var storage = [String: Textable]()
 
-	internal func write(key: String, data: Textable, persistent: Bool) {
+	func write(key: String, data: Textable, persistent: Bool) {
 		// TODO: persistence
 		self.storage[key] = data
 	}
 
-	internal func read(key: String) -> Textable? {
+	func read(key: String) -> Textable? {
 		return self.storage[key]
 	}
 
-	internal func subscribe(key: String) -> Observable<Textable> {
+	func subscribe(key: String) -> Observable<Textable> {
 		return Observable()
 	}
 
     // MARK: Messages
 
-    internal func post(message: Textable) {
+    func post(message: Textable) {
         self.receive(message: message)
         self.environment.dispatch(message: message, from: EntityRef(ref: self))
     }
 
-	internal func receive(message: Textable) {
+	func receive(message: Textable) {
         self.components.forEach {
             guard let receiver = $0 as? MessageReceiver else { return }
             receiver.receive(message: message)
@@ -63,7 +63,7 @@ internal final class Entity {
 
     private let components: [(component: Component, tags: [String])]
 
-	internal func getComponents<T>(_ tag: String? = nil) -> [T] {
+	func getComponents<T>(_ tag: String? = nil) -> [T] {
 		var result = [T]()
 		for (component, tags) in self.components {
 			guard component is T else { continue }
@@ -73,7 +73,7 @@ internal final class Entity {
 		return result
 	}
 
-	internal func getComponent<T>(_ tag: String? = nil) -> T {
+	func getComponent<T>(_ tag: String? = nil) -> T {
 		let result: T? = self.getComponents(tag).first
 		if result == nil {
 			// TODO: Really? I think better to notify about error and go ahead
