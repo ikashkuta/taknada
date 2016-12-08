@@ -27,4 +27,13 @@ public class UIKitSystem: System {
     private let window: UIView
     private let queue: DispatchQueue
     private var components = Set<UIKitComponent>()
+
+    // TODO: it's completely wrong :(
+    func needUpdate() {
+        for component in components {
+            let view = component.createView()
+            component.view = view
+            self.window.addSubview(view)
+        }
+    }
 }

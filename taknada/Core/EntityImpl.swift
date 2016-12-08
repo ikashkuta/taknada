@@ -29,19 +29,24 @@ internal final class EntityImpl {
 
     // MARK: Storage
 
-    var storage = [String: TextRepresentable]()
+    private var storage = [String: TextRepresentable]()
+    private var observers = [String: [(TextRepresentable) -> Void]]()
 
     func write(key: String, data: TextRepresentable, persistent: Bool) {
         // TODO: persistence
         storage[key] = data
+        observers[key]?.forEach { $0(data) }
     }
 
     func read(key: String) -> TextRepresentable? {
         return storage[key]
     }
 
-    func subscribe(key: String) -> Observable<TextRepresentable> {
-        fatalError("TODO")
+    func observe(key: String, observer: @escaping (TextRepresentable) -> Void) {
+        if observers[key] == nil {
+            observers[key] = []
+        }
+        observers[key]?.append(observer)
     }
 
     // MARK: Messages

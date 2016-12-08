@@ -11,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         rootViewController.view.backgroundColor = UIColor.orange
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
+        makeTestScene()
         return true
     }
 
@@ -19,6 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func makeTestScene() {
         let uikitSystem = UIKitSystem(window: window!, queue: DispatchQueue.main)
         env = Environment(systems: [uikitSystem])
+        makeSimple()
+        uikitSystem.needUpdate()
+    }
+
+    func makeSimple() {
+        let c1 = EntityConfig(taggedComponents: [(component: UIKitComponent(), tags: [])], kind: "basic")
+        let e1 = env.make(config: c1)
+        e1.write(key: ConventionKeys.UIKitComponent.backgroundColor, data: UIColor.white, persistent: false)
+        e1.write(key: ConventionKeys.UIKitComponent.frame, data: CGRect(x: 100, y: 100, width: 100, height: 100), persistent: false)
     }
 
     func makeText() {

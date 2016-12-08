@@ -24,8 +24,12 @@ extension Entity { // Minidb
         return ref?.read(key: key) as? T
     }
 
-    public func subscribe(key: String) -> Observable<TextRepresentable>? {
-        return ref?.subscribe(key: key)
+    func observe<T: TextRepresentable>(key: String, observer: @escaping (T) -> Void) {
+        ref?.observe(key: key) { newValue in
+            //let typedValue = newValue as? T ?? T(newValue) TODO
+            let typedValue = newValue as! T
+            observer(typedValue)
+        }
     }
 }
 

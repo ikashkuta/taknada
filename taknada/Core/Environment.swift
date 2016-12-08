@@ -22,6 +22,7 @@ open class Environment {
                                 guid: guidGenerator.getNextGuid(),
                                 taggedComponents: config.taggedComponents,
                                 environment: self)
+        entities.insert(entity)
         return Entity(ref: entity)
     }
 
