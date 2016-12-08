@@ -6,10 +6,6 @@ open class Environment {
 
 	// MARK: Lifespan
 
-    deinit {
-        fatalError("TODO") // unregister anything, cleanup, etc.
-    }
-
 	public init(systems: [System]) {
 		self.systems = systems
 	}
@@ -22,11 +18,8 @@ open class Environment {
 	}
 
     private func dispatchLocal(message: Textable, to entity: EntityRef) {
-        guard let ref = entity.ref else {
-            fatalError("TODO: Remove outdated route")
-        }
-
         if message is KillMessage {
+            guard let ref = entity.ref else { return }
             self.entities.remove(ref)
             return
         }

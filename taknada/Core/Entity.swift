@@ -62,7 +62,7 @@ internal final class Entity {
     func post(message: Textable) {
         self.receive(message: message)
         self.connections.forEach {
-            // TODO: cleanup empty refs
+            // TODO: cleanup empty refs, expecially remote ones
             self.environment.dispatch(message: message, to: $0)
         }
     }
