@@ -11,7 +11,7 @@
 		874882CF1DE4FC730047D39A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882CE1DE4FC730047D39A /* Environment.swift */; };
 		874882D31DE4FFEF0047D39A /* External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D21DE4FFEF0047D39A /* External.swift */; };
 		874882D51DE500000047D39A /* EntityRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D41DE500000047D39A /* EntityRef.swift */; };
-		874882D71DE500850047D39A /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D61DE500850047D39A /* Reflection.swift */; };
+		874882D71DE500850047D39A /* TextRepresetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D61DE500850047D39A /* TextRepresetable.swift */; };
 		874882D91DE5038D0047D39A /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D81DE5038D0047D39A /* Observable.swift */; };
 		878BA4AB1DDD286100D59E34 /* RenderSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BA4AA1DDD286100D59E34 /* RenderSystem.swift */; };
 		87A48FC21DDD0BCC00F22E13 /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A48FC11DDD0BCC00F22E13 /* RenderComponent.swift */; };
@@ -36,7 +36,7 @@
 		874882CE1DE4FC730047D39A /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = Core/Environment.swift; sourceTree = "<group>"; };
 		874882D21DE4FFEF0047D39A /* External.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = External.swift; path = Core/External.swift; sourceTree = "<group>"; };
 		874882D41DE500000047D39A /* EntityRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntityRef.swift; path = Core/EntityRef.swift; sourceTree = "<group>"; };
-		874882D61DE500850047D39A /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reflection.swift; path = Core/Reflection.swift; sourceTree = "<group>"; };
+		874882D61DE500850047D39A /* TextRepresetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextRepresetable.swift; path = Core/TextRepresetable.swift; sourceTree = "<group>"; };
 		874882D81DE5038D0047D39A /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = Core/Observable.swift; sourceTree = "<group>"; };
 		878BA4AA1DDD286100D59E34 /* RenderSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderSystem.swift; sourceTree = "<group>"; };
 		87A48FC11DDD0BCC00F22E13 /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 				874882CE1DE4FC730047D39A /* Environment.swift */,
 				874882D21DE4FFEF0047D39A /* External.swift */,
 				874882D81DE5038D0047D39A /* Observable.swift */,
-				874882D61DE500850047D39A /* Reflection.swift */,
+				874882D61DE500850047D39A /* TextRepresetable.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 				874882D91DE5038D0047D39A /* Observable.swift in Sources */,
 				874882D51DE500000047D39A /* EntityRef.swift in Sources */,
 				874882D31DE4FFEF0047D39A /* External.swift in Sources */,
-				874882D71DE500850047D39A /* Reflection.swift in Sources */,
+				874882D71DE500850047D39A /* TextRepresetable.swift in Sources */,
 				874882CF1DE4FC730047D39A /* Environment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

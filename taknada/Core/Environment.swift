@@ -1,23 +1,23 @@
 import Foundation
 
-struct KillMessage: Textable {}
+struct KillMessage: TextRepresentable {}
 
 open class Environment {
 
-	// MARK: Lifespan
+    // MARK: Lifespan
 
-	public init(systems: [System]) {
-		self.systems = systems
-	}
+    public init(systems: [System]) {
+        self.systems = systems
+    }
 
-	// MARK: Message Dispatching
+    // MARK: Message Dispatching
 
-	open func dispatch(message: Textable, to entity: EntityRef) {
+    open func dispatch(message: TextRepresentable, to entity: EntityRef) {
         let dispatchFunction = entity.isLocal ? self.dispatchLocal : self.dispatchExternal
         dispatchFunction(message, entity)
-	}
+    }
 
-    private func dispatchLocal(message: Textable, to entity: EntityRef) {
+    private func dispatchLocal(message: TextRepresentable, to entity: EntityRef) {
         if message is KillMessage {
             guard let ref = entity.ref else { return }
             self.entities.remove(ref)
@@ -27,35 +27,35 @@ open class Environment {
         entity.receive(message: message)
     }
 
-    private func dispatchExternal(message: Textable, to entity: EntityRef) {
+    private func dispatchExternal(message: TextRepresentable, to entity: EntityRef) {
         fatalError("TODO")
     }
 
     // MARK: URL Namespace System
 
-	open func query(with url: URL) -> [EntityRef] {
+    open func query(with url: URL) -> [EntityRef] {
         fatalError("TODO")
-	}
+    }
 
-	open func make() -> EntityRef {
-		let entity = Entity(kind: "", guid: self.guidGenerator.getNextGuid(), components: [], environment: self)
-		return EntityRef(ref: entity)
-	}
+    open func make() -> EntityRef {
+        let entity = Entity(kind: "", guid: self.guidGenerator.getNextGuid(), components: [], environment: self)
+        return EntityRef(ref: entity)
+    }
 
-	// MARK: Components
+    // MARK: Components
 
-	internal func registerComponent(component: Component) {
-		self.systems.forEach { $0.register(component: component) }
-	}
+    internal func registerComponent(component: Component) {
+        self.systems.forEach { $0.register(component: component) }
+    }
 
-	internal func unregisterComponent(component: Component) {
-		self.systems.forEach { $0.unregister(component: component) }
-	}
+    internal func unregisterComponent(component: Component) {
+        self.systems.forEach { $0.unregister(component: component) }
+    }
 
     // MARK: Stuff
 
-	private let systems: [System]
-	private var entities = Set<Entity>()
+    private let systems: [System]
+    private var entities = Set<Entity>()
     private var guidGenerator = GuidGenerator()
 }
 
