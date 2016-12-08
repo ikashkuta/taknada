@@ -1,30 +1,57 @@
 import Foundation
 
+struct KillMessage: Textable {}
+
 open class Environment {
 
 	// MARK: Lifespan
+
+    deinit {
+        fatalError("TODO") // unregister anything, cleanup, etc.
+    }
 
 	public init(systems: [System]) {
 		self.systems = systems
 	}
 
-	// MARK: API
+	// MARK: Message Dispatching
 
 	open func dispatch(message: Textable, to entity: EntityRef) {
-        entity.receive(message: message)
+        let dispatchFunction = entity.isLocal ? self.dispatchLocal : self.dispatchExternal
+        dispatchFunction(message, entity)
 	}
+
+    private func dispatchLocal(message: Textable, to entity: EntityRef) {
+        guard let ref = entity.ref else { return }
+
+        if message is KillMessage {
+            self.entities.remove(ref)
+            return
+        }
+
+        entity.receive(message: message)
+    }
+
+    private func dispatchExternal(message: Textable, to entity: EntityRef) {
+        fatalError("TODO")
+    }
 
 	open func dispatch(message: Textable, from entity: EntityRef) {
         fatalError("TODO")
 	}
 
 	open func addRoute(from fromEntity: EntityRef, to toEntity: EntityRef) {
+        fatalError("TODO")
 	}
 
 	open func removeRoute(from fromEntity: EntityRef, to toEntity: EntityRef) {
+        fatalError("TODO")
 	}
 
+    // MARK: URL Namespace System
+
 	open func query(with url: URL) -> [EntityRef] {
+        fatalError("TODO")
 		return []
 	}
 

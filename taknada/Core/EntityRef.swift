@@ -11,6 +11,7 @@ public struct EntityRef {
 	// MARK: Stuff
 
 	internal weak var ref: Entity?
+    internal let isLocal: Bool = true
 }
 
 extension EntityRef: Textable {

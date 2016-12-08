@@ -42,6 +42,7 @@ internal final class Entity {
 	}
 
 	func subscribe(key: String) -> Observable<Textable> {
+        fatalError("TODO")
 		return Observable()
 	}
 
