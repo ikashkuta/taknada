@@ -13,8 +13,8 @@
 		874882D51DE500000047D39A /* EntityRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D41DE500000047D39A /* EntityRef.swift */; };
 		874882D71DE500850047D39A /* TextRepresetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D61DE500850047D39A /* TextRepresetable.swift */; };
 		874882D91DE5038D0047D39A /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874882D81DE5038D0047D39A /* Observable.swift */; };
-		878BA4AB1DDD286100D59E34 /* RenderSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BA4AA1DDD286100D59E34 /* RenderSystem.swift */; };
-		87A48FC21DDD0BCC00F22E13 /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A48FC11DDD0BCC00F22E13 /* RenderComponent.swift */; };
+		878BA4AB1DDD286100D59E34 /* UIKitSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878BA4AA1DDD286100D59E34 /* UIKitSystem.swift */; };
+		87A48FC21DDD0BCC00F22E13 /* UIKitComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A48FC11DDD0BCC00F22E13 /* UIKitComponent.swift */; };
 		87AA5E891DDC383E000F5EDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AA5E881DDC383E000F5EDA /* AppDelegate.swift */; };
 		87AA5E901DDC383E000F5EDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87AA5E8F1DDC383E000F5EDA /* Assets.xcassets */; };
 		87AA5E931DDC383E000F5EDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87AA5E911DDC383E000F5EDA /* LaunchScreen.storyboard */; };
@@ -38,8 +38,8 @@
 		874882D41DE500000047D39A /* EntityRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntityRef.swift; path = Core/EntityRef.swift; sourceTree = "<group>"; };
 		874882D61DE500850047D39A /* TextRepresetable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextRepresetable.swift; path = Core/TextRepresetable.swift; sourceTree = "<group>"; };
 		874882D81DE5038D0047D39A /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = Core/Observable.swift; sourceTree = "<group>"; };
-		878BA4AA1DDD286100D59E34 /* RenderSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderSystem.swift; sourceTree = "<group>"; };
-		87A48FC11DDD0BCC00F22E13 /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
+		878BA4AA1DDD286100D59E34 /* UIKitSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitSystem.swift; sourceTree = "<group>"; };
+		87A48FC11DDD0BCC00F22E13 /* UIKitComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitComponent.swift; sourceTree = "<group>"; };
 		87AA5E851DDC383E000F5EDA /* taknada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taknada.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87AA5E881DDC383E000F5EDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87AA5E8F1DDC383E000F5EDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,8 +115,8 @@
 			children = (
 				874882CB1DE4FC550047D39A /* Core */,
 				87A48FBA1DDCF7C400F22E13 /* ios_stuff */,
-				87A48FC11DDD0BCC00F22E13 /* RenderComponent.swift */,
-				878BA4AA1DDD286100D59E34 /* RenderSystem.swift */,
+				87A48FC11DDD0BCC00F22E13 /* UIKitComponent.swift */,
+				878BA4AA1DDD286100D59E34 /* UIKitSystem.swift */,
 			);
 			path = taknada;
 			sourceTree = "<group>";
@@ -233,9 +233,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				87AA5E891DDC383E000F5EDA /* AppDelegate.swift in Sources */,
-				878BA4AB1DDD286100D59E34 /* RenderSystem.swift in Sources */,
+				878BA4AB1DDD286100D59E34 /* UIKitSystem.swift in Sources */,
 				874882CD1DE4FC5E0047D39A /* Entity.swift in Sources */,
-				87A48FC21DDD0BCC00F22E13 /* RenderComponent.swift in Sources */,
+				87A48FC21DDD0BCC00F22E13 /* UIKitComponent.swift in Sources */,
 				874882D91DE5038D0047D39A /* Observable.swift in Sources */,
 				874882D51DE500000047D39A /* EntityRef.swift in Sources */,
 				874882D31DE4FFEF0047D39A /* External.swift in Sources */,

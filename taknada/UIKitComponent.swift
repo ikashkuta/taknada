@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RenderComponent: Component {
+class UIKitComponent: Component {
 
     // MARK: API
 
@@ -15,7 +15,7 @@ class RenderComponent: Component {
 
     // MARK: Ancestry
 
-     required init() {
+    required init() {
 
     }
 
@@ -28,14 +28,14 @@ class RenderComponent: Component {
     }
 }
 
-extension RenderComponent: Equatable {
+extension UIKitComponent: Equatable {
 
-    public static func ==(lhs: RenderComponent, rhs: RenderComponent) -> Bool {
+    public static func ==(lhs: UIKitComponent, rhs: UIKitComponent) -> Bool {
         return lhs === rhs
     }
 }
 
-extension RenderComponent: Hashable {
+extension UIKitComponent: Hashable {
 
     public var hashValue: Int {
         return ObjectIdentifier(self).hashValue

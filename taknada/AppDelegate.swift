@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var env: Environment!
 
     func makeTestScene() {
-        let _ = RenderSystem(window: self.window!, queue: DispatchQueue.main)
+        let uikitSystem = UIKitSystem(window: self.window!, queue: DispatchQueue.main)
+        self.env = Environment(systems: [uikitSystem])
     }
 
     func makeText() {

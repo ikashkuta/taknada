@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public class RenderSystem: System {
+public class UIKitSystem: System {
 
     // MARK: Lifespan
 
@@ -13,12 +13,12 @@ public class RenderSystem: System {
     // MARK: Ancestry
 
     public func register(component: Component) {
-        guard let render = component as? RenderComponent else { return }
+        guard let render = component as? UIKitComponent else { return }
         self.components.insert(render)
     }
 
     public func unregister(component: Component) {
-        guard let render = component as? RenderComponent else { return }
+        guard let render = component as? UIKitComponent else { return }
         self.components.remove(render)
     }
 
@@ -26,5 +26,5 @@ public class RenderSystem: System {
 
     private let window: UIView
     private let queue: DispatchQueue
-    private var components = Set<RenderComponent>()
+    private var components = Set<UIKitComponent>()
 }
