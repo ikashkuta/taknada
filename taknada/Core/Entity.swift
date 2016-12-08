@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Entity {
+public struct Entity: TextRepresentable {
 
     // MARK: Lifespan
 
@@ -12,9 +12,6 @@ public struct Entity {
 
     internal weak var ref: EntityImpl?
     internal let isLocal: Bool = true
-}
-
-extension Entity: TextRepresentable {
 }
 
 extension Entity { // Minidb

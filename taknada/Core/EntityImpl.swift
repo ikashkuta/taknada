@@ -5,7 +5,7 @@ internal final class EntityImpl {
     // MARK: Lifespan
 
     deinit {
-        components.forEach {
+        taggedComponents.forEach {
             environment.unregisterComponent(component: $0.component)
             $0.component.unregister()
         }
@@ -13,16 +13,15 @@ internal final class EntityImpl {
 
     init(kind: String,
          guid: String,
-         components: [Component.Type],
+         taggedComponents: [(component: Component, tags: [String])],
          environment: Environment) {
-        self.environment = environment
-        self.components = components.map { ($0.init(), []) }
-
         self.storage["kind"] = kind
         self.storage["guid"] = guid
+        self.taggedComponents = taggedComponents
+        self.environment = environment
 
         let ref = Entity(ref: self)
-        self.components.forEach {
+        self.taggedComponents.forEach {
             $0.component.register(entity: ref)
             self.environment.registerComponent(component: $0.component)
         }
@@ -68,19 +67,19 @@ internal final class EntityImpl {
     }
 
     func receive(message: TextRepresentable) {
-        components.forEach {
-            guard let receiver = $0 as? MessageReceiver else { return }
+        taggedComponents.forEach {
+            guard let receiver = $0.component as? MessageReceiver else { return }
             receiver.receive(message: message)
         }
     }
 
     // MAKR: Components
 
-    private let components: [(component: Component, tags: [String])]
+    private let taggedComponents: [(component: Component, tags: [String])]
 
     func getComponents<T>(_ tag: String? = nil) -> [T] {
         var result = [T]()
-        for (component, tags) in components {
+        for (component, tags) in taggedComponents {
             guard component is T else { continue }
             if let tag = tag, !tags.contains(tag) { continue }
             result.append(component as! T)

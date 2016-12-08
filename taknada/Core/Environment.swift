@@ -1,6 +1,11 @@
 import Foundation
 
-struct KillMessage: TextRepresentable {}
+struct KillMessage: TextRepresentable {} // TODO: move to other place
+
+public struct EntityConfig: TextRepresentable {
+    let taggedComponents: [(component: Component, tags: [String])]
+    let kind: String
+}
 
 open class Environment {
 
@@ -8,6 +13,16 @@ open class Environment {
 
     public init(systems: [System]) {
         self.systems = systems
+    }
+
+    // MARK: Entity Creation
+
+    open func make(config: EntityConfig) -> Entity {
+        let entity = EntityImpl(kind: config.kind,
+                                guid: guidGenerator.getNextGuid(),
+                                taggedComponents: config.taggedComponents,
+                                environment: self)
+        return Entity(ref: entity)
     }
 
     // MARK: Message Dispatching
@@ -35,11 +50,6 @@ open class Environment {
 
     open func query(with url: URL) -> [Entity] {
         fatalError("TODO")
-    }
-
-    open func make() -> Entity {
-        let entity = EntityImpl(kind: "", guid: guidGenerator.getNextGuid(), components: [], environment: self)
-        return Entity(ref: entity)
     }
 
     // MARK: Components
