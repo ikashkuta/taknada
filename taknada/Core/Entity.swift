@@ -43,14 +43,28 @@ internal final class Entity {
 
 	func subscribe(key: String) -> Observable<Textable> {
         fatalError("TODO")
-		return Observable()
 	}
 
     // MARK: Messages
 
+    private var connections = [EntityRef]()
+
+    func addConnection(with entity: EntityRef) {
+        self.connections.append(entity)
+    }
+
+    func removeConnection(with entity: EntityRef) {
+        guard let ref = entity.ref else { return }
+        guard let idx = self.connections.index(where: { $0.ref == ref }) else { return }
+        self.connections.remove(at: idx)
+    }
+
     func post(message: Textable) {
         self.receive(message: message)
-        self.environment.dispatch(message: message, from: EntityRef(ref: self))
+        self.connections.forEach {
+            // TODO: cleanup empty refs
+            self.environment.dispatch(message: message, to: $0)
+        }
     }
 
 	func receive(message: Textable) {

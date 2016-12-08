@@ -22,7 +22,9 @@ open class Environment {
 	}
 
     private func dispatchLocal(message: Textable, to entity: EntityRef) {
-        guard let ref = entity.ref else { return }
+        guard let ref = entity.ref else {
+            fatalError("TODO: Remove outdated route")
+        }
 
         if message is KillMessage {
             self.entities.remove(ref)
@@ -36,23 +38,10 @@ open class Environment {
         fatalError("TODO")
     }
 
-	open func dispatch(message: Textable, from entity: EntityRef) {
-        fatalError("TODO")
-	}
-
-	open func addRoute(from fromEntity: EntityRef, to toEntity: EntityRef) {
-        fatalError("TODO")
-	}
-
-	open func removeRoute(from fromEntity: EntityRef, to toEntity: EntityRef) {
-        fatalError("TODO")
-	}
-
     // MARK: URL Namespace System
 
 	open func query(with url: URL) -> [EntityRef] {
         fatalError("TODO")
-		return []
 	}
 
 	open func make() -> EntityRef {
