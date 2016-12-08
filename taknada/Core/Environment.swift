@@ -11,9 +11,11 @@ open class Environment {
 	// MARK: API
 
 	open func dispatch(message: Textable, to entity: EntityRef) {
+        entity.receive(message: message)
 	}
 
 	open func dispatch(message: Textable, from entity: EntityRef) {
+        fatalError("TODO")
 	}
 
 	open func addRoute(from fromEntity: EntityRef, to toEntity: EntityRef) {
@@ -27,11 +29,11 @@ open class Environment {
 	}
 
 	open func make() -> EntityRef {
-		let entity = Entity(kind: "", guid: "", components: [], environment: self)
+		let entity = Entity(kind: "", guid: self.guidGenerator.getNextGuid(), components: [], environment: self)
 		return EntityRef(ref: entity)
 	}
 
-	// MARK: Stuff
+	// MARK: Components
 
 	internal func registerComponent(component: Component) {
 		self.systems.forEach { $0.register(component: component) }
@@ -41,14 +43,21 @@ open class Environment {
 		self.systems.forEach { $0.unregister(component: component) }
 	}
 
+    // MARK: Stuff
+
 	private let systems: [System]
 	private var entities = Set<Entity>()
+    private var guidGenerator = GuidGenerator()
+}
 
-	// TODO: Make thread-safe
-	private func getNextGuid() -> String {
-		let result = String(self.guidFactory)
-		self.guidFactory += 1
-		return result
-	}
-	private var guidFactory: UInt = 0
+// TODO: Must be thread-safe
+private final class GuidGenerator {
+
+    func getNextGuid() -> String {
+        let result = String(self.nextGuid)
+        self.nextGuid += 1
+        return result
+    }
+
+    private var nextGuid: UInt = 0
 }

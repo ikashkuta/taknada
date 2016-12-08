@@ -28,7 +28,9 @@ internal final class Entity {
 		}
 	}
 
-	// MARK: API
+    // MARK: Storage
+
+    internal var storage = [String: Textable]()
 
 	internal func write(key: String, data: Textable, persistent: Bool) {
 		// TODO: persistence
@@ -43,8 +45,23 @@ internal final class Entity {
 		return Observable()
 	}
 
+    // MARK: Messages
+
+    internal func post(message: Textable) {
+        self.receive(message: message)
+        self.environment.dispatch(message: message, from: EntityRef(ref: self))
+    }
+
 	internal func receive(message: Textable) {
+        self.components.forEach {
+            guard let receiver = $0 as? MessageReceiver else { return }
+            receiver.receive(message: message)
+        }
 	}
+
+    // MAKR: Components
+
+    private let components: [(component: Component, tags: [String])]
 
 	internal func getComponents<T>(_ tag: String? = nil) -> [T] {
 		var result = [T]()
@@ -67,10 +84,7 @@ internal final class Entity {
 
 	// MARK: Stuff
 
-	internal var storage = [String: Textable]()
-
 	private unowned let environment: Environment
-	private let components: [(component: Component, tags: [String])]
 }
 
 extension Entity: Equatable {

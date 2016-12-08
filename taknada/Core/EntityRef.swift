@@ -18,7 +18,7 @@ extension EntityRef: Textable {
 
 extension EntityRef { // Minidb
 
-	public func write<T: Textable>(key: String, data: T, persistent: Bool) {
+	public func write(key: String, data: Textable, persistent: Bool) {
 		self.ref?.write(key: key, data: data, persistent: persistent)
 	}
 
@@ -31,14 +31,14 @@ extension EntityRef { // Minidb
 	}
 }
 
-extension EntityRef { // Postbox
+extension EntityRef { // Messages
 
-//	public func receive() -> Observable<Textable> {
-//		self.ref?.receive(message: Textable)
-//	}
+    public func receive(message: Textable) { // incoming messages
+        self.ref?.receive(message: message)
+    }
 
-	public func post<T: Textable>(message: T) {
-		
+	public func post(message: Textable) { // outgoing messages
+		self.ref?.post(message: message)
 	}
 }
 
