@@ -26,7 +26,7 @@ extension Entity { // Minidb
 
     func observe<T: TextRepresentable>(key: String, observer: @escaping (T) -> Void) {
         ref?.observe(key: key) { newValue in
-            //let typedValue = newValue as? T ?? T(newValue) TODO
+            //TODO: let typedValue = newValue as? T ?? T(newValue)
             let typedValue = newValue as! T
             observer(typedValue)
         }
@@ -47,10 +47,10 @@ extension Entity { // Messages
 extension Entity { // Convenience vars
 
     public var kind: String {
-        return read(key: "kind")!
+        return read(key: ConventionKeys.Entity.kind)!
     }
 
     public var guid: String {
-        return read(key: "guid")!
+        return read(key: ConventionKeys.Entity.guid)!
     }
 }

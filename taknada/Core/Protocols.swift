@@ -1,5 +1,14 @@
 import Foundation
 
+struct ConventionKeys {
+    struct Entity {
+        static let kind = "kind"
+        static let guid = "guid"
+    }
+}
+
+struct KillMessage: TextRepresentable {} // TODO: move to other place
+
 public protocol MessageReceiver {
 
     func receive(message: TextRepresentable)

@@ -1,7 +1,5 @@
 import Foundation
 
-struct KillMessage: TextRepresentable {} // TODO: move to other place
-
 public struct EntityConfig: TextRepresentable {
     let taggedComponents: [(component: Component, tags: [String])]
     let kind: String

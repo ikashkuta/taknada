@@ -5,7 +5,7 @@ extension UIColor: TextRepresentable {}
 extension CGRect: TextRepresentable {}
 extension CGFloat: TextRepresentable {}
 
-struct ConventionKeys {
+extension ConventionKeys {
     struct UIKitComponent {
         static let cornerRadius = "corner_radius"
         static let borderColor = "border_color"
@@ -46,34 +46,31 @@ class UIKitComponent: Component {
     func register(entity: Entity) {
         self.entity = entity
 
+        // TODO: All of this updates must happen on UIKitSystem queue
+
         entity.observe(key: ConventionKeys.UIKitComponent.backgroundColor) { (color: UIColor) in
-            guard let view = self.view else { return }
-            view.backgroundColor = color
+            self.view?.backgroundColor = color
         }
 
         entity.observe(key: ConventionKeys.UIKitComponent.frame) { (frame: CGRect) in
-            guard let view = self.view else { return }
-            view.frame = frame
+            self.view?.frame = frame
         }
 
         entity.observe(key: ConventionKeys.UIKitComponent.borderColor) { (borderColor: UIColor) in
-            guard let view = self.view else { return }
-            view.layer.borderColor = borderColor.cgColor
+            self.view?.layer.borderColor = borderColor.cgColor
         }
 
         entity.observe(key: ConventionKeys.UIKitComponent.borderWidth) { (borderWidth: CGFloat) in
-            guard let view = self.view else { return }
-            view.layer.borderWidth = borderWidth
+            self.view?.layer.borderWidth = borderWidth
         }
 
         entity.observe(key: ConventionKeys.UIKitComponent.cornerRadius) { (cornerRadius: CGFloat) in
-            guard let view = self.view else { return }
-            view.layer.cornerRadius = cornerRadius
+            self.view?.layer.cornerRadius = cornerRadius
         }
     }
 
     func unregister() {
-        // TODO: unregister of everything. Call to super is mandatory!
+        self.view?.removeFromSuperview()
     }
 }
 

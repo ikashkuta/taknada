@@ -15,8 +15,8 @@ internal final class EntityImpl {
          guid: String,
          taggedComponents: [(component: Component, tags: [String])],
          environment: Environment) {
-        self.storage["kind"] = kind
-        self.storage["guid"] = guid
+        self.storage[ConventionKeys.Entity.kind] = kind
+        self.storage[ConventionKeys.Entity.guid] = guid
         self.taggedComponents = taggedComponents
         self.environment = environment
 
