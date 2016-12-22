@@ -14,7 +14,8 @@ public struct Entity: TextRepresentable {
     internal let isLocal: Bool = true
 }
 
-extension Entity { // Minidb
+// MARK: Storage
+extension Entity {
 
     public func write(key: String, data: TextRepresentable, persistent: Bool) {
         ref?.write(key: key, data: data, persistent: persistent)
@@ -33,7 +34,8 @@ extension Entity { // Minidb
     }
 }
 
-extension Entity { // Messages
+// MARK: Messages
+extension Entity {
 
     public func receive(message: TextRepresentable) { // incoming messages
         ref?.receive(message: message)
@@ -44,7 +46,8 @@ extension Entity { // Messages
     }
 }
 
-extension Entity { // Convenience vars
+// MARK: Convenience vars
+extension Entity {
 
     public var kind: String {
         return read(key: ConventionKeys.Entity.kind)!
