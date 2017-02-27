@@ -37,13 +37,12 @@ class UIKitComponent: Component {
         return UIView()
     }
 
-    // MARK: Ancestry
+    // MARK: Component
 
     required init() {
-
     }
 
-    func register(entity: Entity) {
+    func attach(to entity: Entity) {
         self.entity = entity
 
         // TODO: All of this updates must happen on UIKitSystem queue
@@ -69,8 +68,9 @@ class UIKitComponent: Component {
         }
     }
 
-    func unregister() {
+    func detach() {
         self.view?.removeFromSuperview()
+        self.view = nil
     }
 }
 

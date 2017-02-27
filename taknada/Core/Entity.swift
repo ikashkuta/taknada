@@ -4,14 +4,13 @@ public struct Entity: TextRepresentable {
 
     // MARK: Lifespan
 
-    internal init(ref: EntityImpl) {
+    init(ref: EntityImpl) {
         self.ref = ref
     }
 
     // MARK: Stuff
 
-    internal weak var ref: EntityImpl?
-    internal let isLocal: Bool = true
+    weak var ref: EntityImpl?
 }
 
 // MARK: Storage
@@ -49,8 +48,8 @@ extension Entity {
 // MARK: Convenience vars
 extension Entity {
 
-    public var kind: String {
-        return read(key: ConventionKeys.Entity.kind)!
+    public var name: String {
+        return read(key: ConventionKeys.Entity.name)!
     }
 
     public var guid: String {

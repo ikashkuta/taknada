@@ -1,29 +1,31 @@
 import Foundation
 
-internal final class EntityImpl {
+final class EntityImpl {
 
     // MARK: Lifespan
 
     deinit {
         taggedComponents.forEach {
-            environment.unregisterComponent(component: $0.component)
-            $0.component.unregister()
+            let component = $0.component
+            environment.unregisterComponent(component: component)
+            component.detach()
         }
     }
 
-    init(kind: String,
+    init(name: String,
          guid: String,
          taggedComponents: [(component: Component, tags: [String])],
          environment: Environment) {
-        self.storage[ConventionKeys.Entity.kind] = kind
+        self.storage[ConventionKeys.Entity.name] = name
         self.storage[ConventionKeys.Entity.guid] = guid
         self.taggedComponents = taggedComponents
         self.environment = environment
 
         let ref = Entity(ref: self)
-        self.taggedComponents.forEach {
-            $0.component.register(entity: ref)
-            self.environment.registerComponent(component: $0.component)
+        taggedComponents.forEach {
+            let component = $0.component
+            component.attach(to: ref)
+            environment.registerComponent(component: component)
         }
     }
 
@@ -66,7 +68,7 @@ internal final class EntityImpl {
     func post(message: TextRepresentable) {
         receive(message: message)
         connections.forEach {
-            // TODO: cleanup empty refs, expecially remote ones
+            // TODO: cleanup empty refs
             environment.dispatch(message: message, to: $0)
         }
     }
@@ -116,6 +118,6 @@ extension EntityImpl: Equatable {
 extension EntityImpl: Hashable {
 
     var hashValue: Int {
-        return Unmanaged.passUnretained(self).toOpaque().hashValue
+        return ObjectIdentifier(self).hashValue
     }
 }

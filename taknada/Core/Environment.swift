@@ -1,8 +1,12 @@
 import Foundation
 
+/// Entity may be described by following set of things:
+/// 1. Name: every entity in the world should have it's name
+/// 2. Tagged components: parts of the entity, head-body-hands(tags: left & right)-legs(tags: left & right)
+/// 3. State: to fulfill components with their configuration. DNA. TODO
 public struct EntityConfig: TextRepresentable {
     let taggedComponents: [(component: Component, tags: [String])]
-    let kind: String
+    let name: String
 }
 
 open class Environment {
@@ -16,7 +20,7 @@ open class Environment {
     // MARK: Entity Creation
 
     open func make(config: EntityConfig) -> Entity {
-        let entity = EntityImpl(kind: config.kind,
+        let entity = EntityImpl(name: config.name,
                                 guid: guidGenerator.getNextGuid(),
                                 taggedComponents: config.taggedComponents,
                                 environment: self)
@@ -27,11 +31,6 @@ open class Environment {
     // MARK: Message Dispatching
 
     open func dispatch(message: TextRepresentable, to entity: Entity) {
-        let dispatchFunction = entity.isLocal ? dispatchLocal : dispatchExternal
-        dispatchFunction(message, entity)
-    }
-
-    private func dispatchLocal(message: TextRepresentable, to entity: Entity) {
         if message is KillMessage {
             guard let ref = entity.ref else { return }
             entities.remove(ref)
@@ -41,23 +40,20 @@ open class Environment {
         entity.receive(message: message)
     }
 
-    private func dispatchExternal(message: TextRepresentable, to entity: Entity) {
-        fatalError("TODO")
-    }
-
     // MARK: URL Namespace System
 
+    /// You may query entity by guid, registered domain zone, todo
     open func query(with url: URL) -> [Entity] {
         fatalError("TODO")
     }
 
     // MARK: Components
 
-    internal func registerComponent(component: Component) {
+    func registerComponent(component: Component) {
         systems.forEach { $0.register(component: component) }
     }
 
-    internal func unregisterComponent(component: Component) {
+    func unregisterComponent(component: Component) {
         systems.forEach { $0.unregister(component: component) }
     }
 

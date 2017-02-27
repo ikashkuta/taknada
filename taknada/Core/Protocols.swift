@@ -2,7 +2,7 @@ import Foundation
 
 struct ConventionKeys {
     struct Entity {
-        static let kind = "kind"
+        static let name = "name"
         static let guid = "guid"
     }
 }
@@ -17,8 +17,8 @@ public protocol MessageReceiver {
 public protocol Component: class {
 
     init()
-    func register(entity: Entity)
-    func unregister()
+    func attach(to entity: Entity)
+    func detach()
 }
 
 public protocol System: class {
