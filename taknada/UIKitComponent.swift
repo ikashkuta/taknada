@@ -15,6 +15,8 @@ extension ConventionKeys {
     }
 }
 
+typealias Keys = ConventionKeys.UIKitComponent
+
 class UIKitComponent: Component {
 
     // MARK: API
@@ -47,23 +49,23 @@ class UIKitComponent: Component {
 
         // TODO: All of this updates must happen on UIKitSystem queue
 
-        entity.observe(key: ConventionKeys.UIKitComponent.backgroundColor) { (color: UIColor) in
+        entity.observe(key: Keys.backgroundColor) { (color: UIColor) in
             self.view?.backgroundColor = color
         }
 
-        entity.observe(key: ConventionKeys.UIKitComponent.frame) { (frame: CGRect) in
+        entity.observe(key: Keys.frame) { (frame: CGRect) in
             self.view?.frame = frame
         }
 
-        entity.observe(key: ConventionKeys.UIKitComponent.borderColor) { (borderColor: UIColor) in
+        entity.observe(key: Keys.borderColor) { (borderColor: UIColor) in
             self.view?.layer.borderColor = borderColor.cgColor
         }
 
-        entity.observe(key: ConventionKeys.UIKitComponent.borderWidth) { (borderWidth: CGFloat) in
+        entity.observe(key: Keys.borderWidth) { (borderWidth: CGFloat) in
             self.view?.layer.borderWidth = borderWidth
         }
 
-        entity.observe(key: ConventionKeys.UIKitComponent.cornerRadius) { (cornerRadius: CGFloat) in
+        entity.observe(key: Keys.cornerRadius) { (cornerRadius: CGFloat) in
             self.view?.layer.cornerRadius = cornerRadius
         }
     }

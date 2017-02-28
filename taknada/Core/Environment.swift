@@ -13,19 +13,41 @@ open class Environment {
 
     // MARK: Lifespan
 
-    public init(systems: [System]) {
-        self.systems = systems
+    deinit {
+        systems.forEach {
+            $0.detach()
+        }
     }
 
-    // MARK: Entity Creation
+    public init(systems: [System]) {
+        self.systems = systems
+        self.queue = DispatchQueue(label: "org.taknada.environment")
+        
+        systems.forEach {
+            $0.attach(to: self)
+        }
+    }
+
+    // MARK: Entities
 
     open func make(config: EntityConfig) -> Entity {
-        let entity = EntityImpl(name: config.name,
-                                guid: guidGenerator.getNextGuid(),
-                                taggedComponents: config.taggedComponents,
-                                environment: self)
+        let entity = EntityImpl(
+            name: config.name,
+            guid: guidGenerator.getNextGuid(),
+            taggedComponents: config.taggedComponents,
+            environment: self)
         entities.insert(entity)
         return Entity(ref: entity)
+    }
+
+    // MARK: Components
+
+    open func registerComponent(component: Component) {
+        systems.forEach { $0.register(component: component) }
+    }
+
+    open func unregisterComponent(component: Component) {
+        systems.forEach { $0.unregister(component: component) }
     }
 
     // MARK: Message Dispatching
@@ -40,25 +62,16 @@ open class Environment {
         entity.receive(message: message)
     }
 
-    // MARK: URL Namespace System
+    // MARK: URL Namespace
 
     /// You may query entity by guid, registered domain zone, todo
     open func query(with url: URL) -> [Entity] {
         fatalError("TODO")
     }
 
-    // MARK: Components
-
-    func registerComponent(component: Component) {
-        systems.forEach { $0.register(component: component) }
-    }
-
-    func unregisterComponent(component: Component) {
-        systems.forEach { $0.unregister(component: component) }
-    }
-
     // MARK: Stuff
 
+    private let queue: DispatchQueue
     private let systems: [System]
     private var entities = Set<EntityImpl>()
     private var guidGenerator = GuidGenerator()

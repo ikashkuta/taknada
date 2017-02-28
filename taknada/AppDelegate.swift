@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var env: Environment!
 
     func makeTestScene() {
-        let uikitSystem = UIKitSystem(window: window!, queue: DispatchQueue.main)
+        let uikitSystem = UIKitSystem(window: window!)
         env = Environment(systems: [uikitSystem])
         makeSimple()
         uikitSystem.needUpdate()

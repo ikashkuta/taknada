@@ -5,12 +5,20 @@ public class UIKitSystem: System {
 
     // MARK: Lifespan
 
-    public init(window: UIView, queue: DispatchQueue) {
+    public init(window: UIView) {
         self.window = window
-        self.queue = queue
+        self.queue = DispatchQueue(
+            label: "org.taknada.uikitsystem",
+            target: DispatchQueue.main)
     }
 
     // MARK: System
+
+    public func attach(to environment: Environment) {
+    }
+
+    public func detach() {
+    }
 
     public func register(component: Component) {
         guard let uiComponent = component as? UIKitComponent else { return }

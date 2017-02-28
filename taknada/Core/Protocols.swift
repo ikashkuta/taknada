@@ -23,6 +23,9 @@ public protocol Component: class {
 
 public protocol System: class {
 
+    func attach(to environment: Environment)
+    func detach()
+
     func register(component: Component)
     func unregister(component: Component)
 }
