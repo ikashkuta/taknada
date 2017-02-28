@@ -10,16 +10,16 @@ public class UIKitSystem: System {
         self.queue = queue
     }
 
-    // MARK: Ancestry
+    // MARK: System
 
     public func register(component: Component) {
-        guard let render = component as? UIKitComponent else { return }
-        components.insert(render)
+        guard let uiComponent = component as? UIKitComponent else { return }
+        components.insert(uiComponent)
     }
 
     public func unregister(component: Component) {
-        guard let render = component as? UIKitComponent else { return }
-        components.remove(render)
+        guard let uiComponent = component as? UIKitComponent else { return }
+        components.remove(uiComponent)
     }
 
     // MARK: Stuff
@@ -30,10 +30,13 @@ public class UIKitSystem: System {
 
     // TODO: it's completely wrong :(
     func needUpdate() {
-        for component in components {
-            let view = component.createView()
-            component.view = view
-            self.window.addSubview(view)
+        queue.async { [weak self] in
+            guard let sSelf = self else { return }
+            for component in sSelf.components {
+                let view = component.createView()
+                component.view = view
+                sSelf.window.addSubview(view)
+            }
         }
     }
 }
