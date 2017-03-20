@@ -25,18 +25,33 @@ class UIKitComponent: Component {
 
     final var view: UIView? {
         didSet {
-            guard let view = view else { return }
-
-            // TODO: it's completely wrong :(
-            view.frame = entity.read(key: ConventionKeys.UIKitComponent.frame)!
-            view.backgroundColor = entity.read(key: ConventionKeys.UIKitComponent.backgroundColor)
+            update()
         }
+    }
+
+    final var needsUpdate: Bool = false
+
+    final func setNeedsUpdate() {
+        needsUpdate = true
     }
 
     // MARK: To Override
 
     func createView() -> UIView {
         return UIView()
+    }
+
+    /// Requires call to super
+    func update() {
+        guard let view = view else { return }
+        view.frame = entity.read(key: Keys.frame) ?? .zero
+        view.backgroundColor = entity.read(key: Keys.backgroundColor) ?? .clear
+
+        let color: UIColor = entity.read(key: Keys.borderColor) ?? .clear
+        view.layer.borderColor = color.cgColor
+
+        view.layer.borderWidth = entity.read(key: Keys.borderWidth) ?? 0
+        view.layer.cornerRadius = entity.read(key: Keys.cornerRadius) ?? 0
     }
 
     // MARK: Component
@@ -73,6 +88,14 @@ class UIKitComponent: Component {
     func detach() {
         self.view?.removeFromSuperview()
         self.view = nil
+    }
+
+    // MARK: Private
+
+    private var updateQueue = [() -> Void]()
+
+    private func updateFrame(frame: CGRect) {
+        self.view?.frame = frame
     }
 }
 
